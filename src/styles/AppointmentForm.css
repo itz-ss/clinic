@@ -1,0 +1,70 @@
+/* AppointmentForm.css */
+
+.appointment-container {
+  background: linear-gradient(145deg, #ffffff, #f5faff);
+  border: 1px solid #e6efff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 77, 153, 0.08);
+  max-width: 650px;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.appointment-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 77, 153, 0.15);
+}
+
+.appointment-container h3 {
+  font-weight: 600;
+  color: #003366;
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #003366;
+}
+
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #cfdff6;
+  padding: 0.75rem;
+  transition: all 0.25s ease;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #006ae6, #004999);
+  transform: translateY(-2px);
+}
+
+.alert-info {
+  background-color: #eaf5ff;
+  border-color: #cce5ff;
+  color: #004085;
+  border-radius: 10px;
+}
+
+@media (max-width: 576px) {
+  .appointment-container {
+    padding: 1.5rem;
+  }
+}

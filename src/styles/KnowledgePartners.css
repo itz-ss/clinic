@@ -1,0 +1,83 @@
+.partners-section {
+  background: linear-gradient(135deg, #f8fafc, #eef2f8);
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.partners-header {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+.partners-subtitle {
+  text-transform: uppercase;
+  color: #2563eb;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.partners-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.partners-description {
+  color: #374151;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.partners-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.partner-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partner-logo {
+  width: 140px;
+  height: auto;
+  filter: grayscale(100%) brightness(0.9);
+  opacity: 0.8;
+  transition: all 0.4s ease;
+}
+
+.partner-logo:hover {
+  filter: grayscale(0%) brightness(1);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .partners-title {
+    font-size: 1.6rem;
+  }
+
+  .partners-logos {
+    gap: 2rem;
+  }
+
+  .partner-logo {
+    width: 110px;
+  }
+}
+@media (max-width: 480px) {
+  .partners-logos {
+    gap: 1.5rem;
+  }
+
+  .partner-logo {
+    width: 90px;
+  }
+}
