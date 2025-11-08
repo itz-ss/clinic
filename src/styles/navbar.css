@@ -1,4 +1,4 @@
-/* 🌐 Base Navbar Styling */
+/* 🌐 Base Navbar */
 .navbar {
   background: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -6,36 +6,42 @@
   top: 0;
   z-index: 1000;
   font-family: "Poppins", sans-serif;
-}
-
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* ✅ keeps logo left, menu right */
-  padding: 12px 60px;
-  position: relative;
   width: 100%;
 }
 
-/* 🧩 Logo */
+/* 🧱 Navbar Container */
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 60px;
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 🩺 Logo – Always Left */
 .logo {
-  flex: 1;
+  flex: 0 0 auto;
 }
 .logo img {
   height: 55px;
   transition: transform 0.3s ease;
 }
-
 .logo img:hover {
   transform: scale(1.05);
 }
 
-/* 🔗 Nav Links */
+/* 🔗 Navigation Links – Centered in Desktop */
 .nav-links {
   list-style: none;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex: 1; /* centers between logo and hamburger */
   gap: 32px;
+  transition: right 0.4s ease;
 }
 
 .nav-links a,
@@ -55,7 +61,7 @@
   color: #0077ff;
 }
 
-/* 🔽 Dropdown Base */
+/* 🔽 Dropdown Styling */
 .dropdown {
   position: relative;
 }
@@ -71,6 +77,7 @@
   display: flex;
   gap: 60px;
   animation: fadeIn 0.25s ease-in-out;
+  z-index: 1100;
 }
 
 .dropdown-menu.two-columns {
@@ -122,13 +129,13 @@
   }
 }
 
-/* 🌟 Dropdown active state */
+/* 🌟 Active State */
 .dropdown-btn.active {
   color: #0077ff;
   font-weight: 600;
 }
 
-/* 🍔 Hamburger Menu */
+/* 🍔 Hamburger Icon (hidden on desktop, right-aligned) */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -136,9 +143,8 @@
   width: 26px;
   height: 20px;
   cursor: pointer;
-  margin-left: auto;
   position: absolute;
-  right: 25px; /* ✅ moves it to far right corner */
+  right: 25px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -151,7 +157,7 @@
   transition: all 0.3s ease;
 }
 
-/* 🍔 Animation */
+/* 🍔 Hamburger Animation */
 .menu-toggle.open span:nth-child(1) {
   transform: rotate(45deg) translateY(8px);
 }
@@ -162,17 +168,17 @@
   transform: rotate(-45deg) translateY(-8px);
 }
 
-/* 🧱 Responsive Layouts */
+/* 🧱 Responsive (Tablet + Mobile) */
 @media (max-width: 992px) {
   .nav-container {
     padding: 12px 25px;
   }
 
   .menu-toggle {
-    display: flex;
+    display: flex; /* show hamburger */
   }
 
-  /* Hide desktop links initially */
+  /* Hide center nav in mobile */
   .nav-links {
     position: fixed;
     top: 70px;
@@ -182,23 +188,20 @@
     background: #ffffff;
     flex-direction: column;
     align-items: flex-start;
-    overflow-y: auto; /* ✅ scrollable mobile menu */
+    overflow-y: auto;
     gap: 20px;
     padding: 25px;
     box-shadow: -3px 0 10px rgba(0, 0, 0, 0.1);
     transition: right 0.4s ease;
+    justify-content: flex-start;
+    flex: unset;
   }
 
   .nav-links.active {
     right: 0;
   }
 
-  .nav-links a {
-    font-size: 16px;
-    color: #333;
-  }
-
-  /* Hide desktop dropdown on mobile */
+  /* Hide desktop dropdowns */
   .desktop-dropdown {
     display: none !important;
   }
@@ -253,7 +256,7 @@
   }
 }
 
-/* 📲 Smaller devices */
+/* 📲 Small Devices */
 @media (max-width: 576px) {
   .logo img {
     height: 45px;
