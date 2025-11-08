@@ -1,0 +1,77 @@
+.treatment-banner {
+  position: relative;
+  height: 50vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-title {
+  color: #fff;
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.treatment-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.treatment-image-wrapper {
+  flex: 1;
+  min-width: 300px;
+}
+
+.treatment-description {
+  flex: 1;
+  min-width: 300px;
+}
+
+.condition-list {
+  columns: 2;
+  list-style: none;
+  padding: 0;
+}
+
+.condition-list li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.condition-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.options-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.option-block {
+  flex: 1;
+  min-width: 300px;
+}
+
+.treatment-not-found {
+  text-align: center;
+  padding: 5rem 0;
+}

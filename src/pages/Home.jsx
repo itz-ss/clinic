@@ -2,7 +2,6 @@ import SEO from "../components/SEO";
 import SchemaDoctor from "../components/SchemaDoctor";
 import { Container, Button } from "react-bootstrap";
 import WelcomeSection from "../components/WelcomeSection";
-import Surgeries from "../components/Surgeries";
 import FAQ from "../components/FAQ";
 import TechnologySection from "../components/TechnologySection";
 import KnowledgePartners from "../components/KnowledgePartners";
@@ -39,7 +38,6 @@ function Home() {
           </Button>
         </Container>
         <WelcomeSection />
-        <Surgeries />
         <TechnologySection />
         <KnowledgePartners />
         <Testimonials />

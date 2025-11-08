@@ -1,19 +1,26 @@
+/* 🌐 Base Navbar Styling */
 .navbar {
   background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
   z-index: 1000;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .nav-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* ✅ keeps logo left, menu right */
   padding: 12px 60px;
+  position: relative;
+  width: 100%;
 }
 
+/* 🧩 Logo */
+.logo {
+  flex: 1;
+}
 .logo img {
   height: 55px;
   transition: transform 0.3s ease;
@@ -23,6 +30,7 @@
   transform: scale(1.05);
 }
 
+/* 🔗 Nav Links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -30,7 +38,8 @@
   gap: 32px;
 }
 
-.nav-links a, .dropdown-btn {
+.nav-links a,
+.dropdown-btn {
   text-decoration: none;
   color: #333;
   font-weight: 500;
@@ -41,10 +50,12 @@
   transition: color 0.3s ease;
 }
 
-.nav-links a:hover, .dropdown-btn:hover {
+.nav-links a:hover,
+.dropdown-btn:hover {
   color: #0077ff;
 }
 
+/* 🔽 Dropdown Base */
 .dropdown {
   position: relative;
 }
@@ -55,7 +66,7 @@
   left: 0;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   padding: 25px 40px;
   display: flex;
   gap: 60px;
@@ -101,20 +112,158 @@
 }
 
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-10px);}
-  to {opacity: 1; transform: translateY(0);}
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-@media (max-width: 768px) {
+
+/* 🌟 Dropdown active state */
+.dropdown-btn.active {
+  color: #0077ff;
+  font-weight: 600;
+}
+
+/* 🍔 Hamburger Menu */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: auto;
+  position: absolute;
+  right: 25px; /* ✅ moves it to far right corner */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 100%;
+  background: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* 🍔 Animation */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* 🧱 Responsive Layouts */
+@media (max-width: 992px) {
   .nav-container {
-    padding: 12px 20px;
+    padding: 12px 25px;
   }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Hide desktop links initially */
   .nav-links {
-    gap: 20px;
-  }
-  .dropdown-menu {
-    top: 55px;
-    padding: 20px 30px;
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 80%;
+    height: calc(100vh - 70px);
+    background: #ffffff;
     flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto; /* ✅ scrollable mobile menu */
     gap: 20px;
+    padding: 25px;
+    box-shadow: -3px 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.4s ease;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+    color: #333;
+  }
+
+  /* Hide desktop dropdown on mobile */
+  .desktop-dropdown {
+    display: none !important;
+  }
+
+  /* 🧩 Mobile Accordion Dropdown */
+  .mobile-accordion {
+    display: block;
+    width: 100%;
+  }
+
+  .accordion-section {
+    border-top: 1px solid #eee;
+  }
+
+  .accordion-header {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 12px 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0077ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .accordion-arrow {
+    font-size: 14px;
+  }
+
+  .accordion-content {
+    padding: 5px 15px 10px;
+    list-style: none;
+    overflow: hidden;
+  }
+
+  .accordion-content li {
+    margin: 6px 0;
+  }
+
+  .accordion-content a {
+    color: #333;
+    font-size: 15px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .accordion-content a:hover {
+    color: #0077ff;
+  }
+}
+
+/* 📲 Smaller devices */
+@media (max-width: 576px) {
+  .logo img {
+    height: 45px;
+  }
+
+  .nav-links a {
+    font-size: 15px;
+  }
+
+  .accordion-header {
+    font-size: 15px;
   }
 }
