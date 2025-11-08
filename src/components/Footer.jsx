@@ -10,20 +10,20 @@ function Footer() {
           <Col md={4}>
             <h5 className="fw-bold mb-3 text-uppercase">Contact Doctor</h5>
             <p className="mb-2">
-              Manipal Hospitals, Meghnad Saha Sarani, Ward 2, Pradhan Nagar, <br />
-              Siliguri, West Bengal 734003
+              Neuron Brain & Spine Center, 2nd Floor, Suryodey Bank, Vibhuti Khand, <br />
+              Lucknow, Uttar Pradesh 226016
             </p>
             <p className="mb-2">
-              <a href="tel:+919382707523" className="text-decoration-none text-dark fw-semibold">
-                📞 +91 93827 07523
+              <a href="tel:+917080106535" className="text-decoration-none text-dark fw-semibold">
+                📞 +91 7080106535
               </a>
             </p>
             <p>
               <a
-                href="mailto:mayukhguha.spinesurgery@gmail.com"
+                href="mailto:neurospine001@gmail.com"
                 className="text-decoration-none text-dark fw-semibold"
               >
-                📧 mayukhguha.spinesurgery@gmail.com
+                📧 neurospine001@gmail.com
               </a>
             </p>
           </Col>
@@ -113,7 +113,7 @@ function Footer() {
         <Row className="pt-4 mt-3 border-top">
           <Col className="text-center">
             <small className="text-muted">
-              © {new Date().getFullYear()} Dr. Mayukh Guha | All Rights Reserved
+              © {new Date().getFullYear()} Dr. Achal Gupta | All Rights Reserved
             </small>
           </Col>
         </Row>
