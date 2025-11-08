@@ -1,80 +1,86 @@
-/* About.css */
-
-.about-page {
-  background-color: #fafafa;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
-  color: #333;
+.about-container {
+  max-width: 1100px;
 }
 
-/* Headings */
-.about-page h2 {
+.about-heading {
   font-weight: 700;
-  color: #0d6efd;
+  font-size: 2.4rem;
+  color: #0077ff;
 }
 
-.about-page h4 {
+.about-section {
+  margin: 60px 0;
+}
+
+.about-section.reverse .image-col {
+  order: 2;
+}
+
+.about-section.reverse .text-col {
+  order: 1;
+}
+
+.about-image {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.about-image:hover {
+  transform: scale(1.03);
+}
+
+.text-col {
+  padding: 20px;
+}
+
+.text-col h3 {
+  color: #0077ff;
+  margin-bottom: 15px;
   font-weight: 600;
-  color: #333;
-  border-left: 4px solid #0d6efd;
-  padding-left: 10px;
-  margin-bottom: 1rem;
 }
 
-/* Paragraphs */
-.about-page p {
-  line-height: 1.7;
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 1rem;
-}
-
-/* Cards */
-.about-card {
-  border: none !important;
-  border-left: 5px solid #0d6efd;
-  border-radius: 10px;
-  background-color: #fff;
-  transition: all 0.3s ease;
-}
-
-.about-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-}
-
-/* Lists */
-.about-page ul {
-  list-style-type: disc;
-  padding-left: 1.5rem;
+.text-col p {
   color: #444;
+  line-height: 1.6; /* 👈 reduced spacing between paragraphs */
+  margin-bottom: 10px; /* 👈 tighter paragraph gap */
+  font-size: 16px;
 }
 
-.about-page li {
-  margin-bottom: 0.5rem;
+.text-col li {
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 8px;
 }
 
-/* Links */
-.about-page a {
-  color: #0d6efd;
-  text-decoration: none;
-  font-weight: 500;
+.text-col ul {
+  padding-left: 20px;
 }
 
-.about-page a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
-  .about-page {
-    padding: 1rem;
+  .about-section.reverse .image-col,
+  .about-section.reverse .text-col {
+    order: unset;
   }
 
-  .about-page h2 {
-    font-size: 1.5rem;
+  .about-image {
+    margin-bottom: 20px;
   }
 
-  .about-page h4 {
-    font-size: 1.1rem;
+  .about-heading {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-heading {
+    font-size: 1.6rem;
+  }
+
+  .text-col p,
+  .text-col li {
+    font-size: 14px;
   }
 }

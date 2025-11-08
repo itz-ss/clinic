@@ -1,17 +1,26 @@
+/* 🌐 Base Styling */
+.treatment-page {
+  font-family: "Poppins", sans-serif;
+  background-color: #f9fafc;
+  color: #222;
+}
+
+/* 🟦 Banner Section */
 .treatment-banner {
   position: relative;
-  height: 50vh;
+  height: 55vh;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .banner-overlay {
-  background: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
+  background: rgba(7, 21, 49, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,59 +28,230 @@
 
 .banner-title {
   color: #fff;
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: 700;
   text-align: center;
+  letter-spacing: 0.5px;
 }
 
-.treatment-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+/* 🟨 Main Section Layout */
+.treatment-section {
+  margin: 25px 0; /* 🩵 UPDATED — was 30px 0 */
 }
 
-.treatment-image-wrapper {
-  flex: 1;
-  min-width: 300px;
+.treatment-section.reverse .col-md-6:first-child {
+  order: 2;
+}
+.treatment-section.reverse .col-md-6:last-child {
+  order: 1;
 }
 
-.treatment-description {
-  flex: 1;
-  min-width: 300px;
+/* 🩻 Treatment Image */
+.treatment-image {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease;
 }
 
+.treatment-image:hover {
+  transform: scale(1.02);
+}
+
+/* 🧾 Treatment Description */
+.treatment-title {
+  color: #0077ff;
+  font-weight: 700;
+  margin-bottom: 10px; /* 🩵 UPDATED — was 15px */
+}
+
+.treatment-desc {
+  color: #555;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 12px; /* 🩵 UPDATED — was 20px */
+}
+
+/* 🩻 Common Conditions */
 .condition-list {
-  columns: 2;
   list-style: none;
-  padding: 0;
+  padding-left: 0;
+  margin-top: 10px; /* 🩵 reduced space */
 }
 
 .condition-list li {
-  margin-bottom: 0.5rem;
-  position: relative;
-  padding-left: 1.2rem;
+  color: #444;
+  border-bottom: 1px solid #eaeaea;
+  padding: 5px 0;
+  font-size: 0.95rem;
 }
 
-.condition-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #007bff;
-  font-weight: bold;
+/* 🟪 Balanced Layout for Options & Appointment */
+.treatment-section.reverse {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px; /* 🩵 reduced from ~70px */
+}
+
+@media (min-width: 992px) {
+  .treatment-section.reverse .row {
+    display: flex;
+    align-items: stretch; /* ✅ equal height columns */
+  }
+
+  .treatment-section.reverse .col-md-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* ⚙️ Additional Treatment Options Section */
+.options-container {
+  background: linear-gradient(
+    145deg,
+    #f0f7ff 0%,
+    #e7f1ff 45%,
+    #f5faff 100%
+  );
+  border-radius: 12px;
+  padding: 25px; /* 🩵 slightly reduced from 30px */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.options-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+}
+
+.options-container h4 {
+  color: #0077ff;
+  font-weight: 700;
+  margin-bottom: 15px; /* 🩵 was 20px */
 }
 
 .options-content {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 15px; /* 🩵 was 20px */
 }
 
 .option-block {
-  flex: 1;
-  min-width: 300px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 18px; /* 🩵 was 20px */
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease;
 }
 
-.treatment-not-found {
+.option-block:hover {
+  transform: translateY(-3px);
+}
+
+.option-block h5 {
+  color: #0077ff;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.option-block p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* 📅 Appointment Box */
+.appointment-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 35px; /* 🩵 reduced from 40px */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.appointment-box:hover {
+  transform: translateY(-3px);
+}
+
+.appointment-box h4 {
+  color: #0077ff;
   text-align: center;
-  padding: 5rem 0;
+  margin-bottom: 20px; /* 🩵 reduced from 25px */
+  font-weight: 700;
+}
+
+/* 🚫 Not Found Section */
+.treatment-not-found {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.treatment-not-found h2 {
+  font-weight: 700;
+  color: #333;
+}
+
+.treatment-not-found p {
+  color: #777;
+  font-size: 1rem;
+}
+
+/* 🌈 Subtitles */
+.sub-title {
+  font-size: 1.1rem;
+  color: #0077ff;
+  font-weight: 600;
+  margin-bottom: 12px; /* 🩵 reduced */
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 992px) {
+  .treatment-section.reverse .col-md-6:first-child,
+  .treatment-section.reverse .col-md-6:last-child {
+    order: unset;
+  }
+
+  .treatment-section {
+    text-align: center;
+  }
+
+  .options-container,
+  .appointment-box {
+    margin-bottom: 25px;
+  }
+
+  .options-content {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-title {
+    font-size: 1.8rem;
+  }
+
+  .treatment-banner {
+    height: 45vh;
+  }
+
+  .options-container,
+  .appointment-box {
+    padding: 25px 20px;
+  }
+
+  .treatment-section {
+    margin: 25px 0; /* 🩵 reduced from 40px */
+  }
 }

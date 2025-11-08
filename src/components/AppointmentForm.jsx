@@ -109,7 +109,7 @@ function AppointmentForm({ serviceName }) {
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Message (Optional)</label>
+          <label className="form-label">Message</label>
           <textarea
             name="message"
             className="form-control"
