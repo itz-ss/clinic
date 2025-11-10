@@ -115,12 +115,12 @@ function FAQSection() {
           >
             <p className="faq-phone-label">Call Now:</p>
             <motion.a
-              href="tel:+919382707523"
+              href="tel:+917080106535"
               className="faq-phone"
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
             >
-              +91 93827 07523
+              +91 7080106535
             </motion.a>
           </motion.div>
         </motion.div>

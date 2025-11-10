@@ -4,21 +4,20 @@ import { motion } from "framer-motion";
 import "../styles/WhyChooseUs.css";
 
 const stats = [
-  {id: 0, icon: "🏥", label: "happy patients", value: 10000 },
-  { id: 1, icon: "❤️", label: "Spine Surgeries", value: 1000 },
-  { id: 2, icon: "✚", label: "Endoscopic Spine Surgeries", value: 400 },
-  { id: 3, icon: "🧠", label: "Brain Surgeries", value: 800 },
+  { id: 0, icon: "🏥", label: "Happy Patients", value: 10000, suffix: "+" },
+  { id: 1, icon: "❤️", label: "Successful Spine Surgeries", value: 1000, suffix: "+" },
+  { id: 2, icon: "✚", label: "Endoscopic Spine Surgeries", value: 400, suffix: "+" },
+  { id: 3, icon: "🧠", label: "Patient Satisfaction", value: 98, suffix: "%" }, // ✅ percentage
 ];
 
 const WhyChooseUs = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  // Intersection Observer to detect when section comes into view
+  // Detect section visibility (animation trigger)
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
+      ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           observer.disconnect();
@@ -26,6 +25,7 @@ const WhyChooseUs = () => {
       },
       { threshold: 0.4 }
     );
+
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
@@ -45,6 +45,7 @@ const WhyChooseUs = () => {
         </p>
       </motion.div>
 
+      {/* Stats Section */}
       <div className="stats-container">
         {stats.map((item) => (
           <motion.div
@@ -55,8 +56,8 @@ const WhyChooseUs = () => {
             transition={{ duration: 0.5, delay: item.id * 0.2 }}
           >
             <div className="stat-icon">{item.icon}</div>
-            <AnimatedNumber target={item.value} start={isVisible} />
             <p className="stat-label">{item.label}</p>
+            <AnimatedNumber target={item.value} start={isVisible} suffix={item.suffix} />
           </motion.div>
         ))}
       </div>
@@ -64,12 +65,13 @@ const WhyChooseUs = () => {
   );
 };
 
-// Counter Component
-const AnimatedNumber = ({ target, start }) => {
+// ✅ Counter Component with suffix support (+ / %)
+const AnimatedNumber = ({ target, start, suffix }) => {
   const [count, setCount] = useState(1);
 
   useEffect(() => {
     if (!start) return;
+
     let current = 1;
     const increment = Math.ceil(target / 80);
     const timer = setInterval(() => {
@@ -84,7 +86,12 @@ const AnimatedNumber = ({ target, start }) => {
     return () => clearInterval(timer);
   }, [start, target]);
 
-  return <h3 className="stat-number">{count}+</h3>;
+  return (
+    <h3 className="stat-number">
+      {count}
+      <span className="suffix">{suffix}</span>
+    </h3>
+  );
 };
 
 export default WhyChooseUs;

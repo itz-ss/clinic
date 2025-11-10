@@ -3,12 +3,12 @@ import React from "react";
 import SEO from "../components/SEO";
 import { Container, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { doctorInfo } from "../data/doctorInfo";
+import { doctorInfo } from "../data/about";
 import "../styles/About.css";
 
 function About() {
   const sectionImages = [
-    "/assets/images/doctor-biography.jpg",
+    "/assets/images/freepik__retouch__96553.png",
     "/assets/images/education.jpg",
     "/assets/images/experience.jpg",
     "/assets/images/publications.jpg",

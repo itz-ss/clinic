@@ -38,9 +38,8 @@ function TechnologySection() {
             transition={{ delay: 0.6, duration: 0.8 }}
           >
             Using the latest spine surgery tools and techniques,{" "}
-            <strong>Dr. Guha</strong> ensures precise treatment tailored to each
-            patient's unique needs. At the best spine clinic in Siliguri, North
-            Bengal, he offers <strong>minimally invasive procedures</strong> that
+            <strong>Dr. Achal</strong> ensures precise treatment tailored to each
+            patient's unique needs. At the best spine clinic in Lucknow, Uttar Pradesh, he offers <strong>minimally invasive procedures</strong> that
             promote faster recovery and lasting relief.
           </motion.p>
         </motion.div>

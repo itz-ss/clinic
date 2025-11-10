@@ -3,7 +3,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { servicesData } from "../data/servicesData";
 import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "react-bootstrap";
 import "../styles/navbar.css";
+
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,7 +43,7 @@ const Navbar = () => {
 
         {/* 🧩 LOGO */}
         <Link to="/" className="logo">
-          <img src="/assets/images/logo.png" alt="Logo" />
+          <img src="/assets/images/Neuron Brand and Spine logo (2).png" alt="Logo" />
         </Link>
 
         {/* 🍔 HAMBURGER ICON (SHIFTED TO RIGHT) */}
@@ -67,14 +69,14 @@ const Navbar = () => {
                 setActiveDropdown(activeDropdown ? null : "services")
               }
             >
-              Services <span className="arrow">▼</span>
+              Treatments <span className="arrow">▼</span>
             </span>
 
             {/* DESKTOP DROPDOWN */}
             {activeDropdown === "services" && (
               <div className="dropdown-menu two-columns desktop-dropdown">
                 <div className="dropdown-block">
-                  <h4>🦴 Spine</h4>
+                  <h4> Dr Achal Gupta</h4>
                   <ul>
                     {servicesData.spine.map((item, index) => (
                       <li key={index}>
@@ -85,7 +87,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="dropdown-block">
-                  <h4>🧠 Brain</h4>
+                  <h4> Dr Konika Bansal</h4>
                   <ul>
                     {servicesData.brain.map((item, index) => (
                       <li key={index}>
@@ -106,7 +108,7 @@ const Navbar = () => {
                     className="accordion-header"
                     onClick={() => toggleAccordion("spine")}
                   >
-                    🦴 Spine
+                     Dr Achal Gupta
                     <span className="accordion-arrow">
                       {activeAccordion === "spine" ? "▲" : "▼"}
                     </span>
@@ -137,7 +139,7 @@ const Navbar = () => {
                     className="accordion-header"
                     onClick={() => toggleAccordion("brain")}
                   >
-                    🧠 Brain
+                    Dr Konika Bansal
                     <span className="accordion-arrow">
                       {activeAccordion === "brain" ? "▲" : "▼"}
                     </span>
@@ -168,6 +170,11 @@ const Navbar = () => {
           <li><Link to="/achievements">Achievements</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
+        <div className="appointment-button">
+        <Button variant="primary" size="lg" href="/appointment">
+            Appointment
+        </Button>
+        </div>
       </div>
     </nav>
   );

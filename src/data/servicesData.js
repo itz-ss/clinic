@@ -3,11 +3,15 @@
 // Each entry is designed for patient-friendly readability and integration with TreatmentPage
 
 export const servicesData = {
+  
+  //waring: do not change the key 'spine'
+  // instead of Spine Treatments its now Dr Achal Gupta so do not change the key who ever you are otherwise be ready to change all imports
   spine: [
     {
       label: "Slipped Disc Surgery",
       to: "/treatments/slipped-disc-surgery",
-      image: "/assets/images/slipped-disc.jpg",
+      banner: "/assets/banner/Slipped-disc-surgery.png",
+      image: "/assets/images/achal2.jpg",
       description:
         "A slipped disc occurs when the cushion between spinal bones bulges out or ruptures, pressing on nearby nerves. Surgery removes or repairs the disc to relieve pain, restore movement, and prevent further nerve damage. Minimally invasive techniques ensure faster healing, minimal scars, and quicker return to daily life.",
       commonConditions: [
@@ -26,6 +30,7 @@ export const servicesData = {
     {
       label: "Cervical Spondylosis",
       to: "/treatments/cervical-spondylosis",
+      banner: "/assets/banner/Cervical-spondylosis.png",
       image: "/assets/images/cervical-spondylosis.jpg",
       description:
         "Cervical spondylosis is age-related degeneration of the neck bones and discs. It can cause stiffness, pain, and tingling in the shoulders and arms due to nerve compression. Treatment focuses on pain relief, posture correction, and, in advanced cases, surgical decompression for long-term relief.",
@@ -45,6 +50,7 @@ export const servicesData = {
     {
       label: "Spondylolisthesis",
       to: "/treatments/spondylolisthesis",
+      banner: "/assets/banner/Spondylolisthesis.png",
       image: "/assets/images/spondylolisthesis.jpg",
       description:
         "Spondylolisthesis happens when one vertebra slips forward over another, leading to back pain and nerve pressure. The aim of surgery is to realign the vertebrae, restore stability, and relieve pain. Modern fixation techniques ensure a safe and durable outcome with minimal downtime.",
@@ -64,6 +70,7 @@ export const servicesData = {
     {
       label: "Endoscopic Spine Surgery",
       to: "/treatments/endoscopic-spine-surgery",
+      banner: "/assets/banner/Endoscopic spine surgery.png",// updated banner path
       image: "/assets/images/endoscopic-spine.jpg",
       description:
         "Endoscopic spine surgery uses a small camera and precise tools to correct spinal problems through a tiny incision. This modern approach minimizes tissue damage, reduces hospital stay, and ensures a quicker return to work and normal activities with minimal discomfort.",
@@ -83,6 +90,7 @@ export const servicesData = {
     {
       label: "Minimally Invasive Spine Surgery",
       to: "/treatments/minimally-invasive-spine-surgery",
+      banner: "/assets/banner/Minimally-invasive-spine-surgery.png",
       image: "/assets/images/miss.jpg",
       description:
         "This advanced surgical approach treats spine problems through tiny cuts using specialized instruments. It reduces blood loss, postoperative pain, and muscle damage, allowing patients to recover quickly while maintaining spinal strength and stability.",
@@ -102,6 +110,7 @@ export const servicesData = {
     {
       label: "Tuberculosis of Spine",
       to: "/treatments/tuberculosis-of-spine",
+      banner: "/assets/banner/Tuberculosis-of-spine.png",
       image: "/assets/images/spinal-tb.jpg",
       description:
         "Spinal tuberculosis (Pott’s disease) can weaken the spine and compress nerves, causing deformity and paralysis if untreated. Combined medical and surgical care removes infection, stabilizes the spine, and restores function for a pain-free, active life.",
@@ -120,6 +129,7 @@ export const servicesData = {
     {
       label: "Pediatric Spine Surgery",
       to: "/treatments/pediatric-spine-surgery",
+      banner: "/assets/images/pediatric-spine-banner.jpg",
       image: "/assets/images/pediatric-spine.jpg",
       description:
         "Children with spine deformities or birth defects may need corrective surgery. Pediatric spine surgery focuses on safe realignment, improving growth and posture, and preventing long-term complications. Each plan is personalized to ensure a gentle recovery.",
@@ -138,6 +148,7 @@ export const servicesData = {
     {
       label: "Lumbar Spondylosis",
       to: "/treatments/lumbar-spondylosis",
+      banner: "/assets/banner/Lumbar-spondylosis.png",
       image: "/assets/images/lumbar-spondylosis.jpg",
       description:
         "Lumbar spondylosis is the natural wear and tear of the lower spine due to age or heavy physical activity. It causes back pain, stiffness, and sometimes leg pain. Treatment focuses on mobility restoration and pain control for a better quality of life.",
@@ -153,12 +164,41 @@ export const servicesData = {
           "Minimally invasive decompression or fusion for severe cases.",
       },
     },
+     {
+      label: "Joint Replacement Surgery",
+      to: "/treatments/joint-replacement-surgery",
+      banner: "/assets/images/joint-replacement-banner.jpg",
+      image: "/assets/images/joint-replacement.jpg",
+      description:
+        "Joint replacement replaces damaged knee or hip joints with artificial implants to restore mobility and relieve pain. The surgery ensures stable alignment and natural joint movement, with excellent long-term results after rehabilitation.",
+      commonConditions: ["Arthritis", "Osteoarthritis", "Joint Pain"],
+      treatmentOptions: {
+        nonSurgical:
+          "Pain control, exercise therapy, and supportive aids.",
+        surgical:
+          "Knee or hip replacement using high-precision prosthetics.",
+      },
+    },
+    {
+      label: "Fracture Management",
+      to: "/treatments/fracture-management",
+      banner: "/assets/images/fracture-banner.jpg",
+      image: "/assets/images/fracture.jpg",
+      description:
+        "Fracture management involves aligning and stabilizing broken bones using advanced orthopedic techniques. Depending on severity, it can include splints, plates, or rods to restore strength, speed healing, and ensure proper bone alignment.",
+      commonConditions: ["Trauma Fractures", "Sports Injuries", "Bone Breaks"],
+      treatmentOptions: {
+        nonSurgical: "Casts, braces, and physiotherapy.",
+        surgical: "Open reduction with internal or external fixation devices.",
+      },
+    },
   ],
 
   brain: [
     {
-      label: "Brain Tumor Surgery",
+      label: "Brain & Spine Tumor Surgery",
       to: "/treatments/brain-tumor-surgery",
+      banner: "/assets/banner/Brain-&-Spine-Tumor-Surgery.png",
       image: "/assets/images/brain-tumor.jpg",
       description:
         "Brain tumor surgery removes abnormal tissue growths while preserving brain function. With advanced neuro-navigation and precision microsurgery, the procedure ensures safety and optimal recovery for both benign and malignant tumors.",
@@ -177,6 +217,7 @@ export const servicesData = {
     {
       label: "Stroke Treatment",
       to: "/treatments/stroke",
+      banner: "/assets/images/stroke-banner.jpg",
       image: "/assets/images/stroke.jpg",
       description:
         "A stroke occurs when blood supply to part of the brain is interrupted, leading to sudden weakness or speech problems. Prompt treatment restores blood flow and prevents brain damage, followed by personalized rehabilitation to regain daily function.",
@@ -191,6 +232,7 @@ export const servicesData = {
     {
       label: "Epilepsy Surgery",
       to: "/treatments/epilepsy",
+      banner: "/assets/images/epilepsy-banner.jpg",
       image: "/assets/images/epilepsy.jpg",
       description:
         "Epilepsy causes seizures due to abnormal brain activity. When medications fail, surgery helps target the exact brain area causing seizures. This significantly improves quality of life and reduces dependence on drugs.",
@@ -208,6 +250,7 @@ export const servicesData = {
     {
       label: "Migraine and Headache Treatment",
       to: "/treatments/migraine",
+      banner: "/assets/images/migraine-banner.jpg",
       image: "/assets/images/migraine.jpg",
       description:
         "Chronic migraine affects concentration and quality of life. Treatment focuses on trigger control, medication, and lifestyle changes to prevent attacks. In resistant cases, nerve stimulation may offer long-term relief.",
@@ -217,35 +260,6 @@ export const servicesData = {
           "Medication, stress control, and dietary modifications.",
         surgical:
           "Nerve decompression or stimulation for drug-resistant migraines.",
-      },
-    },
-  ],
-
-  bone: [
-    {
-      label: "Joint Replacement Surgery",
-      to: "/treatments/joint-replacement-surgery",
-      image: "/assets/images/joint-replacement.jpg",
-      description:
-        "Joint replacement replaces damaged knee or hip joints with artificial implants to restore mobility and relieve pain. The surgery ensures stable alignment and natural joint movement, with excellent long-term results after rehabilitation.",
-      commonConditions: ["Arthritis", "Osteoarthritis", "Joint Pain"],
-      treatmentOptions: {
-        nonSurgical:
-          "Pain control, exercise therapy, and supportive aids.",
-        surgical:
-          "Knee or hip replacement using high-precision prosthetics.",
-      },
-    },
-    {
-      label: "Fracture Management",
-      to: "/treatments/fracture-management",
-      image: "/assets/images/fracture.jpg",
-      description:
-        "Fracture management involves aligning and stabilizing broken bones using advanced orthopedic techniques. Depending on severity, it can include splints, plates, or rods to restore strength, speed healing, and ensure proper bone alignment.",
-      commonConditions: ["Trauma Fractures", "Sports Injuries", "Bone Breaks"],
-      treatmentOptions: {
-        nonSurgical: "Casts, braces, and physiotherapy.",
-        surgical: "Open reduction with internal or external fixation devices.",
       },
     },
   ],

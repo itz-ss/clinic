@@ -1,0 +1,159 @@
+/* 🌐 Base Footer Styling */
+footer {
+  background: #f9fbfd;
+  color: #222;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border-top: 1px solid #dee2e6;
+}
+
+footer h5 {
+  color: #003366;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  border-left: 4px solid #007bff;
+  padding-left: 8px;
+}
+
+footer h6 {
+  color: #007bff;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+/* 🩺 Contact Info */
+footer a {
+  color: #333;
+  transition: color 0.25s ease;
+}
+
+footer a:hover {
+  color: #007bff;
+}
+
+/* 💙 Treatments Section */
+footer .row .col-md-5 .row {
+  max-height: 250px;
+  /* overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #007bff #e9f2ff; */
+}
+
+/* Scrollbar Styling for Treatments */
+footer .row .col-md-5 .row::-webkit-scrollbar {
+  width: 6px;
+}
+footer .row .col-md-5 .row::-webkit-scrollbar-thumb {
+  background: #007bff;
+  border-radius: 4px;
+}
+footer .row .col-md-5 .row::-webkit-scrollbar-track {
+  background: #e9f2ff;
+}
+
+/* 🌟 Reviews Section */
+footer .reviews-section img {
+  display: block;
+  margin: 0 auto;
+}
+
+footer .reviews-section a {
+  text-decoration: none;
+}
+
+/* 🔗 Social Media Icons */
+footer .social-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+footer .social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+footer .social-icons a img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1); /* makes icons white */
+}
+
+/* Social Platform Colors */
+footer .social-icons a.facebook {
+  background: #1877f2;
+}
+footer .social-icons a.instagram {
+  background: #e1306c;
+}
+footer .social-icons a.whatsapp {
+  background: #25d366;
+}
+footer .social-icons a.youtube {
+  background: #ff0000;
+}
+
+/* Hover Effects */
+footer .social-icons a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+/* 📅 Copyright Bar */
+footer .border-top {
+  border-top: 1px solid #d6e4ff !important;
+}
+
+footer small {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+/* 📱 Responsive */
+@media (max-width: 992px) {
+  footer {
+    text-align: center;
+  }
+
+  footer h5 {
+    text-align: center;
+  }
+
+  footer .social-icons {
+    justify-content: center;
+  }
+
+  footer .row .col-md-5 .row {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 576px) {
+  footer {
+    padding: 2rem 0;
+  }
+
+  footer h5 {
+    font-size: 1rem;
+  }
+
+  footer .social-icons a {
+    width: 34px;
+    height: 34px;
+  }
+
+  footer .social-icons a img {
+    width: 18px;
+    height: 18px;
+  }
+}

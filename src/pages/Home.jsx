@@ -29,7 +29,7 @@ function Home() {
             className="rounded-circle mb-3 shadow"
             width="150"
           />
-          <h1 className="fw-bold">Doctor's Name</h1>
+          <h1 className="fw-bold">Dr Achal Gupta</h1>
           <p className="lead text-muted">
             Specialist in Spine and Neurosurgery
           </p>

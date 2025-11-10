@@ -28,26 +28,16 @@ const TreatmentPage = () => {
       <motion.div
         className="treatment-banner"
         style={{
-          backgroundImage: `url(${treatment.image || "/assets/images/banner-placeholder.jpg"})`,
+          backgroundImage: `url(${treatment.banner || "/assets/images/banner-placeholder.jpg"})`,
         }}
         initial={{ backgroundPositionY: "50%", opacity: 0 }}
         animate={{ backgroundPositionY: "40%", opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <div className="banner-overlay">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="banner-title"
-          >
-            {treatment.label}
-          </motion.h1>
-        </div>
       </motion.div>
 
       {/* 🟨 Main Section */}
-      <div className="container py-1">
+      <div className="container py-0">
         {/* SECTION 1 — Image Left | Text Right */}
         <motion.section
           className="treatment-section"
@@ -105,29 +95,46 @@ const TreatmentPage = () => {
                 <>
                   <h4 className="sub-title">Additional Treatment Options</h4>
                   <div className="options-content">
+                    {/* 🩺 Non-Surgical Treatments */}
                     <div className="option-block">
                       <h5>Non-Surgical</h5>
-                      <p>{treatment.treatmentOptions.nonSurgical}</p>
+                      <ul className="treatment-list">
+                        {treatment.treatmentOptions.nonSurgical
+                          .split(/[.,;•-]\s*/g) // ✅ Split sentences into list items
+                          .filter(Boolean)
+                          .map((item, i) => (
+                            <li key={i}>{item.trim()}</li>
+                          ))}
+                      </ul>
                     </div>
+                    
+                    {/* 🧠 Surgical Treatments */}
                     <div className="option-block">
                       <h5>Surgical</h5>
-                      <p>{treatment.treatmentOptions.surgical}</p>
+                      <ul className="treatment-list">
+                        {treatment.treatmentOptions.surgical
+                          .split(/[.,;•-]\s*/g)
+                          .filter(Boolean)
+                          .map((item, i) => (
+                            <li key={i}>{item.trim()}</li>
+                          ))}
+                      </ul>
                     </div>
                   </div>
+
                 </>
               )}
             </div>
 
-            {/* Appointment Form */}
-            <div className="col-md-6">
+            <div className="col-md-6 d-flex align-items-stretch">
               <motion.div
-                className="appointment-box"
+                className="appointment-box w-100 d-block"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
                 viewport={{ once: true }}
+                style={{ display: "block" }}
               >
-                <h4 className="sub-title">Book a Consultation</h4>
                 <AppointmentForm serviceName={treatment.label} />
               </motion.div>
             </div>

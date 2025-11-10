@@ -1,5 +1,18 @@
-/* AppointmentForm.css */
+/* 🌐 AppointmentForm.css */
 
+/* 🧭 Force form fields to render top-to-bottom */
+.appointment-container form,
+.appointment-container .row {
+  display: block !important;
+}
+
+.appointment-container .col-md-6,
+.appointment-container .col-12 {
+  display: block !important;
+  width: 100% !important;
+}
+
+/* 🎨 Main Container */
 .appointment-container {
   background: linear-gradient(145deg, #ffffff, #f5faff);
   border: 1px solid #e6efff;
@@ -16,19 +29,24 @@
   box-shadow: 0 10px 24px rgba(0, 77, 153, 0.15);
 }
 
+/* 🏷️ Heading */
 .appointment-container h3 {
   font-weight: 600;
   color: #003366;
   border-left: 4px solid #007bff;
   padding-left: 10px;
   margin-bottom: 1.5rem;
+  text-align: left;
 }
 
+/* 🧾 Label Styling */
 .form-label {
   font-weight: 500;
   color: #003366;
+  margin-bottom: 6px;
 }
 
+/* ✏️ Input + Textarea */
 .form-control {
   border-radius: 10px;
   border: 1px solid #cfdff6;
@@ -41,6 +59,7 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
 }
 
+/* 🔘 Submit Button */
 .btn-primary {
   background: linear-gradient(90deg, #007bff, #0056b3);
   border: none;
@@ -56,15 +75,51 @@
   transform: translateY(-2px);
 }
 
+/* ℹ️ Status Message */
 .alert-info {
   background-color: #eaf5ff;
   border-color: #cce5ff;
   color: #004085;
   border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
 }
 
+/* 📱 Mobile Adjustments */
 @media (max-width: 576px) {
   .appointment-container {
     padding: 1.5rem;
   }
+
+  .appointment-container h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* 🧩 FIX: Prevent misalignment of "Full Name" and form fields */
+.appointment-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* ✅ Keep grid items ordered correctly */
+.appointment-container .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start !important;
+  gap: 10px;
+}
+
+/* 🧱 Ensure columns don’t stretch unevenly */
+.appointment-container .col-md-6,
+.appointment-container .col-12 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* 🎯 Compact field spacing */
+.appointment-container .mb-3 {
+  margin-bottom: 0.9rem !important;
 }

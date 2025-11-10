@@ -1,12 +1,14 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { servicesData } from "../data/servicesData";
+import "../styles/Footer.css";
 
 function Footer() {
   return (
     <footer className="bg-light text-dark mt-5 border-top">
       <Container className="py-5">
         <Row className="gy-4">
-          {/* Contact Info */}
+          {/* 🩺 Contact Info */}
           <Col md={4}>
             <h5 className="fw-bold mb-3 text-uppercase">Contact Doctor</h5>
             <p className="mb-2">
@@ -14,7 +16,10 @@ function Footer() {
               Lucknow, Uttar Pradesh 226016
             </p>
             <p className="mb-2">
-              <a href="tel:+917080106535" className="text-decoration-none text-dark fw-semibold">
+              <a
+                href="tel:+917080106535"
+                className="text-decoration-none text-dark fw-semibold"
+              >
                 📞 +91 7080106535
               </a>
             </p>
@@ -28,69 +33,46 @@ function Footer() {
             </p>
           </Col>
 
-          {/* Treatments */}
+          {/* 🧠 Dynamic Treatments Section */}
           <Col md={5}>
             <h5 className="fw-bold mb-3 text-uppercase">Treatments</h5>
-            <div
-              className="d-flex flex-wrap"
-              style={{ gap: "0.4rem 1rem", lineHeight: "1.6" }}
-            >
-              {[
-                ["minimally-invasive", "Minimally Invasive Spine Surgery"],
-                ["endoscopic", "Endoscopic Spine Surgery"],
-                ["scoliosis", "Scoliosis Surgery"],
-                ["cervical", "Cervical & Dorsal Myelopathy"],
-                ["back-pain", "Back Pain and Sciatica"],
-                ["neck-pain", "Neck Pain & Cervical Spondylosis"],
-                ["spine-trauma", "Spinal Fracture and Trauma"],
-                ["spine-infection", "Spine Infection and Tuberculosis"],
-                ["cvj", "Craniovertebral Junction (CVJ)"],
-                ["osteoporosis", "Osteoporosis & Osteoporotic Fracture"],
-                ["ankylosing-spondylitis", "Ankylosing Spondylitis"],
-              ].map(([path, label]) => (
-                <Link
-                  key={path}
-                  to={`/treatments/${path}`}
-                  className="text-decoration-none text-dark"
-                  style={{ transition: "color 0.3s" }}
-                  onMouseOver={(e) => (e.target.style.color = "#0d6efd")}
-                  onMouseOut={(e) => (e.target.style.color = "inherit")}
-                >
-                  {label}
-                </Link>
-              ))}
+
+            <div className="row">
+              {Object.entries(servicesData).flatMap(([category, treatments]) =>
+                treatments.map((treatment, index) => (
+                  <div
+                    key={`${category}-${index}`}
+                    className="col-6 col-md-6 col-lg-6 mb-2"
+                  >
+                    <Link
+                      to={treatment.to}
+                      className="text-decoration-none text-dark"
+                      style={{ transition: "color 0.3s" }}
+                      onMouseOver={(e) => (e.target.style.color = "#0d6efd")}
+                      onMouseOut={(e) => (e.target.style.color = "inherit")}
+                    >
+                      {treatment.label}
+                    </Link>
+                  </div>
+                ))
+              )}
             </div>
           </Col>
 
-          {/* Reviews */}
+          {/* 🌟 Reviews + Social Links */}
           <Col md={3}>
-            <h5 className="fw-bold mb-3 text-uppercase">Reviews</h5>
+            <h5 className="fw-bold mb-3 text-uppercase">follow:</h5>
             <div className="d-flex flex-column align-items-start">
-              <a
-                href="https://www.google.com/search?sca_esv=e6dc1ba993d4f09e&rlz=1C1RXQR_enIN1120IN1120&sxsrf=AE3TifOJqNWinXWhtvNJrrX4DydQGSW_uA:1762434266168&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E-dmcw5dj2rLgdjOfN9p0Rz5ZFDAJrQTzk4-rMtN5HGJFBSNor3bBX9pp6TSH5U_hTTLkvd0rYadygF8FaAjTm4o2jQVTsJaAa69s766vvbgPG06qUotkEF-yXIkOMEsdkSv_nUBOzyZ53l1IRvL4FftLtsdC4yDsjkCeB6PJU1lrexJX8EcBp385zMtxquSRQgzjMEs4RWCerzYSDbPEzGKSkJYHuwvY9S8u-IhAdRnUU61yQ%3D%3D&q=Neuron+Brain+and+Spine+Centre+-+Best+Neurosurgeon+In+Lucknow+%7C+Best+Spine+Surgeon+In+Lucknow+%7C+Best+Neuro+Clinic+In+Lucknow+Reviews&sa=X&ved=2ahUKEwiPrP-iy92QAxUeTmwGHQFtAX4Q0bkNegQIJxAE&biw=1366&bih=645"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/assets/images/googleR-removebg-preview.png"
-                  alt="Google Reviews"
-                  style={{
-                    width: "150px",
-                    height: "auto",
-                    marginBottom: "1rem",
-                  }}
-                />
-              </a>
 
-              <div className="d-flex align-items-center" style={{ gap: "0.8rem" }}>
+             <div className="d-flex align-items-center" style={{ gap: "0.8rem" }}>
                 {[
-                  ["facebook_3670271.png", "Facebook"],
-                  ["instagram_2673885.png", "Instagram"],
-                  ["linkedin_2582545.png", "LinkedIn"],
-                  ["whatsapp_1384007.png", "WhatsApp"],
-                  ["youtube-symbol_49411.png", "YouTube"],
-                ].map(([img, alt], index) => (
-                  <a key={index} href="#" className="d-inline-block">
+                  ["facebook_3670271.png", "Facebook", "https://www.facebook.com/share/15zrv5HUWd/?mibextid=wwXIfr", ],
+                  ["instagram_2673885.png", "Instagram", "https://www.instagram.com/neuronbrainandspine?igsh=MXUxaHB2MDhmOTdwcw%3D%3D&utm_source=qr ",  ],
+                  // ["linkedin_2582545.png", "LinkedIn"],
+                  ["whatsapp_1384007.png", "WhatsApp", `https://wa.me/${6388060502}?text=${"Hello! I’d like to book an appointment."}`,  ],
+                  ["youtube-symbol_49411.png", "YouTube", "https://youtube.com/@neuronbrainandspine?si=YEaUrakZh9HD3WjK", ],
+                ].map(([img, alt, links, color], index) => (
+                  <a key={index} href={links}  target="_blank" className="d-inline-block">
                     <img
                       src={`/assets/images/${img}`}
                       alt={alt}
@@ -105,11 +87,27 @@ function Footer() {
                   </a>
                 ))}
               </div>
+
+              <a
+                href="https://g.page/r/CaLoB3W56rcPEAE/review"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/images/googleR-removebg-preview.png"
+                  alt="Google Reviews"
+                  style={{
+                    width: "150px",
+                    height: "auto",
+                    marginBottom: "1rem",
+                  }}
+                />
+              </a>
             </div>
           </Col>
         </Row>
 
-        {/* Copyright */}
+        {/* 📅 Copyright */}
         <Row className="pt-4 mt-3 border-top">
           <Col className="text-center">
             <small className="text-muted">

@@ -1,6 +1,6 @@
 /* 🌐 Base Navbar */
 .navbar {
-  background: #ffffff;
+  background: #e6f3f7;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 60px;
+  padding: 12px 30px;
   position: relative;
   max-width: 1400px;
   margin: 0 auto;
@@ -28,6 +28,8 @@
 .logo img {
   height: 55px;
   transition: transform 0.3s ease;
+  margin-left: 3px;
+  height: 70px;
 }
 .logo img:hover {
   transform: scale(1.05);
@@ -254,6 +256,10 @@
   .accordion-content a:hover {
     color: #0077ff;
   }
+  .appointment-button {
+    display: none;
+  }
+
 }
 
 /* 📲 Small Devices */
@@ -270,3 +276,5 @@
     font-size: 15px;
   }
 }
+
+/*hiearchy changes in div/ ul/li  */

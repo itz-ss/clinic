@@ -40,9 +40,9 @@ function KnowledgePartners() {
           Trusted Collaborations with Leading Healthcare Institutions
         </h2>
         <p className="partners-description">
-          Dr. Guha collaborates with India’s top medical organizations to bring
+          Dr. Achal collaborates with India’s top medical organizations to bring
           world-class spine treatment, advanced surgical techniques, and
-          evidence-based patient care to Siliguri and North Bengal.
+          evidence-based patient care to Lucknow, Uttar Pradesh.
         </p>
       </motion.div>
 
