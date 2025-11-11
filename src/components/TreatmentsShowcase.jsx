@@ -61,7 +61,7 @@ const TreatmentsShowcase = () => {
 
               <div className="card-info">
                 <h5 className="treatment-name">{treatment.label}</h5>
-                <p className="doctor-name">{treatment.category}</p>
+                {/* <p className="doctor-name">{treatment.category}</p> */}
               </div>
             </motion.div>
           ))}

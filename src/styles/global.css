@@ -61,3 +61,22 @@ section {
 .main{
   height: 80vh;
 }
+
+/* //change later */
+@media (max-width: 576px) {
+  .main {
+    height: 30vh;    /* Square-style banner for mobile */
+  }
+}
+
+@media (max-width: 740px) {
+  .main {
+    height: 40vh;        /* Slightly taller banner */
+  }
+}
+
+@media (max-width: 992px) {
+  .main {
+    height: 50vh;        /* Slightly taller banner */
+  }
+}

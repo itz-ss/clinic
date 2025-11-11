@@ -45,12 +45,12 @@ const WelcomeSection = () => {
                 viewport={{ once: true }}
               >
                 <motion.h1 className="welcome-title mb-3  ">
-                  Dr Achal Gupta, Trusted Endoscopic Spine Surgeon, Lucknow, Uttar Pradesh
+                  Dr Achal Gupta
                 </motion.h1>
 
-                <motion.h4 className="welcome-subtitle mb-4">
-                  Dr. Achal Gupta
-                </motion.h4>
+                {/* <motion.h4 className="welcome-subtitle mb-4">
+                  Trusted Endoscopic Spine Surgeon, Lucknow, Uttar Pradesh
+                </motion.h4> */}
 
                 <motion.p className="welcome-text">
                   Dr. Achal Gupta has rich experience in Brain & Endoscopic Spine Surgery, specializing in advanced minimally invasive procedures to treat a wide range of neurological and spinal conditions.
@@ -86,7 +86,7 @@ const WelcomeSection = () => {
                 viewport={{ once: true }}
               >
                 <img
-                  src="/assets/images/Konika-bansal.jpg"
+                  src="/assets/images/konika-bansal.jpg"
                   alt="Dr. Konika Bansal"
                   className="grid-image"
                 />
@@ -104,12 +104,12 @@ const WelcomeSection = () => {
                 viewport={{ once: true }}
               >
                 <motion.h1 className="welcome-title mb-3">
-                  Compassionate Neurological Care
+                 Dr. Konika Bansal
                 </motion.h1>
 
-                <motion.h4 className="welcome-subtitle mb-4">
-                  Dr. Konika Bansal
-                </motion.h4>
+                {/* <motion.h4 className="welcome-subtitle mb-4">
+                  Pediatric Neurologist, Lucknow, Uttar Pradesh
+                </motion.h4> */}
 
                 <motion.p className="welcome-text">
                   Dr. Konika Bansal is an experienced neurologist known for her

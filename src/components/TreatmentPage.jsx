@@ -120,7 +120,7 @@ const TreatmentPage = () => {
                           ))}
                       </ul>
                     </div>
-                    <img src="/assets/images/kk.jpg" className="add-banner"/>
+                    <img src="/assets/banner/Website-banner.jpg" className="add-banner"/>
                   </div>
 
                 </>
