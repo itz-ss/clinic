@@ -82,7 +82,7 @@ const TreatmentPage = () => {
 
         {/* SECTION 2 — Text Left | Appointment Form Right */}
         <motion.section
-          className="treatment-section reverse mt-5"
+          className="treatment-section reverse mt-0"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -120,13 +120,14 @@ const TreatmentPage = () => {
                           ))}
                       </ul>
                     </div>
+                    <img src="/assets/images/kk.jpg" className="add-banner"/>
                   </div>
 
                 </>
               )}
             </div>
 
-            <div className="col-md-6 d-flex align-items-stretch">
+            <div className="col-md-6  align-items-stretch">
               <motion.div
                 className="appointment-box w-100 d-block"
                 initial={{ opacity: 0, y: 20 }}

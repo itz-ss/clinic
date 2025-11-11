@@ -1,0 +1,186 @@
+/* 🌐 Treatments Showcase — 4 Cards Layout */
+.treatments-showcase {
+  position: relative;
+  background: radial-gradient(circle at top left, #eef7ff, #f9fbfd);
+  padding: 80px 0;
+  font-family: "Poppins", sans-serif;
+  color: #0d2345;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* 🌈 Floating Glow Particles */
+.particle-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00b4d8 0%, transparent 70%);
+  opacity: 0.6;
+  animation: floatParticles linear infinite;
+  animation-duration: calc(7s + (var(--i) * 0.4s));
+}
+.particle:nth-child(odd) {
+  background: radial-gradient(circle, #0077ff 0%, transparent 70%);
+}
+@keyframes floatParticles {
+  0% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(-40px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.6; }
+}
+.treatments-showcase > .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* 🩺 Section Headings */
+.section-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #0077ff, #00b4d8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+.section-subtitle {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 60px;
+  opacity: 0.9;
+}
+
+/* 🧱 Grid — 4 Cards per Row on Large Screens */
+.treatments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 30px;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+/* 🩻 Treatment Card */
+.treatment-card {
+  background: #fff;
+  /* border-radius: 15px; */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+}
+
+.treatment-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(43, 44, 44, 0.25);
+}
+
+/* 🖼️ Photo Frame */
+.photo-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  /* border: 4px solid #e1ecf8; */
+  /* border-radius: 12px; */
+  background: linear-gradient(135deg, #fefefe, #f4f8ff);
+  overflow: hidden;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.treatment-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.3s ease;
+  border-radius: 10px;
+}
+
+.treatment-card:hover .treatment-image {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+}
+
+/* 🧾 Info Section — Always Visible */
+.card-info {
+  padding: 14px 10px 5px;
+  text-align: center;
+}
+
+.treatment-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0d2345;
+  margin: 4px 0 2px;
+  line-height: 1.3;
+}
+
+.doctor-name {
+  font-size: 0.9rem;
+  color: #0077ff;
+  font-weight: 500;
+}
+
+/* 🩵 Hover Border Glow */
+.treatment-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  /* background: linear-gradient(120deg, #0077ff, #00b4d8, #0077ff); */
+  background-size: 300% 300%;
+  animation: gradientBorder 5s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.treatment-card:hover::after {
+  opacity: 0.7;
+}
+@keyframes gradientBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 📱 Responsive Layouts */
+@media (max-width: 1200px) {
+  .treatments-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+@media (max-width: 992px) {
+  .treatments-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .section-title { font-size: 2rem; }
+}
+@media (max-width: 768px) {
+  .treatments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .treatments-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .treatment-name { font-size: 0.95rem; }
+  .doctor-name { font-size: 0.8rem; }
+}
+
+.treatment-section .reverse {
+    position: relative;
+    margin-top: 0 !important;
+    padding-top: 0%;
+}

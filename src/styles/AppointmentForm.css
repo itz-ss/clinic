@@ -14,7 +14,7 @@
 
 /* 🎨 Main Container */
 .appointment-container {
-  background: linear-gradient(145deg, #ffffff, #f5faff);
+  background: linear-gradient(145deg, #f7fdff, #f5faff);
   border: 1px solid #e6efff;
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0, 77, 153, 0.08);
@@ -122,4 +122,26 @@
 /* 🎯 Compact field spacing */
 .appointment-container .mb-3 {
   margin-bottom: 0.9rem !important;
+}
+
+/* 🌟 Side-by-side date & time fields */
+@media (min-width: 768px) {
+  .appointment-container .d-flex.gap-3 {
+    gap: 1rem !important;
+  }
+}
+
+input[type="date"],
+input[type="time"] {
+  border: 1px solid #cfe8f0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="date"]:focus,
+input[type="time"]:focus {
+  border-color: #0077ff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 119, 255, 0.15);
 }

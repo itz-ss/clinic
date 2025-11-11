@@ -1,12 +1,27 @@
 // src/pages/About.jsx
 import React from "react";
+import { useParams } from "react-router-dom";
 import SEO from "../components/SEO";
 import { Container, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { doctorInfo } from "../data/about";
+import { doctorsData } from "../data/about";
 import "../styles/About.css";
 
 function About() {
+  const { doctorId } = useParams();
+  const doctorInfo = doctorsData.find((doc) => doc.id === doctorId);
+
+  // Handle invalid or missing doctor
+  if (!doctorInfo) {
+    return (
+      <div className="text-center py-5">
+        <h2>Doctor Not Found</h2>
+        <p className="text-muted">Please check the URL or visit the Doctors page.</p>
+      </div>
+    );
+  }
+
+  // Images used per section
   const sectionImages = [
     "/assets/images/freepik__retouch__96553.png",
     "/assets/images/education.jpg",
@@ -30,7 +45,7 @@ function About() {
         viewport={{ once: true }}
       >
         <Row className="align-items-center my-5">
-          {/* Image with slight parallax movement */}
+          {/* Section image */}
           <Col md={6} className="image-col">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -40,7 +55,7 @@ function About() {
             >
               <motion.img
                 src={sectionImages[index]}
-                alt={`${title}`}
+                alt={title}
                 className="about-image"
                 whileHover={{ scale: 1.02 }}
                 whileInView={{ y: [40, 0] }}
@@ -49,6 +64,7 @@ function About() {
             </motion.div>
           </Col>
 
+          {/* Section text */}
           <Col md={6} className="text-col">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -70,13 +86,23 @@ function About() {
   return (
     <>
       <SEO
-        title="Dr. Achal Gupta | About the Spine Specialist"
-        description="Learn more about Dr. Achal Gupta, a highly qualified spine and brain surgeon specializing in minimally invasive and endoscopic spine surgery."
-        keywords="about doctor, spine surgeon, brain surgeon, Dr. Achal Gupta"
+        title={doctorInfo.seo.title}
+        description={doctorInfo.seo.description}
+        keywords={doctorInfo.seo.keywords}
       />
 
+      {/* 🔹 Top Section — Doctor Header */}
       <Container className="about-container py-5">
         <div className="text-center mb-5">
+          <motion.img
+            src={doctorInfo.image}
+            alt={doctorInfo.name}
+            className="doctor-profile-img mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7 }}
+          />
+
           <motion.h1
             className="about-heading"
             initial={{ opacity: 0, y: 40 }}
@@ -85,8 +111,9 @@ function About() {
           >
             {doctorInfo.name}
           </motion.h1>
+
           <motion.p
-            className="text-muted"
+            className="text-muted doctor-title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -95,7 +122,10 @@ function About() {
           </motion.p>
         </div>
 
+        {/* 🔹 Biography */}
         {renderSection("Biography", doctorInfo.biography, 0)}
+
+        {/* 🔹 Education */}
         {renderSection(
           "Education",
           doctorInfo.education.map((edu) => (
@@ -105,6 +135,8 @@ function About() {
           )),
           1
         )}
+
+        {/* 🔹 Experience */}
         {renderSection(
           "Experience",
           doctorInfo.experience.map((exp) => (
@@ -114,6 +146,8 @@ function About() {
           )),
           2
         )}
+
+        {/* 🔹 Publications */}
         {renderSection(
           "Publications",
           doctorInfo.publications.map((pub) => (
@@ -126,6 +160,8 @@ function About() {
           )),
           3
         )}
+
+        {/* 🔹 Special Interests */}
         {renderSection(
           "Special Interests",
           <ul>
@@ -135,6 +171,8 @@ function About() {
           </ul>,
           4
         )}
+
+        {/* 🔹 Associations */}
         {renderSection(
           "Associations",
           <ul>
@@ -144,6 +182,8 @@ function About() {
           </ul>,
           5
         )}
+
+        {/* 🔹 Courses & Workshops */}
         {renderSection(
           "Courses & Workshops",
           <ul>

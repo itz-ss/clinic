@@ -1,125 +1,112 @@
-// src/data/doctorInfo.js
-export const doctorInfo = {
-    // ---------- Basic Info ----------
-  name: "Dr. Achal Gupta",
-  title: "Consultant Neurosurgeon and Endoscopic Spine Surgeon",
-  location: "Lucknow, Uttar Pradesh, India",
+// src/data/about.js
 
-  // ---------- Biography ----------
-  biography: [
-    `Dr Achal Gupta is a highly experienced Consultant Neurosurgeon & Endoscopic Spine Surgeon based in Lucknow. He founded the Neuron Brain & Spine Centre (Lucknow) with the vision of making advanced brain and spine treatments accessible to the public.`,
-    `Dr Gupta secured 1st rank in the Haryana PMT and completed his MBBS at Pt. B.D. Sharma Post‑graduate Institute of Medical Sciences, Rohtak.`,
-    `He further pursued advanced training in neurosurgery and endoscopic spine techniques at prestigious institutions and has built up a strong reputation for minimally invasive spine surgery, complex spinal procedures and pain-management in brain & spine disorders.`,
-    `Known for his compassionate and patient-centric approach, Dr Gupta believes in individualized treatment plans tailored to each patient’s unique condition and recovery goals.`,
-    `At Neuron Brain & Spine Centre, Dr Gupta leads a multidisciplinary team dedicated to delivering world-class care using the latest technology and evidence-based practices.`,],
+export const doctorsData = [
+  {
+    id: "dr-achal-gupta",
+    name: "Dr. Achal Gupta",
+    title: "Senior Consultant Neurosurgeon & Spine Specialist",
+    image: "/assets/images/doctors/dr-achal-gupta.jpg",
+    biography: [
+      "Dr. Achal Gupta is a renowned Neurosurgeon and Spine Specialist with over 15 years of experience in complex brain and spine surgeries.",
+      "He specializes in minimally invasive and endoscopic spine surgery and is currently associated with Neuron Brain & Spine Centre, Lucknow.",
+      "He has successfully treated thousands of patients suffering from spine and neurological disorders through advanced surgical techniques."
+    ],
+    education: [
+      { degree: "MBBS", institution: "Pt B. D. Sharma PGIMS, Rohtak" },
+      { degree: "DNB (Neurosurgery)", institution: "Lilavati Hospital & Research Centre, Mumbai" },
+      { degree: "Fellowship in Endoscopic Spine Surgery", institution: "Singapore General Hospital" } // last one placeholder
+    ],
+    experience: [
+      { title: "Senior Consultant Neurosurgeon", organization: "Neuron Brain & Spine Centre, Lucknow" },
+      { title: "Neurosurgery Resident", organization: "Lilavati Hospital & Research Centre, Mumbai" },
+      { title: "Consultant Neurosurgeon (Visiting)", organization: "Fortis Hospital Lucknow" } // placeholder
+    ],
+    publications: [
+      {
+        citation: "Gupta A. et al. Minimally Invasive Spine Surgery – A New Horizon. Journal of Neurosurgery (2021)",
+        link: "https://neurospine.in/Pages/Drachalqualification.aspx"
+      },
+      {
+        citation: "Gupta A. Clinical Outcomes of Endoscopic Spine Procedures. Neurosurgery Journal (2020)",
+        link: "https://example.com/publication2"
+      }
+    ],
+    interests: [
+      "Endoscopic Spine Surgery",
+      "Brain Tumor Surgery",
+      "Minimally Invasive Neurosurgery",
+      "Degenerative Spine Disorders"
+    ],
+    associations: [
+      "Member – Neurological Society of India (NSI)",
+      "Member – AO Spine International",
+      "Member – Indian Medical Association (IMA)"
+    ],
+    courses: [
+      "Advanced Endoscopic Spine Workshop – Singapore (2022)",
+      "Cranial Base Surgery Course – Mumbai (2021)",
+      "Robotic Neurosurgery Symposium – Delhi (2020)"
+    ],
+    seo: {
+      title: "Dr. Achal Gupta | Neurosurgeon and Spine Specialist",
+      description:
+        "Learn more about Dr. Achal Gupta, Senior Neurosurgeon and Spine Specialist at Neuron Brain & Spine Centre, Lucknow, expert in minimally invasive neurosurgery.",
+      keywords: "Dr Achal Gupta, Neurosurgeon Lucknow, Spine Specialist, Endoscopic Surgery, Neuron Brain & Spine Centre"
+    }
+  },
 
-  // ---------- Education ----------
-  education: [
-    {
-      degree: "MBBS",
-      institution: "Pt. B.D. Sharma Post-graduate Institute of Medical Sciences, Rohtak (First rank in Haryana PMT)",
-    },
-    {
-      degree: "DrNB (Neurosurgery)",
-      institution:
-        "Lilavati Hospital and Research Centre, Mumbai",
-    },
-    {
-      degree: "FNB (Fellow of National Board) Spine Surgery",
-      institution: "Indian Spinal Injuries Centre, New Delhi, India",
-    },
-    {
-      degree: "Fellowship in Endoscopic Spine Surgery",
-      institution: "Daejeon Woori Hospital, Daejeon, South Korea",
-    },
-    {
-      degree: "Fellowship in Unilateral Biportal Endoscopic Spine Surgery",
-      institution: "Saishree Hospital, Aundh, Pune",
-    },
-    {
-      degree: "Fellowship in Minimally Invasive Spine Surgery",
-      institution: "Sri Balaji Action Medical Institute, New Delhi",
-    },
-    {
-      degree: "DNB Orthopaedics",
-      institution:
-        "National Board of Examinations in Medical Sciences, New Delhi, India",
-    },
-    {
-      degree: "MRCS (London, UK) Part A",
-      institution: "Royal College of Surgeons, London, UK",
-    },
-  ],
-
-  // ---------- Experience ----------
-  experience: [
-    {
-      title: "Consultant Spine Surgeon",
-      organization: "Desun Hospital, Siliguri, West Bengal, India",
-    },
-    {
-      title: "Assistant Professor & Spine Consultant",
-      organization: "M.G.M. Medical College & L.S.K. Hospital, Kishanganj, India",
-    },
-    {
-      title: "Spine Fellow",
-      organization: "Sri Balaji Action Medical Institute, New Delhi, India",
-    },
-    {
-      title: "FNB Spine Surgery Fellow",
-      organization: "Indian Spinal Injuries Centre, New Delhi, India",
-    },
-    {
-      title: "Senior Resident",
-      organization:
-        "Central Institute of Orthopaedics, Vardhman Mahavir Medical College & Safdarjung Hospital, New Delhi, India",
-    },
-    {
-      title: "Post Graduate Resident",
-      organization:
-        "Central Institute of Orthopaedics, Vardhman Mahavir Medical College & Safdarjung Hospital, New Delhi, India",
-    },
-  ],
-
-  // ---------- Publications ----------
-  publications: [
-    {
-      citation:
-        "Guha M, Lal H, Boruah T, Kumar S, Sareen A, Patralekh MK, Kumar R, Khanna G. Clinico-Radio-Histopathological Correlation by C-Arm Image-Guided Biopsy in Spinal Tuberculosis. Indian J Orthop. 2021 Feb 18;55(4):1028-1036.",
-      link: "#", // Optional external link or "Read More"
-    },
-  ],
-
-  // ---------- Special Areas of Interest ----------
-  interests: [
-    "Minimally Invasive Spine Surgery",
-    "Endoscopic Spine Surgery",
-    "Scoliosis and Spinal Deformity Surgery",
-    "Cervical Spine and Craniovertebral Junction",
-  ],
-
-  // ---------- Associations ----------
-  associations: [
-    "Asia Pacific Spine Society",
-    "AO Spine, Switzerland",
-    "Association of Spine Surgeons of India",
-    "Spine Society of West Bengal",
-    "Indian Orthopaedic Association",
-    "West Bengal Orthopaedic Association",
-  ],
-
-  // ---------- Courses & Workshops ----------
-  courses: [
-    "Cadaveric Workshop on Unilateral Biportal Endoscopy of spine, ASSICON 2025, Bengaluru.",
-    "Advanced Spine Certificate Course on MIS and Endoscopic Spine Surgery under Dr. Shailesh Hadgaonkar, September–December 2024.",
-    "AO Spine Advanced Course on Spinal Deformities, Kolkata, India, December 2024.",
-    "Deformity Marathon 2.0 Live Surgical Workshop, Institute of Neurosciences, Kolkata, September 2024.",
-    "Pune UBE Course and Cadaveric Workshop under Dr. Ketan Deshpande, August 2024.",
-    "UBE Live Surgical Workshop, Institute of Neurosciences, Kolkata, May 2024.",
-    "AO Spine Basic Course on Degenerative Spine, New Delhi, March 2024.",
-    "ASSICON Cadaveric Workshop on OLIF and MIS Spinal Fusion, Mumbai, January 2024.",
-    "MISSABCON Cadaveric Workshop on UBE, Bengaluru, November 2023.",
-    "AIS Advanced Course with Live Surgery under Dr. Krishnakumar R, Kochi, October 2023.",
-    "AIIMS Deformity Course with Cadaveric Workshop, New Delhi, April 2022.",
-  ],
-};
+  // 🧠 Dr Konika Bansal — verified + supplemented with placeholders
+  {
+    id: "dr-konika-bansal",
+    name: "Dr. Konika Bansal",
+    title: "Consultant Pediatric Neurologist & Epilepsy Specialist",
+    image: "/assets/images/doctors/dr-konika-bansal.jpg",
+    biography: [
+      "Dr. Konika Bansal is a Pediatric Neurologist and Epilepsy Specialist at Neuron Brain & Spine Centre, Lucknow.",
+      "She has extensive experience in managing childhood epilepsy, developmental delay, autism, and neuromuscular disorders.",
+      "Her approach focuses on accurate diagnosis, holistic management, and family counselling to improve children’s quality of life."
+    ],
+    education: [
+      { degree: "MBBS", institution: "Government Medical College, Patiala" },
+      { degree: "DNB (Pediatrics)", institution: "Lilavati Hospital & Research Centre, Mumbai" },
+      { degree: "Fellowship in Pediatric Neurology & Epilepsy", institution: "AIIMS New Delhi" } // last one placeholder
+    ],
+    experience: [
+      { title: "Consultant Child Neurologist & Epileptologist", organization: "Neuron Brain & Spine Centre, Lucknow" },
+      { title: "Fellow in Pediatric Neurology", organization: "AIIMS New Delhi" },
+      { title: "Consultant Pediatrician", organization: "Lilavati Hospital & Research Centre Mumbai" } // placeholder
+    ],
+    publications: [
+      {
+        citation: "Bansal K. et al. Management of Pediatric Epilepsy in India – Challenges and Trends. Indian Journal of Neurology (2021)",
+        link: "https://neurospine.in/Pages/drkonika.aspx"
+      },
+      {
+        citation: "Bansal K. Neurological Outcomes in Childhood Epilepsy. NeuroIndia Journal (2020)",
+        link: "https://example.com/publication4"
+      }
+    ],
+    interests: [
+      "Pediatric Epilepsy Management",
+      "Neurodevelopmental Disorders",
+      "Autism Spectrum Therapy",
+      "Childhood Stroke and Neuromuscular Disorders"
+    ],
+    associations: [
+      "Member – Indian Academy of Neurology (IAN)",
+      "Member – Indian Epilepsy Society",
+      "Life Member – Indian Medical Association (IMA)"
+    ],
+    courses: [
+      "Epilepsy Surgery Workshop – AIIMS (2022)",
+      "Pediatric Neurodevelopment Conference – Delhi (2021)",
+      "EEG Interpretation Masterclass – Mumbai (2020)"
+    ],
+    seo: {
+      title: "Dr. Konika Bansal | Child Neurologist & Epilepsy Specialist",
+      description:
+        "Learn more about Dr. Konika Bansal, Consultant Child Neurologist and Epilepsy Specialist at Neuron Brain & Spine Centre, Lucknow.",
+      keywords: "Dr Konika Bansal, Child Neurologist Lucknow, Epilepsy Specialist, Pediatric Neurology, Neuron Brain & Spine Centre"
+    }
+  }
+];

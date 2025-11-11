@@ -10,7 +10,7 @@ export const servicesData = {
     {
       label: "Slipped Disc Surgery",
       to: "/treatments/slipped-disc-surgery",
-      banner: "/assets/banner/Slipped-disc-surgery.png",
+      banner: "/assets/banner/treatment-banner.jpg",
       image: "/assets/images/achal2.jpg",
       description:
         "A slipped disc occurs when the cushion between spinal bones bulges out or ruptures, pressing on nearby nerves. Surgery removes or repairs the disc to relieve pain, restore movement, and prevent further nerve damage. Minimally invasive techniques ensure faster healing, minimal scars, and quicker return to daily life.",
@@ -198,8 +198,8 @@ export const servicesData = {
     {
       label: "Brain & Spine Tumor Surgery",
       to: "/treatments/brain-tumor-surgery",
-      banner: "/assets/banner/Brain-&-Spine-Tumor-Surgery.png",
-      image: "/assets/images/brain-tumor.jpg",
+      banner: "/assets/banner/treatment-banner-1.jpg",
+      image: "/assets/images/achal2.jpg",
       description:
         "Brain tumor surgery removes abnormal tissue growths while preserving brain function. With advanced neuro-navigation and precision microsurgery, the procedure ensures safety and optimal recovery for both benign and malignant tumors.",
       commonConditions: [

@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* background-color: rgb(255, 255, 255); */
 }
 
 /* 🌐 Global Font & Text Settings */
@@ -55,4 +56,8 @@ section {
   --space-3: 24px;
   --space-4: 32px;
   --space-5: 48px;
+}
+
+.main{
+  height: 80vh;
 }

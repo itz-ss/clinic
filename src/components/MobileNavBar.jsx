@@ -16,7 +16,15 @@ const MobileNavBar = () => {
         <span>Call</span>
       </a>
 
-      {/* 💬 WhatsApp Button */}
+      {/* 📅 Appointment Button */}
+      <a href="/appointment" className="mobile-nav-item">
+        <div className="icon-circle appoint-bg">
+          <img src="/assets/images/appointment.png" alt="Appointment" />
+        </div>
+        <span>Appointment</span>
+      </a>
+
+       {/* 💬 WhatsApp Button */}
       <a
         href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
           whatsappMessage
@@ -29,14 +37,6 @@ const MobileNavBar = () => {
           <img src="/assets/images/whatsapp.png" alt="WhatsApp" />
         </div>
         <span>WhatsApp</span>
-      </a>
-
-      {/* 📅 Appointment Button */}
-      <a href="/appointment" className="mobile-nav-item">
-        <div className="icon-circle appoint-bg">
-          <img src="/assets/images/appointment.png" alt="Appointment" />
-        </div>
-        <span>Book</span>
       </a>
     </div>
   );

@@ -7,6 +7,7 @@ import About from "../pages/About";
 import Achievements from "../pages/Achievements";
 import Contact from "../pages/Contact";
 import TreatmentRoutes from "./TreatmentRoutes";
+import DoctorRoutes from "./DoctorRoutes"; // 🩺 add this
 import AppointmentForm from "../components/AppointmentForm";
 import WhatsAppButton from "../components/WhatsAppButton";
 import CallButton from "../components/CallButton";
@@ -16,7 +17,6 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
         <Route path="achievements" element={<Achievements />} />
         <Route path="contact" element={<Contact />} />
         <Route path="appointment" element={<AppointmentForm />} />
@@ -25,6 +25,9 @@ const AppRoutes = () => {
 
         {/* 🧠 Dynamic Treatments */}
         <Route path="treatments/*" element={<TreatmentRoutes />} />
+
+        {/* 👨‍⚕️ Doctors routes */}
+        <Route path="about/*" element={<DoctorRoutes />} />
       </Route>
     </Routes>
   );

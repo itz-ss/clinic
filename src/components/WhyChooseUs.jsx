@@ -5,9 +5,9 @@ import "../styles/WhyChooseUs.css";
 
 const stats = [
   { id: 0, icon: "🏥", label: "Happy Patients", value: 10000, suffix: "+" },
-  { id: 1, icon: "❤️", label: "Successful Spine Surgeries", value: 1000, suffix: "+" },
-  { id: 2, icon: "✚", label: "Endoscopic Spine Surgeries", value: 400, suffix: "+" },
-  { id: 3, icon: "🧠", label: "Patient Satisfaction", value: 98, suffix: "%" }, // ✅ percentage
+  { id: 1, icon: "🧠", label: "Successful Surgeries", value: 1000, suffix: "+" },
+  { id: 2, icon: "✚", label: "Years Of Experience", value: 15, suffix: "+" },
+  { id: 3, icon: "❤️", label: "Patient Satisfaction", value: 98, suffix: "%" }, // ✅ percentage
 ];
 
 const WhyChooseUs = () => {

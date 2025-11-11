@@ -1,13 +1,43 @@
+/* 🌐 Base Container */
 .about-container {
   max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 15px;
+  font-family: "Poppins", sans-serif;
 }
 
+/* 🩺 Doctor Heading Section */
 .about-heading {
   font-weight: 700;
   font-size: 2.4rem;
   color: #0077ff;
+  letter-spacing: 0.5px;
 }
 
+.doctor-title {
+  color: #555;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* 👨‍⚕️ Doctor Profile Image */
+.doctor-profile-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #0077ff25;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doctor-profile-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 📖 Each Section */
 .about-section {
   margin: 60px 0;
 }
@@ -20,6 +50,7 @@
   order: 1;
 }
 
+/* 🖼️ Section Images */
 .about-image {
   width: 100%;
   border-radius: 15px;
@@ -32,6 +63,7 @@
   transform: scale(1.03);
 }
 
+/* ✍️ Text Column */
 .text-col {
   padding: 20px;
 }
@@ -40,23 +72,33 @@
   color: #0077ff;
   margin-bottom: 15px;
   font-weight: 600;
+  font-size: 1.4rem;
 }
 
 .text-col p {
   color: #444;
-  line-height: 1.6; /* 👈 reduced spacing between paragraphs */
-  margin-bottom: 10px; /* 👈 tighter paragraph gap */
+  line-height: 1.6;
+  margin-bottom: 10px;
   font-size: 16px;
+}
+
+.text-col ul {
+  padding-left: 20px;
+  margin-top: 5px;
 }
 
 .text-col li {
   color: #444;
   line-height: 1.7;
   margin-bottom: 8px;
+  font-size: 15px;
 }
 
-.text-col ul {
-  padding-left: 20px;
+/* 📱 Responsive Adjustments */
+@media (max-width: 992px) {
+  .about-container {
+    padding: 40px 15px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -72,6 +114,11 @@
   .about-heading {
     font-size: 2rem;
   }
+
+  .doctor-profile-img {
+    width: 160px;
+    height: 160px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -79,8 +126,16 @@
     font-size: 1.6rem;
   }
 
+  .doctor-title {
+    font-size: 1rem;
+  }
+
   .text-col p,
   .text-col li {
     font-size: 14px;
+  }
+
+  .about-container {
+    padding: 30px 10px;
   }
 }

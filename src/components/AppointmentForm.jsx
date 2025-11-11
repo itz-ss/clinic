@@ -10,6 +10,8 @@ function AppointmentForm({ serviceName }) {
     name: "",
     email: "",
     phone: "",
+    preferredDate: "",
+    preferredTime: "",
     message: "",
   });
 
@@ -44,25 +46,27 @@ function AppointmentForm({ serviceName }) {
         hour12: true,
       });
 
-      // 🌍 Detect user language
       const userLang = navigator.language || navigator.userLanguage;
       const isHindi = userLang.startsWith("hi");
 
-      // 💬 WhatsApp Message (formatted)
       const englishMessage = `🩺 *New Appointment Request* %0A
 👤 *Name:* ${formData.name}%0A
 📞 *Phone:* ${formData.phone}%0A
 ✉️ *Email:* ${formData.email}%0A
+📅 *Preferred Date:* ${formData.preferredDate || "Not specified"}%0A
+⏰ *Preferred Time:* ${formData.preferredTime || "Not specified"}%0A
 💬 *Message:* ${formData.message || "N/A"}%0A
 🔹 *Service:* ${serviceName || "Consultation"}%0A
 🆔 *Appointment Code:* ${appointmentCode}%0A
-🕓 *Sent On:* ${formattedTime}%0A
+🕓 *Submitted On:* ${formattedTime}%0A
 Please confirm my appointment.`;
 
       const hindiMessage = `🩺 *नई अपॉइंटमेंट रिक्वेस्ट* %0A
 👤 *नाम:* ${formData.name}%0A
 📞 *फ़ोन:* ${formData.phone}%0A
 ✉️ *ईमेल:* ${formData.email}%0A
+📅 *पसंदीदा दिनांक:* ${formData.preferredDate || "निर्दिष्ट नहीं"}%0A
+⏰ *पसंदीदा समय:* ${formData.preferredTime || "निर्दिष्ट नहीं"}%0A
 💬 *संदेश:* ${formData.message || "कोई संदेश नहीं"}%0A
 🔹 *उपचार:* ${serviceName || "सलाह"}%0A
 🆔 *अपॉइंटमेंट कोड:* ${appointmentCode}%0A
@@ -70,13 +74,10 @@ Please confirm my appointment.`;
 कृपया मेरी अपॉइंटमेंट कन्फर्म करें।`;
 
       const whatsappMessage = isHindi ? hindiMessage : englishMessage;
-      const phoneNumber = "7080106535"; // ✅ Use correct WhatsApp number without '+'
-
-      // ✅ STEP 1: Open WhatsApp FIRST (to avoid popup blocking)
+      const phoneNumber = "7080106535";
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
       window.open(whatsappUrl, "_blank");
 
-      // ✅ STEP 2: Then send emails in background (non-blocking)
       await Promise.all([
         emailjs.send(
           emailJSConfig.serviceID,
@@ -92,8 +93,15 @@ Please confirm my appointment.`;
         ),
       ]);
 
-      setStatus(`✅ Appointment submitted! Your appointment code: ${appointmentCode}`);
-      setFormData({ name: "", email: "", phone: "", preferredDate: "", message: ""});
+      setStatus(`✅ Appointment submitted successfully! Your code: ${appointmentCode}`);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        preferredDate: "",
+        preferredTime: "",
+        message: "",
+      });
     } catch (error) {
       console.error("❌ Error submitting appointment:", error);
       setStatus("Something went wrong. Please try again later.");
@@ -105,7 +113,8 @@ Please confirm my appointment.`;
   return (
     <div className="appointment-container container p-4 shadow-sm rounded bg-white">
       <h3 className="text-primary mb-4 fw-semibold text-center">
-        Book an Appointment {serviceName ? `(${serviceName})` : "for Consultation"}
+        Book an Appointment 
+        {/* {serviceName ? `(${serviceName})` : "for Consultation"} */}
       </h3>
 
       <form onSubmit={handleSubmit}>
@@ -150,17 +159,30 @@ Please confirm my appointment.`;
             />
           </div>
 
-           {/* preferred date*/}
-          <div className="col-md-6">
-            <label className="form-label fw-semibold">preferred Date</label>
-            <input
-              name="preferredDate"
-              className="form-control"
-              placeholder="preferred date"
-              value={formData.preferredDate}
-              onChange={handleChange}
-              required
-            />
+          {/* 📅 Preferred Date & ⏰ Time (Side by Side) */}
+          <div className="col-md-6 d-flex gap-3 align-items-end">
+            <div className="flex-fill">
+              <label className="form-label fw-semibold">Preferred Date</label>
+              <input
+                type="date"
+                name="preferredDate"
+                className="form-control"
+                value={formData.preferredDate}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="flex-fill">
+              <label className="form-label fw-semibold">Preferred Time</label>
+              <input
+                type="time"
+                name="preferredTime"
+                className="form-control"
+                value={formData.preferredTime}
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
 
           {/* Message */}
@@ -183,9 +205,9 @@ Please confirm my appointment.`;
           className="btn btn-primary w-100 mt-4"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Sending..." : "Submit Appointment"}
+          {isSubmitting ? "Sending..." : "Submit Enquiry"}
         </button>
-
+        <span style={{ fontSize: "0.85rem", color: "#6c757d" }} > ✅  By submitting this form you expressly agree to our <a href="/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a> </span>
         {status && (
           <div className="alert alert-info mt-3 text-center fw-semibold">
             {status}

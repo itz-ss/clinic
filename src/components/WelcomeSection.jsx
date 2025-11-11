@@ -8,11 +8,12 @@ const WelcomeSection = () => {
   return (
     <>
       <SEO
-        title="Dr. Achal Gupta | Neuron Brain & Spine Centre"
-        description="Learn more about Dr. Achal Gupta, an expert in Brain & Endoscopic Spine Surgery offering compassionate, personalized, and technology-driven care in Siliguri."
-        keywords="Dr Achal Gupta, spine surgeon Siliguri, brain surgeon North Bengal, endoscopic spine surgery"
+        title="Neuron Brain & Spine Centre | Dr. Achal Gupta & Dr. Konika Bansal"
+        description="Meet Dr. Achal Gupta and Dr. Konika Bansal, experts at Neuron Brain & Spine Centre specializing in advanced brain, spine, and neuro-related treatments."
+        keywords="Dr Achal Gupta, Dr Konika Bansal, spine surgeon Siliguri, brain surgeon North Bengal, endoscopic spine surgery, neuro specialist"
       />
 
+      {/* 🌐 Section 1 – Dr. Achal Gupta */}
       <section className="welcome-section">
         <Container fluid className="h-100 p-0">
           <Row className="align-items-center h-100 g-0">
@@ -26,29 +27,15 @@ const WelcomeSection = () => {
                 viewport={{ once: true }}
               >
                 <img
-                  src="/assets/images/achal2.jpg"
-                  alt="Dr. Achal Gupta pic 1"
+                  src="/assets/images/sergon.png"
+                  alt="Dr. Achal Gupta"
                   className="grid-image"
                 />
-                <img
-                  src="/assets/images/achal3.jpg"
-                  alt="Dr. Achal Gupta pic 2"
-                  className="grid-image"
-                />
-                <img
-                  src="/assets/images/Konika-bansal.jpg"
-                  alt="Konika Bansal"
-                  className="grid-image"
-                />
-                <img
-                  src="/assets/images/Newachal.jpg"
-                  alt="New Achal"
-                  className="grid-image"
-                />
+                
               </motion.div>
             </Col>
 
-            {/* Right Side – Text Section */}
+            {/* Right Side – Text */}
             <Col md={6} className="text-column">
               <motion.div
                 className="welcome-content"
@@ -57,56 +44,87 @@ const WelcomeSection = () => {
                 transition={{ duration: 1, ease: "easeOut" }}
                 viewport={{ once: true }}
               >
-                <motion.h1
-                  className="welcome-title mb-3"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  Neuron Brain & Spine Centre
+                <motion.h1 className="welcome-title mb-3  ">
+                  Dr Achal Gupta, Trusted Endoscopic Spine Surgeon, Lucknow, Uttar Pradesh
                 </motion.h1>
 
-                <motion.h4
-                  className="welcome-subtitle mb-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
+                <motion.h4 className="welcome-subtitle mb-4">
                   Dr. Achal Gupta
                 </motion.h4>
 
-                <motion.p
-                  className="welcome-text"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.6 }}
-                >
-                  Dr. Achal Gupta has rich experience in Brain & Endoscopic Spine Surgery,
-                  specializing in advanced minimally invasive procedures to treat a wide range
-                  of neurological and spinal conditions.
+                <motion.p className="welcome-text">
+                  Dr. Achal Gupta has rich experience in Brain & Endoscopic Spine Surgery, specializing in advanced minimally invasive procedures to treat a wide range of neurological and spinal conditions.
+
                 </motion.p>
 
-                <motion.p
-                  className="welcome-text"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                >
-                  His expertise includes fully endoscopic and micro-endoscopic spinal surgery,
-                  complex spinal operations requiring pedicle screw fixation, percutaneous
-                  vertebroplasty and kyphoplasty, and comprehensive pain management—including
-                  neuropathic pain, rhizotomy, trans-foraminal block, and sympathetic block.
+                <motion.p className="welcome-text">
+                His expertise includes fully endoscopic and micro-endoscopic spinal surgery, complex spinal operations requiring pedicle screw fixation, percutaneous vertebroplasty and kyphoplasty, and comprehensive pain management—including neuropathic pain, rhizotomy, trans-foraminal block, and sympathetic block.
+
                 </motion.p>
 
-                <motion.p
-                  className="welcome-text"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                >
-                  He is dedicated to improving patients’ quality of life through precision-based
-                  care, compassionate guidance, and modern technology that ensures faster recovery
-                  and lasting relief.
+                <motion.p className="welcome-text">
+                  He is dedicated to improving patients’ quality of life through precision-based care,
+                   compassionate guidance, and modern technology that ensures faster recovery and lasting relief.
+                </motion.p>
+              </motion.div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* 🌐 Section 2 – Dr. Konika Bansal (Alternate Layout) */}
+      <section className="welcome-section alt-section">
+        <Container fluid className="h-100 p-0">
+          <Row className="align-items-center h-100 g-0 flex-md-row-reverse">
+            {/* Right Side – Image Grid */}
+            <Col md={6} className="image-column">
+              <motion.div
+                className="image-grid"
+                initial={{ opacity: 0, x: 80 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                viewport={{ once: true }}
+              >
+                <img
+                  src="/assets/images/Konika-bansal.jpg"
+                  alt="Dr. Konika Bansal"
+                  className="grid-image"
+                />
+                
+              </motion.div>
+            </Col>
+
+            {/* Left Side – Text */}
+            <Col md={6} className="text-column">
+              <motion.div
+                className="welcome-content"
+                initial={{ opacity: 0, x: -80 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                viewport={{ once: true }}
+              >
+                <motion.h1 className="welcome-title mb-3">
+                  Compassionate Neurological Care
+                </motion.h1>
+
+                <motion.h4 className="welcome-subtitle mb-4">
+                  Dr. Konika Bansal
+                </motion.h4>
+
+                <motion.p className="welcome-text">
+                  Dr. Konika Bansal is an experienced neurologist known for her
+                  patient-centered care and excellence in diagnosing and managing
+                  neurological disorders with precision and empathy.
+                </motion.p>
+
+                <motion.p className="welcome-text">
+                  Her clinical expertise spans stroke care, epilepsy management,
+                  neurorehabilitation, and advanced neuro-diagnostics for improved outcomes.
+                </motion.p>
+
+                <motion.p className="welcome-text">
+                  She believes in holistic healing that integrates technology,
+                  compassion, and evidence-based treatment for long-term wellness.
                 </motion.p>
               </motion.div>
             </Col>

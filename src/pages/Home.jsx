@@ -7,6 +7,8 @@ import TechnologySection from "../components/TechnologySection";
 import KnowledgePartners from "../components/KnowledgePartners";
 import Testimonials from "../components/Testimonials";
 import WhyChooseUs from "../components/WhyChooseUs";
+import TreatmentsShowcase from "../components/TreatmentsShowcase";
+
 // global css
 import "../styles/global.css";
 function Home() {
@@ -22,22 +24,10 @@ function Home() {
 
       <section className="hero text-center bg-light py-5">
         <Container>
-          {/* Replace placeholder image in public/assets/images/doctor-profile.jpg */}
-          <img
-            src="/assets/images/achal2.jpg"
-            alt="Doctor's Name"
-            className="rounded-circle mb-3 shadow"
-            width="150"
-          />
-          <h1 className="fw-bold">Dr Achal Gupta</h1>
-          <p className="lead text-muted">
-            Specialist in Spine and Neurosurgery
-          </p>
-          <Button variant="primary" size="lg" href="/appointment">
-            Book Appointment
-          </Button>
+        <img  className="main" src="/assets/images/main.png" />
         </Container>
         <WelcomeSection />
+        <TreatmentsShowcase />
         <TechnologySection />
         <KnowledgePartners />
         <Testimonials />
