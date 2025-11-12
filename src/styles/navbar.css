@@ -1,34 +1,38 @@
-/* 🌐 Premium Solid Navbar — Fixed Height, Two-Column Treatments */
+/* =========================================================
+   🌐 PREMIUM SOLID NAVBAR
+   Sticky Top | Fixed Height | Responsive with Right-Side Menu
+   ========================================================= */
+
+/* 🧭 Navbar Base */
 .navbar {
-  position: sticky;
-  top: 0;
+  position: sticky;              /* Keeps navbar visible while scrolling */
+  top: 0;                        /* ✅ Always pinned to top */
   width: 100%;
   z-index: 1000;
-  height: 80px;
-  background: #e6f3f7;
+  height: 80px;                  /* Fixed height for desktop */
+  background: #e6f3f7;           /* Soft blue background */
   border-bottom: 1px solid #cfe8f0;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   font-family: "Poppins", sans-serif;
   display: flex;
-  align-items: center;
+  align-items: center;           /* Vertically center contents */
+  justify-content: center;       /* Centers container horizontally */
   transition: all 0.3s ease;
 }
-/* 🧱 Navbar Container */
+
+/* 🧱 Inner Container (holds logo + links + button) */
 .nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px;
   width: 100%;
   max-width: 1380px;
+  padding: 0 10px;
   margin: 0 auto;
   height: 100%;
 }
 
 /* 🩺 Logo */
-.logo {
-  flex-shrink: 0;
-}
 .logo img {
   height: 60px;
   transition: transform 0.3s ease;
@@ -37,7 +41,7 @@
   transform: scale(1.05);
 }
 
-/* 🔗 Nav Links */
+/* 🔗 Navigation Links (Desktop) */
 .nav-links {
   list-style: none;
   display: flex;
@@ -53,17 +57,17 @@
   font-weight: 500;
   text-decoration: none;
   font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover,
 .dropdown-btn:hover {
   color: #0077ff;
   text-shadow: 0 0 6px rgba(0, 119, 255, 0.25);
+  transform: scale(2.02);
 }
 
-/* 🔽 Dropdown (Desktop) */
+/* 🔽 Dropdown Menu (Desktop only) */
 .dropdown {
   position: relative;
 }
@@ -85,32 +89,24 @@
   animation: dropdownLift 0.3s ease forwards;
 }
 
-/* ✨ Animation */
+/* ✨ Dropdown animation */
 @keyframes dropdownLift {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* 🩻 Treatments Two-Column Layout */
+/* 🩻 Treatments Column Layout inside Dropdown */
 .treatments-columns {
   display: flex;
   justify-content: space-between;
   gap: 60px;
   width: 100%;
 }
-
 .treatment-column {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-
 .treatment-column h4 {
   color: #0077ff;
   font-size: 17px;
@@ -119,31 +115,20 @@
   padding-bottom: 6px;
   margin-bottom: 8px;
 }
-
-.treatment-column ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.treatment-column li {
-  margin: 6px 0;
-}
-
 .treatment-column a {
   color: #0d2345;
   font-size: 15px;
   text-decoration: none;
   display: block;
+  margin: 6px 0;
   transition: all 0.25s ease;
 }
-
 .treatment-column a:hover {
   color: #0077ff;
   transform: translateX(4px);
 }
 
-/* 🍔 Hamburger */
+/* 🍔 Hamburger Icon */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -152,7 +137,6 @@
   height: 20px;
   cursor: pointer;
 }
-
 .menu-toggle span {
   height: 3px;
   width: 100%;
@@ -160,7 +144,6 @@
   border-radius: 2px;
   transition: all 0.3s ease;
 }
-
 .menu-toggle.open span:nth-child(1) {
   transform: rotate(45deg) translateY(7px);
 }
@@ -172,9 +155,6 @@
 }
 
 /* 💙 Appointment Button */
-.appointment-button {
-  flex-shrink: 0;
-}
 .appointment-button button {
   background: linear-gradient(135deg, #0077ff, #00b4d8);
   border: none;
@@ -190,50 +170,69 @@
   transform: translateY(-2px);
 }
 
-/* ===================== */
-/* 📱 Mobile (Fix Overlap) */
-/* ===================== */
+/* =========================================================
+   📱 MOBILE VIEW — TOP FIXED NAVBAR + RIGHT SLIDE MENU
+   ========================================================= */
 @media (max-width: 992px) {
+  /* ✅ Show hamburger icon */
   .menu-toggle {
     display: flex;
   }
 
+  /* ✅ Keep navbar top-aligned & horizontally spaced */
+  .navbar {
+    height: auto;                   /* Allow height to adapt naturally */
+    justify-content: space-between; /* Space logo & hamburger apart */
+    align-items: flex-start;            /* Vertically centered again */
+    padding: 10px 20px;
+  }
+
+  /* ✅ Keep container layout horizontal (logo left, menu icon right) */
+  .nav-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  /* 📋 Right Slide-Out Mobile Menu */
   .nav-links {
     position: fixed;
-    top: 80px;
-    right: -100%;
-    width: 80%;
-    height: calc(100vh - 80px);
-    background: #fff;
+    top: 70px;                      /* ✅ Stays just below navbar */
+    right: -100%;                   /* Hidden by default (off-screen) */
+    width: 75%;
+    height: calc(100vh - 70px);
+    background: #ffffff;
     box-shadow: -3px 0 15px rgba(0, 0, 0, 0.1);
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
     padding: 25px;
     gap: 20px;
     overflow-y: auto;
     transition: right 0.4s ease;
   }
 
+  /* ✅ Slide-In Animation */
   .nav-links.active {
     right: 0;
   }
 
+  /* Hide appointment button to save space */
   .appointment-button {
     display: none;
   }
 
-  /* ✅ Make dropdown flow vertically (no overlap) */
+  /* ✅ Dropdown expands inline inside mobile menu */
   .dropdown-content {
     position: relative;
-    top: unset;
-    left: unset;
     display: block;
-    width: 100%;
-    min-width: unset;
-    padding: 0;
-    box-shadow: none;
-    border: none;
     background: transparent;
+    box-shadow: none;
+    padding: 0;
+    width: 100%;
+    border: none;
   }
 
   .treatments-columns {
@@ -243,18 +242,12 @@
     width: 100%;
   }
 
-  .treatment-column {
-    width: 100%;
-  }
-
   .treatment-column h4 {
     font-size: 16px;
-    cursor: pointer;
     color: #0077ff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
   }
 
   .treatment-column ul {

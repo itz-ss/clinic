@@ -14,7 +14,7 @@ const WhatsAppButton = () => {
       aria-label="Chat on WhatsApp"
     >
       <img
-        src="/assets/images/whatsapp.png"
+        src="/assets/images/WhatsApp.png"
         alt="Chat on WhatsApp"
         className="whatsapp-icon"
       />

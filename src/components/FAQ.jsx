@@ -103,7 +103,7 @@ function FAQSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Looking for an Expert Spine Surgeon in Siliguri?  
+            Looking for an Expert Spine Surgeon in Lucknow?  
             Book an Appointment Today!
           </motion.p>
 

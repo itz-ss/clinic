@@ -34,7 +34,7 @@ const MobileNavBar = () => {
         className="mobile-nav-item"
       >
         <div className="icon-circle whatsapp-bg">
-          <img src="/assets/images/whatsapp.png" alt="WhatsApp" />
+          <img src="/assets/images/WhatsApp.png" alt="WhatsApp" />
         </div>
         <span>WhatsApp</span>
       </a>

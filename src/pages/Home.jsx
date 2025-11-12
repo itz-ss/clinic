@@ -29,7 +29,7 @@ function Home() {
           {/* 🖼 Responsive banner image */}
           <img
             className="main-banner"
-            src="/assets/images/main.png"
+            src="/assets/banner/homePageBanner.png"
             alt="Main banner showing the doctor and clinic theme"
           />
         </Container>
