@@ -43,7 +43,7 @@ const WelcomeSection = () => {
               >
                 {/* 🖼 Large Image with hover zoom */}
                 <motion.img
-                  src="/assets/images/sergon.png"
+                  src="/assets/welcomePage/achal1.png"
                   alt="Dr. Achal Gupta"
                   className="grid-image main-img"
                   variants={fadeIn("up", 0.1)}
@@ -57,7 +57,7 @@ const WelcomeSection = () => {
                 {/* 🖼 Two Smaller Images */}
                 <div className="small-img-row">
                   <motion.img
-                    src="/assets/images/spine-procedure.jpg"
+                    src="/assets/welcomePage/achal2.jpg"
                     alt="Spine Procedure"
                     className="grid-image small-img"
                     variants={fadeIn("up", 0.2)}
@@ -68,7 +68,7 @@ const WelcomeSection = () => {
                     transition={{ duration: 0.3, ease: "easeOut" }}
                   />
                   <motion.img
-                    src="/assets/images/operation-room.jpg"
+                    src="/assets/welcomePage/achal3.jpg"
                     alt="Operation Room"
                     className="grid-image small-img"
                     variants={fadeIn("up", 0.3)}
@@ -134,7 +134,7 @@ const WelcomeSection = () => {
                 viewport={{ once: true, amount: 0.2 }}
               >
                 <motion.img
-                  src="/assets/images/konika-bansal.jpg"
+                  src="/assets/welcomePage/konika.jpg"
                   alt="Dr. Konika Bansal"
                   className="grid-image main-img"
                   variants={fadeIn("up", 0.1)}
@@ -147,7 +147,7 @@ const WelcomeSection = () => {
 
                 <div className="small-img-row">
                   <motion.img
-                    src="/assets/images/neurology-lab.jpg"
+                    src="/assets/welcomePage/konika2.jpg"
                     alt="Neurology Lab"
                     className="grid-image small-img"
                     variants={fadeIn("up", 0.2)}
@@ -158,7 +158,7 @@ const WelcomeSection = () => {
                     transition={{ duration: 0.3, ease: "easeOut" }}
                   />
                   <motion.img
-                    src="/assets/images/patient-care.jpg"
+                    src="/assets/welcomePage/konika3.jpg"
                     alt="Patient Care"
                     className="grid-image small-img"
                     variants={fadeIn("up", 0.3)}

@@ -141,7 +141,7 @@ const Navbar = () => {
                     /* 📱 Mobile Accordion */
                     <div className="mobile-accordion">
                       <div className="accordion-section">
-                        <button
+                        <div
                           className="accordion-header"
                           onClick={() => toggleSubDropdown("spine")}
                         >
@@ -149,7 +149,7 @@ const Navbar = () => {
                           <span className="accordion-arrow">
                             {openSubDropdown === "spine" ? "▲" : "▼"}
                           </span>
-                        </button>
+                        </div>
                         <AnimatePresence>
                           {openSubDropdown === "spine" && (
                             <motion.ul
@@ -168,7 +168,7 @@ const Navbar = () => {
                       </div>
 
                       <div className="accordion-section">
-                        <button
+                        <div
                           className="accordion-header"
                           onClick={() => toggleSubDropdown("brain")}
                         >
@@ -176,7 +176,7 @@ const Navbar = () => {
                           <span className="accordion-arrow">
                             {openSubDropdown === "brain" ? "▲" : "▼"}
                           </span>
-                        </button>
+                        </div>
                         <AnimatePresence>
                           {openSubDropdown === "brain" && (
                             <motion.ul

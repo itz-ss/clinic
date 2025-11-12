@@ -4,24 +4,24 @@ import "../styles/KnowledgePartners.css";
 
 const partners = [
   {
-    name: "Manipal Hospitals",
-    logo: "/assets/images/manipal.png",
-    link: "https://www.manipalhospitals.com/",
+    name: "Raj Bharti Medical Foundation",
+    logo: "/assets/associatedLogo/raj-bharti-medical-foundation.png",
+    link: "https://neurospine.in/raj-bharti-medical-foundation",
   },
   {
-    name: "AIIMS",
-    logo: "/assets/images/aiims.png",
-    link: "https://www.aiims.edu/",
+    name: "NSSA",
+    logo: "/assets/associatedLogo/NSSA.png",
+    link: "https://nssa-india.com/",
   },
   {
-    name: "Apollo Hospitals",
-    logo: "/assets/images/apollo.png",
+    name: "Lucknow Neuro Club",
+    logo: "/assets/associatedLogo/Lucknow-Neuro-Club.png",
     link: "https://www.apollohospitals.com/",
   },
   {
-    name: "Medanta",
-    logo: "/assets/images/medanta.png",
-    link: "https://www.medanta.org/",
+    name: "Medanta Hospital",
+    logo: "/assets/associatedLogo/MEDANTA.png",
+    link: "https://www.medanta.org/hospitals-near-me/lucknow-hospital",
   },
 ];
 

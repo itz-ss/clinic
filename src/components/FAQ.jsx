@@ -104,7 +104,7 @@ function FAQSection() {
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             Looking for an Expert Spine Surgeon in Lucknow?  
-            Book an Appointment Today!
+            <a href="/appointment" >Book an Appointment</a> Today!
           </motion.p>
 
           <motion.div

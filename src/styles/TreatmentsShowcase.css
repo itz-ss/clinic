@@ -62,7 +62,7 @@
 .treatment-card {
   background: #fff;
   /* Rounded corners (optional, uncomment to use) */
-  /* border-radius: 15px; */
+  border-radius: 15px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   cursor: pointer;
@@ -90,7 +90,7 @@
   aspect-ratio: 4 / 3;
   /* Optional: Add border or rounded corners */
   /* border: 4px solid #e1ecf8; */
-  /* border-radius: 12px; */
+  border-radius: 12px;
   background: linear-gradient(135deg, #fefefe, #f4f8ff);
   overflow: hidden;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.08);
