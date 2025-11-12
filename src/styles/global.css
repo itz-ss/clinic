@@ -1,82 +1,162 @@
-/* src/styles/global.css */
+/* =========================================================
+   🌐 GLOBAL STYLESHEET
+   Project: Doctor’s Clinic Website
+   Purpose: Universal styling baseline for all pages
+   Notes: Adjust spacing, fonts, or colors here to apply site-wide
+   ========================================================= */
 
-/* 🧭 Base Reset + Typography Harmony */
+/* =========================================================
+   🧭 1. CSS RESET + LAYOUT NORMALIZATION
+   - Removes default browser margins/padding
+   - Ensures consistent box sizing for all elements
+   ========================================================= */
 * {
-  margin: 0;
-  padding: 0;
+ 
   box-sizing: border-box;
-  /* background-color: rgb(255, 255, 255); */
 }
 
-/* 🌐 Global Font & Text Settings */
-body {
-  font-family: "Poppins", "Inter", sans-serif;
-  font-size: 17px;
-  line-height: 1.6;
-  color: #1e293b;
-  background-color: #ffffff;
-  letter-spacing: 0.3px;
-  -webkit-font-smoothing: antialiased;
-  scroll-behavior: smooth;
-}
-
-/* 🧩 Headings — consistent vertical rhythm */
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Poppins", sans-serif;
-  color: #0f172a;
-  line-height: 1.25;
-  font-weight: 600;
-}
-
-/* 📝 Paragraphs */
-p {
-  margin-bottom: 1rem;
-}
-
-/* 🪶 Links */
-a {
-  color: #0066cc;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: #004999;
-}
-
-/* 🧱 Section spacing */
-section {
-  padding: 60px 0;
-}
-
-/* 🧠 Utility: 8px rhythm */
+/* =========================================================
+   🌈 2. ROOT VARIABLES — EDIT HERE FOR QUICK THEME CHANGES
+   - Use these variables throughout the project for consistency
+   ========================================================= */
 :root {
+  /* 🎨 Brand Colors */
+  --primary-color: #0066cc;
+  --primary-dark: #004999;
+  --text-color: #1e293b;
+  --heading-color: #0f172a;
+  --background-color: #fdfdfd;
+
+  /* 📏 Spacing System (8px base) */
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
   --space-4: 32px;
   --space-5: 48px;
+
+  /* 🖋 Font Scaling for Responsiveness */
+  --base-font-size: 17px;
 }
 
-.main{
-  height: 80vh;
+/* =========================================================
+   🧍‍♂️ 3. BODY — GLOBAL TEXT & BACKGROUND
+   - Defines overall look and feel
+   ========================================================= */
+body {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: var(--base-font-size);
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  letter-spacing: 0.3px;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevents unwanted horizontal scroll */
 }
 
-/* //change later */
-@media (max-width: 576px) {
-  .main {
-    height: 30vh;    /* Square-style banner for mobile */
-  }
+/* =========================================================
+   🧱 4. HEADINGS
+   - Keeps typography consistent and visually balanced
+   ========================================================= */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins", sans-serif;
+  color: var(--heading-color);
+  line-height: 1.25;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
 }
 
-@media (max-width: 740px) {
-  .main {
-    height: 40vh;        /* Slightly taller banner */
-  }
+/* =========================================================
+   📝 5. PARAGRAPHS
+   - Adds breathing room between paragraphs
+   ========================================================= */
+p {
+  margin-bottom: 1rem;
 }
 
+/* =========================================================
+   🔗 6. LINKS
+   - Smooth hover transition for accessibility
+   ========================================================= */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+/* =========================================================
+   📦 7. SECTIONS
+   - Default vertical spacing for all page sections
+   ========================================================= */
+section {
+  padding: 60px 0;
+}
+
+/* =========================================================
+   🖼 8. GLOBAL IMAGES
+   - Ensures all images are responsive by default
+   ========================================================= */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================================================
+   🧠 9. HERO / MAIN BANNER FALLBACK
+   - Sets default height and scaling for main visuals
+   - Can be overridden in Home.css
+   ========================================================= */
+.main {
+  width: 100%;
+  height: 80vh; /* Default: covers most of the screen */
+  object-fit: cover; /* Keeps proportions */
+  object-position: center; /* Centers focal point */
+  border-radius: 10px;
+  transition: all 0.4s ease;
+}
+
+/* Hover effect for subtle interactivity */
+.main:hover {
+  transform: scale(1.01);
+}
+
+/* =========================================================
+   📱 10. RESPONSIVE ADJUSTMENTS
+   - Adjusts font and section spacing on smaller screens
+   ========================================================= */
+
+/* Medium Devices (Tablets) */
 @media (max-width: 992px) {
+  body {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 40px 0;
+  }
+
   .main {
-    height: 50vh;        /* Slightly taller banner */
+    height: 60vh; /* Slightly shorter for tablets */
+  }
+}
+
+/* Small Devices (Phones) */
+@media (max-width: 576px) {
+  body {
+    font-size: 15px;
+  }
+
+  section {
+    padding: 32px 0;
+  }
+
+  .main {
+    height: 45vh; /* Keeps mobile layout compact */
+    border-radius: 6px;
   }
 }

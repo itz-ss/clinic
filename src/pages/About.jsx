@@ -11,17 +11,19 @@ function About() {
   const { doctorId } = useParams();
   const doctorInfo = doctorsData.find((doc) => doc.id === doctorId);
 
-  // Handle invalid or missing doctor
+  // ⚠️ Handle invalid or missing doctor
   if (!doctorInfo) {
     return (
       <div className="text-center py-5">
         <h2>Doctor Not Found</h2>
-        <p className="text-muted">Please check the URL or visit the Doctors page.</p>
+        <p className="text-muted">
+          Please check the URL or visit the Doctors page.
+        </p>
       </div>
     );
   }
 
-  // Images used per section
+  // 🖼️ Section Images (for Education, Experience, etc.)
   const sectionImages = [
     "/assets/images/freepik__retouch__96553.png",
     "/assets/images/education.jpg",
@@ -32,6 +34,7 @@ function About() {
     "/assets/images/workshops.jpg",
   ];
 
+  // 📄 Render reusable section blocks
   const renderSection = (title, content, index) => {
     const isReversed = index % 2 !== 0;
 
@@ -45,7 +48,7 @@ function About() {
         viewport={{ once: true }}
       >
         <Row className="align-items-center my-5">
-          {/* Section image */}
+          {/* Left: Section Image */}
           <Col md={6} className="image-col">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -58,13 +61,12 @@ function About() {
                 alt={title}
                 className="about-image"
                 whileHover={{ scale: 1.02 }}
-                whileInView={{ y: [40, 0] }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
               />
             </motion.div>
           </Col>
 
-          {/* Section text */}
+          {/* Right: Text Column */}
           <Col md={6} className="text-col">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -85,24 +87,17 @@ function About() {
 
   return (
     <>
+      {/* 🧠 SEO Meta Info */}
       <SEO
         title={doctorInfo.seo.title}
         description={doctorInfo.seo.description}
         keywords={doctorInfo.seo.keywords}
       />
 
-      {/* 🔹 Top Section — Doctor Header */}
-      <Container className="about-container py-5">
+      {/* 🔹 Doctor Information Container */}
+      <Container className="about-container py-1">
+        {/* 🧾 Doctor Header (Name + Title) */}
         <div className="text-center mb-5">
-          <motion.img
-            src={doctorInfo.image}
-            alt={doctorInfo.name}
-            className="doctor-profile-img mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7 }}
-          />
-
           <motion.h1
             className="about-heading"
             initial={{ opacity: 0, y: 40 }}
@@ -122,10 +117,10 @@ function About() {
           </motion.p>
         </div>
 
-        {/* 🔹 Biography */}
+        {/* 🧩 Biography Section */}
         {renderSection("Biography", doctorInfo.biography, 0)}
 
-        {/* 🔹 Education */}
+        {/* 🎓 Education Section */}
         {renderSection(
           "Education",
           doctorInfo.education.map((edu) => (
@@ -136,7 +131,7 @@ function About() {
           1
         )}
 
-        {/* 🔹 Experience */}
+        {/* 💼 Experience Section */}
         {renderSection(
           "Experience",
           doctorInfo.experience.map((exp) => (
@@ -147,7 +142,7 @@ function About() {
           2
         )}
 
-        {/* 🔹 Publications */}
+        {/* 📚 Publications Section */}
         {renderSection(
           "Publications",
           doctorInfo.publications.map((pub) => (
@@ -161,7 +156,7 @@ function About() {
           3
         )}
 
-        {/* 🔹 Special Interests */}
+        {/* 💡 Special Interests */}
         {renderSection(
           "Special Interests",
           <ul>
@@ -172,7 +167,7 @@ function About() {
           4
         )}
 
-        {/* 🔹 Associations */}
+        {/* 🧑‍⚕️ Associations */}
         {renderSection(
           "Associations",
           <ul>
@@ -183,7 +178,7 @@ function About() {
           5
         )}
 
-        {/* 🔹 Courses & Workshops */}
+        {/* 🧾 Courses & Workshops */}
         {renderSection(
           "Courses & Workshops",
           <ul>

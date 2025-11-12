@@ -1,66 +1,159 @@
-/* 🟦 Responsive Banner Section */
+/* =====================================================
+   🌐 TREATMENT PAGE — Smart Vertical Spacing Adjustment
+   ===================================================== */
+
+/* ---------- Banner Section ---------- */
 .treatment-banner {
-  position: relative;
-  width: 100%;                    /* Always take full width */
-  aspect-ratio: 4 / 0.7;           /* Keeps width-height ratio consistent */
-  background-size: cover;         /* Crop to fill container while preserving aspect ratio */
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-/* Overlay if needed */
-.banner-overlay {
   width: 100%;
-  height: 100%;
-  background: rgba(7, 21, 49, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 4 / 0.7;
+  background-size: cover;
+  background-position: center;
+  /* border-radius: 0 0 12px 12px; */
+  overflow: hidden;
+  margin-bottom: 30px;
 }
 
-/* Title inside banner */
-.banner-title {
-  color: #fff;
-  font-size: 2.6rem;
+/* ---------- Section Layout ---------- */
+.treatment-section {
+  margin: 28px 0; /* ✅ Reduced default gap slightly */
+  padding-top: 5px; /* light breathing space */
+  transition: margin 0.3s ease; /* smooth adjustment for dynamic content */
+}
+
+/* Section alignment fix (Image Left / Text Right) */
+.alt-layout .col-md-6:first-child {
+  order: 1; /* text left */
+}
+.alt-layout .col-md-6:last-child {
+  order: 2; /* form right */
+}
+
+/* ---------- Treatment Title ---------- */
+.treatment-title {
+  font-size: 2rem;
   font-weight: 700;
-  text-align: center;
-  letter-spacing: 0.5px;
+  color: #0077ff;
+  margin-bottom: 12px;
 }
 
-/* 🧩 RESPONSIVE MEDIA QUERIES */
-
-/* Tablets (medium screens) */
-@media (max-width: 992px) {
-  .treatment-banner {
-    aspect-ratio: 4 / 0.9;        /* Slightly taller banner */
-  }
-
-  .banner-title {
-    font-size: 2.2rem;
-  }
+/* ---------- Description ---------- */
+.treatment-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: justify;
 }
 
-/* Phones (small screens) */
-@media (max-width: 576px) {
-  .treatment-banner {
-    aspect-ratio: 4 / 0.9;        /* Square-style banner for mobile */
-  }
-
-  .banner-title {
-    font-size: 1.8rem;
-  }
+/* ---------- Lists ---------- */
+.condition-list,
+.treatment-list {
+  list-style-type: disc;
+  margin-left: 1.4rem;
+  color: #444;
+  line-height: 1.7;
 }
 
+.sub-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0a2a6a;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Image Styling ---------- */
+.treatment-image {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  margin-bottom: 8px;
+  transition: transform 0.4s ease;
+}
+.treatment-image:hover {
+  transform: scale(1.03);
+}
+
+/* ---------- Embedded banner inside 2nd section ---------- */
 .add-banner {
   width: 100%;
-  margin-top: 20px;
-  border-radius: 15px;
+  margin-top: 15px;
+  border-radius: 10px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
   object-fit: cover;
+}
+
+/* ---------- Text Alignment Fix for 2nd Section ---------- */
+.options-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* ✅ centers content vertically */
+  height: 100%;
+  margin-top: -10px; /* ✅ pulled text closer to form for visual balance */
+  transition: margin 0.3s ease;
+}
+
+/* ---------- Appointment Form Container ---------- */
+.appointment-box {
+  background: #f8fbff;
+  border-radius: 12px;
+  padding: 25px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  align-self: center;
+}
+
+.appointment-box:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* =====================================================
+   📱 RESPONSIVE STYLING — Smart spacing control
+   ===================================================== */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .treatment-section {
+    margin: 22px 0; /* slightly closer on tablets */
+  }
+
+  .options-wrapper {
+    margin-top: -8px; /* balance for smaller height */
+  }
+
+  .treatment-title {
+    font-size: 1.7rem;
+  }
+
+  .appointment-box {
+    margin-top: 18px;
+  }
+}
+
+/* Phones */
+@media (max-width: 576px) {
+  .treatment-section {
+    margin: 14px 0; /* ✅ Half of desktop spacing */
+  }
+
+  .options-wrapper {
+    margin-top: -5px; /* ✅ perfect visual balance for stacked view */
+  }
+
+  .treatment-title {
+    font-size: 1.5rem;
+  }
+
+  .treatment-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .appointment-box {
+    padding: 18px;
+  }
+
+  .sub-title {
+    font-size: 1.1rem;
+  }
 }

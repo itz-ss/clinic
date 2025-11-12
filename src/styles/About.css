@@ -1,4 +1,9 @@
-/* 🌐 Base Container */
+/* ==========================================================
+   🌐 ABOUT PAGE STYLES (No Top Banner)
+   Focus on clean layout with headings + alternating sections
+   ========================================================== */
+
+/* ---------- Main Container ---------- */
 .about-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -6,7 +11,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* 🩺 Doctor Heading Section */
+/* ---------- Doctor Heading Section ---------- */
 .about-heading {
   font-weight: 700;
   font-size: 2.4rem;
@@ -21,36 +26,20 @@
   margin-top: 8px;
 }
 
-/* 👨‍⚕️ Doctor Profile Image */
-.doctor-profile-img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 5px solid #0077ff25;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.doctor-profile-img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* 📖 Each Section */
+/* ---------- Each Content Section ---------- */
 .about-section {
-  margin: 60px 0;
+  margin: 10px 0;
 }
 
+/* Alternate layout for even-numbered sections */
 .about-section.reverse .image-col {
   order: 2;
 }
-
 .about-section.reverse .text-col {
   order: 1;
 }
 
-/* 🖼️ Section Images */
+/* ---------- Section Images ---------- */
 .about-image {
   width: 100%;
   border-radius: 15px;
@@ -63,7 +52,7 @@
   transform: scale(1.03);
 }
 
-/* ✍️ Text Column */
+/* ---------- Text Column ---------- */
 .text-col {
   padding: 20px;
 }
@@ -94,7 +83,7 @@
   font-size: 15px;
 }
 
-/* 📱 Responsive Adjustments */
+/* ---------- Responsive Adjustments ---------- */
 @media (max-width: 992px) {
   .about-container {
     padding: 40px 15px;
@@ -102,6 +91,7 @@
 }
 
 @media (max-width: 768px) {
+  /* Stack order back to normal on mobile */
   .about-section.reverse .image-col,
   .about-section.reverse .text-col {
     order: unset;
@@ -113,11 +103,6 @@
 
   .about-heading {
     font-size: 2rem;
-  }
-
-  .doctor-profile-img {
-    width: 160px;
-    height: 160px;
   }
 }
 

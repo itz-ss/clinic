@@ -1,47 +1,67 @@
+/* ======================================================
+   🌐 WELCOME SECTION STYLING
+   Layout: 1 Large Image + 2 Smaller Below (Fixed Pattern)
+   Framer Motion handles hover + fade animations
+   ====================================================== */
+
+/* ---------- Section Base ---------- */
 .welcome-section {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(to right, #f9fafb, #eef2ff);
   overflow: hidden;
 }
 
+/* ---------- Image Column ---------- */
 .image-column {
-  position: relative;
-  background: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100%;
+  /* background: #f8fafc; */
+  padding: 2rem;
+  overflow: visible; /* Allow image zoom to show */
 }
 
-/* .image-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.2rem;
-  padding: 2rem; */
-/* } */
-
-.grid-image {
+/* ---------- Image Grid Layout ---------- */
+.image-grid {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  aspect-ratio: 10 / 5;
-  margin-left: 10px;
+  max-width: 550px;
+  gap: 1rem;
+}
+
+/* ---------- Large Image ---------- */
+.grid-image.main-img {
+  width: 100%;
+  height: 350px;
   object-fit: cover;
-  image-rendering: crisp-edges;
   border-radius: 1rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-.grid-image:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+/* ---------- Two Smaller Images Below ---------- */
+.small-img-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
+.grid-image.small-img {
+  flex: 1;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Text Column ---------- */
 .text-column {
   padding: 4rem 3rem;
+  /* background: #fff; */
   color: #1e293b;
-  background: white;
+  display: flex;
+  align-items: center;
 }
 
 .welcome-content {
@@ -50,16 +70,10 @@
 }
 
 .welcome-title {
-  font-size: 2.0rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #1e3a8a;
-}
-
-.welcome-subtitle {
-  font-size: 1.6rem;
-  font-weight: 600;
-  height: 0px;
-  color: #334155;
+  margin-bottom: 1.5rem;
 }
 
 .welcome-text {
@@ -69,10 +83,23 @@
   color: #475569;
 }
 
+/* ---------- Responsive Scaling (Keep Pattern Same) ---------- */
 @media (max-width: 992px) {
   .welcome-section {
-    height: auto;
     flex-direction: column;
+    padding: 2rem 0;
+  }
+
+  .image-grid {
+    max-width: 90%;
+  }
+
+  .grid-image.main-img {
+    height: 280px;
+  }
+
+  .grid-image.small-img {
+    height: 130px;
   }
 
   .text-column {
@@ -80,25 +107,29 @@
     text-align: center;
   }
 
-  .welcome-content {
-    max-width: 90%;
-  }
-
-  .image-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .grid-image {
-    height: 200px;
+  .welcome-title {
+    font-size: 1.8rem;
   }
 }
+
 @media (max-width: 600px) {
   .image-grid {
-    grid-template-columns: 1fr;
+    max-width: 95%;
   }
 
-  .grid-image {
-    height: 180px;
+  .grid-image.main-img {
+    height: 230px;
+  }
+
+  .grid-image.small-img {
+    height: 120px;
+  }
+
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+
+  .welcome-text {
+    font-size: 0.95rem;
   }
 }

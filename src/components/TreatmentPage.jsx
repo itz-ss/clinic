@@ -1,30 +1,32 @@
+// src/pages/TreatmentPage.jsx
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { servicesData } from "../data/servicesData";
 import { motion } from "framer-motion";
-import AppointmentForm from "./AppointmentForm";
+import AppointmentForm from "../components/AppointmentForm"; // ✅ Reuse existing connected form
 import "../styles/treatmentPage.css";
 
 const TreatmentPage = () => {
   const { pathname } = useLocation();
 
-  // Combine all treatments
+  // Combine spine + brain treatments
   const allTreatments = [...servicesData.spine, ...servicesData.brain];
   const treatment = allTreatments.find((item) => item.to === pathname);
 
-  // Handle invalid route
   if (!treatment) {
     return (
       <div className="treatment-not-found text-center py-5">
         <h2>Treatment Not Found</h2>
-        <p className="text-muted">Please check the URL or go back to the Services page.</p>
+        <p className="text-muted">
+          Please check the URL or visit the Services page.
+        </p>
       </div>
     );
   }
 
   return (
     <div className="treatment-page">
-      {/* 🟦 Banner Section */}
+      {/* 🩵 Banner Section */}
       <motion.div
         className="treatment-banner"
         style={{
@@ -33,10 +35,8 @@ const TreatmentPage = () => {
         initial={{ backgroundPositionY: "50%", opacity: 0 }}
         animate={{ backgroundPositionY: "40%", opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
-      >
-      </motion.div>
+      />
 
-      {/* 🟨 Main Section */}
       <div className="container py-0">
         {/* SECTION 1 — Image Left | Text Right */}
         <motion.section
@@ -47,7 +47,7 @@ const TreatmentPage = () => {
           viewport={{ once: true }}
         >
           <div className="row align-items-center">
-            {/* Image */}
+            {/* 🖼 Image Left */}
             <div className="col-md-6">
               <motion.img
                 src={treatment.image}
@@ -60,14 +60,13 @@ const TreatmentPage = () => {
               />
             </div>
 
-            {/* Description */}
+            {/* 🩺 Text Right */}
             <div className="col-md-6">
               <h2 className="treatment-title">{treatment.label}</h2>
               <p className="treatment-desc">{treatment.description}</p>
 
-              {/* Common Conditions */}
               {treatment.commonConditions && (
-                <div className="mt-4">
+                <div className="mt-3">
                   <h4 className="sub-title">Common Conditions Treated</h4>
                   <ul className="condition-list">
                     {treatment.commonConditions.map((cond, i) => (
@@ -82,59 +81,67 @@ const TreatmentPage = () => {
 
         {/* SECTION 2 — Text Left | Appointment Form Right */}
         <motion.section
-          className="treatment-section reverse mt-0"
+          className="treatment-section alt-layout"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
           <div className="row align-items-center">
-            {/* Treatment Options */}
-            <div className="col-md-6">
-              {treatment.treatmentOptions && (
-                <>
-                  <h4 className="sub-title">Additional Treatment Options</h4>
-                  <div className="options-content">
-                    {/* 🩺 Non-Surgical Treatments */}
-                    <div className="option-block">
-                      <h5>Non-Surgical</h5>
-                      <ul className="treatment-list">
-                        {treatment.treatmentOptions.nonSurgical
-                          .split(/[.,;•-]\s*/g) // ✅ Split sentences into list items
-                          .filter(Boolean)
-                          .map((item, i) => (
-                            <li key={i}>{item.trim()}</li>
-                          ))}
-                      </ul>
-                    </div>
-                    
-                    {/* 🧠 Surgical Treatments */}
-                    <div className="option-block">
-                      <h5>Surgical</h5>
-                      <ul className="treatment-list">
-                        {treatment.treatmentOptions.surgical
-                          .split(/[.,;•-]\s*/g)
-                          .filter(Boolean)
-                          .map((item, i) => (
-                            <li key={i}>{item.trim()}</li>
-                          ))}
-                      </ul>
-                    </div>
-                    <img src="/assets/banner/Website-banner.jpg" className="add-banner"/>
-                  </div>
+            {/* 🩺 Treatment Options (Text Left) */}
+            <div className="col-md-6 d-flex align-items-center">
+              <div className="options-wrapper">
+                {treatment.treatmentOptions && (
+                  <>
+                    <h4 className="sub-title">Additional Treatment Options</h4>
 
-                </>
-              )}
+                    <div className="options-content">
+                      {/* Non-Surgical */}
+                      <div className="option-block">
+                        <h5>Non-Surgical</h5>
+                        <ul className="treatment-list">
+                          {treatment.treatmentOptions.nonSurgical
+                            .split(/[.,;•-]\s*/g)
+                            .filter(Boolean)
+                            .map((item, i) => (
+                              <li key={i}>{item.trim()}</li>
+                            ))}
+                        </ul>
+                      </div>
+
+                      {/* Surgical */}
+                      <div className="option-block">
+                        <h5>Surgical</h5>
+                        <ul className="treatment-list">
+                          {treatment.treatmentOptions.surgical
+                            .split(/[.,;•-]\s*/g)
+                            .filter(Boolean)
+                            .map((item, i) => (
+                              <li key={i}>{item.trim()}</li>
+                            ))}
+                        </ul>
+                      </div>
+
+                      {/* Banner */}
+                      <img
+                        src="/assets/banner/Website-banner.jpg"
+                        alt="Clinic Banner"
+                        className="add-banner"
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
 
-            <div className="col-md-6  align-items-stretch">
+            {/* 🗓 Appointment Form (Right, centered vertically) */}
+            <div className="col-md-6 d-flex align-items-center justify-content-center">
               <motion.div
-                className="appointment-box w-100 d-block"
+                className="appointment-box w-100"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
                 viewport={{ once: true }}
-                style={{ display: "block" }}
               >
                 <AppointmentForm serviceName={treatment.label} />
               </motion.div>

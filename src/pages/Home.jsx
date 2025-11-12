@@ -1,6 +1,6 @@
 import SEO from "../components/SEO";
 import SchemaDoctor from "../components/SchemaDoctor";
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import WelcomeSection from "../components/WelcomeSection";
 import FAQ from "../components/FAQ";
 import TechnologySection from "../components/TechnologySection";
@@ -10,7 +10,9 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import TreatmentsShowcase from "../components/TreatmentsShowcase";
 
 // global css
+import "../styles/Home.css"; // 👈 new CSS file for banner styles
 import "../styles/global.css";
+
 function Home() {
   return (
     <>
@@ -22,10 +24,17 @@ function Home() {
 
       <SchemaDoctor />
 
-      <section className="hero text-center bg-light py-5">
+      <section className="hero text-center bg-light py-2">
         <Container>
-        <img  className="main" src="/assets/images/main.png" />
+          {/* 🖼 Responsive banner image */}
+          <img
+            className="main-banner"
+            src="/assets/images/main.png"
+            alt="Main banner showing the doctor and clinic theme"
+          />
         </Container>
+
+        {/* 🌟 Content Sections */}
         <WelcomeSection />
         <TreatmentsShowcase />
         <TechnologySection />
@@ -34,7 +43,6 @@ function Home() {
         <WhyChooseUs />
         <FAQ />
       </section>
-      
     </>
   );
 }
