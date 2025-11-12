@@ -39,7 +39,7 @@ const Testimonials = () => {
         viewport={{ once: true }}
       >
         <h4 className="testimonials-subtitle">Patient Stories</h4>
-        <h2 className="testimonials-title">What Our Patients Say</h2>
+        <h1 className="testimonials-title">What Our Patients Say</h1>
         <p className="testimonials-desc">
           Real experiences from families who have trusted Neuron Brain & Spine
           for their child’s neurological and developmental care.

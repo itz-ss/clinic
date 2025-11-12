@@ -24,10 +24,7 @@
 .section-title {
   font-size: 2.4rem;
   font-weight: 700;
-  background: linear-gradient(90deg, #0077ff, #00b4d8);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  
   margin-bottom: 10px;
 }
 

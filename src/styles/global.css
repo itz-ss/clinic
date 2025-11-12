@@ -21,11 +21,11 @@
    ========================================================= */
 :root {
   /* 🎨 Brand Colors */
-  --primary-color: #0066cc;
-  --primary-dark: #004999;
-  --text-color: #1e293b;
-  --heading-color: #0f172a;
-  --background-color: #fdfdfd;
+ --primary-color: #0a5ffb;
+  --primary-dark: #00165b;
+  --text-color: #1e1e1e;
+  --heading-color: #020e35;
+  --background-color: #e9eff4;
 
   /* 📏 Spacing System (8px base) */
   --space-1: 8px;
