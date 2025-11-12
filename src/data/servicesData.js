@@ -230,10 +230,10 @@ export const servicesData = {
       },
     },
     {
-      label: "Epilepsy Surgery",
+      label: "Epilepsy",
       to: "/treatments/epilepsy",
       banner: "/assets/images/epilepsy-banner.jpg",
-      image: "/assets/treatmentPhotos/epilepsy.jpg",
+      image: "/assets/treatmentPhotos/epilepsy-banner.jpg",
       description:
         "Epilepsy causes seizures due to abnormal brain activity. When medications fail, surgery helps target the exact brain area causing seizures. This significantly improves quality of life and reduces dependence on drugs.",
       commonConditions: [

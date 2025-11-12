@@ -11,7 +11,7 @@ const MobileNavBar = () => {
       {/* 📞 Call Button */}
       <a href={`tel:${phoneNumber}`} className="mobile-nav-item">
         <div className="icon-circle call-bg">
-          <img src="/assets/images/call.png" alt="Call" />
+          <img src="/assets/mobileNavBar/call.png" alt="Call" />
         </div>
         <span>Call</span>
       </a>
@@ -19,7 +19,7 @@ const MobileNavBar = () => {
       {/* 📅 Appointment Button */}
       <a href="/appointment" className="mobile-nav-item">
         <div className="icon-circle appoint-bg">
-          <img src="/assets/images/appointment.png" alt="Appointment" />
+          <img src="/assets/mobileNavBar/appointment.png" alt="Appointment" />
         </div>
         <span>Appointment</span>
       </a>
@@ -34,7 +34,7 @@ const MobileNavBar = () => {
         className="mobile-nav-item"
       >
         <div className="icon-circle whatsapp-bg">
-          <img src="/assets/images/WhatsApp.png" alt="WhatsApp" />
+          <img src="/assets/mobileNavBar/whatsapp.png" alt="WhatsApp" />
         </div>
         <span>WhatsApp</span>
       </a>

@@ -9,19 +9,19 @@ const partners = [
     link: "https://neurospine.in/raj-bharti-medical-foundation",
   },
   {
-    name: "NSSA",
-    logo: "/assets/associatedLogo/NSSA.png",
-    link: "https://nssa-india.com/",
-  },
-  {
     name: "Lucknow Neuro Club",
     logo: "/assets/associatedLogo/Lucknow-Neuro-Club.png",
-    link: "https://www.apollohospitals.com/",
+    link: "#",
   },
   {
     name: "Medanta Hospital",
     logo: "/assets/associatedLogo/MEDANTA.png",
     link: "https://www.medanta.org/hospitals-near-me/lucknow-hospital",
+  },
+  {
+    name: "NSSA",
+    logo: "/assets/associatedLogo/NSSA.png",
+    link: "https://nssa-india.com/",
   },
 ];
 
