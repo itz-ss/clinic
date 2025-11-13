@@ -124,7 +124,7 @@ const TreatmentPage = () => {
 
                       {/* Banner */}
                       <img
-                        src="/assets/banner/Website-banner.jpg"
+                        src="/assets/banner/konikabanner.jpg"
                         alt="Clinic Banner"
                         className="add-banner"
                       />

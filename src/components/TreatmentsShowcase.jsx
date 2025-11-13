@@ -1,20 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { servicesData } from "../data/servicesData";
 import "../styles/TreatmentsShowcase.css";
 
 const TreatmentsShowcase = () => {
   const navigate = useNavigate();
 
-  // Combine all treatments
+  // Combine all treatments into a single array
   const allTreatments = [
     ...servicesData.spine.map((t) => ({ ...t, category: "Dr. Achal Gupta" })),
     ...servicesData.brain.map((t) => ({ ...t, category: "Dr. Konika Bansal" })),
   ];
 
+  /* ----------------------------------------
+     🟦 SHOW-MORE TOGGLE LOGIC
+     showCount = how many items to display
+  ----------------------------------------- */
+  const [showAll, setShowAll] = useState(false);
+  const itemsToShow = showAll ? allTreatments.length : 10;
+
   return (
     <section className="treatments-showcase">
+      {/* Floating background particles */}
       <div className="particle-bg">
         {[...Array(25)].map((_, i) => (
           <span key={i} className="particle"></span>
@@ -41,31 +49,45 @@ const TreatmentsShowcase = () => {
           Choose from specialized treatments guided by expert neurosurgeons.
         </motion.p>
 
+        {/* 🟦 GRID WITH SHOW MORE/LESS */}
         <div className="treatments-grid">
-          {allTreatments.map((treatment, i) => (
-            <motion.div
-              key={i}
-              className="treatment-card framed"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              onClick={() => navigate(treatment.to)}
-            >
-              <div className="photo-frame">
-                <img
-                  src={treatment.image}
-                  alt={treatment.label}
-                  className="treatment-image"
-                  loading="lazy"
-                />
-              </div>
+          <AnimatePresence>
+            {allTreatments.slice(0, itemsToShow).map((treatment, i) => (
+              <motion.div
+                key={i}
+                className="treatment-card framed"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+                onClick={() => navigate(treatment.to)}
+              >
+                <div className="photo-frame">
+                  <img
+                    src={treatment.image}
+                    alt={treatment.label}
+                    className="treatment-image"
+                    loading="lazy"
+                  />
+                </div>
 
-              <div className="card-info">
-                <h5 className="treatment-name">{treatment.label}</h5>
-                {/* <p className="doctor-name">{treatment.category}</p> */}
-              </div>
-            </motion.div>
-          ))}
+                <div className="card-info">
+                  <h5 className="treatment-name">{treatment.label}</h5>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
+
+        {/* 🟩 SHOW MORE / SHOW LESS BUTTON */}
+        {allTreatments.length > 10 && (
+          <div className="show-more-wrapper">
+            <button className="show-more-btn" onClick={() => setShowAll(!showAll)}>
+              {showAll ? "Show Less" : "Show More"}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

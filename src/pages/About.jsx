@@ -11,30 +11,18 @@ function About() {
   const { doctorId } = useParams();
   const doctorInfo = doctorsData.find((doc) => doc.id === doctorId);
 
-  // ⚠️ Handle invalid or missing doctor
   if (!doctorInfo) {
     return (
       <div className="text-center py-5">
         <h2>Doctor Not Found</h2>
-        <p className="text-muted">
-          Please check the URL or visit the Doctors page.
-        </p>
+        <p className="text-muted">Please check the URL or visit the Doctors page.</p>
       </div>
     );
   }
 
-  // 🖼️ Section Images (for Education, Experience, etc.)
-  const sectionImages = [
-    "/assets/images/freepik__retouch__96553.png",
-    "/assets/images/education.jpg",
-    "/assets/images/experience.jpg",
-    "/assets/images/publications.jpg",
-    "/assets/images/interests.jpg",
-    "/assets/images/associations.jpg",
-    "/assets/images/workshops.jpg",
-  ];
+  // ✅ Only this changed — now dynamic images per doctor
+  const sectionImages = doctorInfo.sectionImages;
 
-  // 📄 Render reusable section blocks
   const renderSection = (title, content, index) => {
     const isReversed = index % 2 !== 0;
 
@@ -48,7 +36,8 @@ function About() {
         viewport={{ once: true }}
       >
         <Row className="align-items-center my-5">
-          {/* Left: Section Image */}
+
+          {/* LEFT IMAGE */}
           <Col md={6} className="image-col">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -66,7 +55,7 @@ function About() {
             </motion.div>
           </Col>
 
-          {/* Right: Text Column */}
+          {/* RIGHT TEXT */}
           <Col md={6} className="text-col">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -80,6 +69,7 @@ function About() {
                 : content}
             </motion.div>
           </Col>
+
         </Row>
       </motion.section>
     );
@@ -87,16 +77,14 @@ function About() {
 
   return (
     <>
-      {/* 🧠 SEO Meta Info */}
       <SEO
         title={doctorInfo.seo.title}
         description={doctorInfo.seo.description}
         keywords={doctorInfo.seo.keywords}
       />
 
-      {/* 🔹 Doctor Information Container */}
       <Container className="about-container py-1">
-        {/* 🧾 Doctor Header (Name + Title) */}
+
         <div className="text-center mb-5">
           <motion.h1
             className="about-heading"
@@ -117,10 +105,8 @@ function About() {
           </motion.p>
         </div>
 
-        {/* 🧩 Biography Section */}
         {renderSection("Biography", doctorInfo.biography, 0)}
 
-        {/* 🎓 Education Section */}
         {renderSection(
           "Education",
           doctorInfo.education.map((edu) => (
@@ -131,7 +117,6 @@ function About() {
           1
         )}
 
-        {/* 💼 Experience Section */}
         {renderSection(
           "Experience",
           doctorInfo.experience.map((exp) => (
@@ -142,7 +127,6 @@ function About() {
           2
         )}
 
-        {/* 📚 Publications Section */}
         {renderSection(
           "Publications",
           doctorInfo.publications.map((pub) => (
@@ -156,7 +140,6 @@ function About() {
           3
         )}
 
-        {/* 💡 Special Interests */}
         {renderSection(
           "Special Interests",
           <ul>
@@ -167,7 +150,6 @@ function About() {
           4
         )}
 
-        {/* 🧑‍⚕️ Associations */}
         {renderSection(
           "Associations",
           <ul>
@@ -178,7 +160,6 @@ function About() {
           5
         )}
 
-        {/* 🧾 Courses & Workshops */}
         {renderSection(
           "Courses & Workshops",
           <ul>
@@ -188,6 +169,7 @@ function About() {
           </ul>,
           6
         )}
+
       </Container>
     </>
   );

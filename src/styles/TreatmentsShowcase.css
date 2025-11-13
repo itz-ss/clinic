@@ -219,3 +219,37 @@
   margin-top: 0 !important;
   padding-top: 0%;
 }
+
+/* Show More / Show Less button container */
+.show-more-wrapper {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Button styling */
+.show-more-btn {
+  background: linear-gradient(135deg, #0077ff, #00b4d8);
+  border: none;
+  padding: 12px 26px;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(0, 119, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+.show-more-btn:hover {
+  background: linear-gradient(135deg, #00b4d8, #0077ff);
+  transform: translateY(-3px);
+}
+
+/* Mobile spacing */
+@media (max-width: 480px) {
+  .show-more-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+}

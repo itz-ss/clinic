@@ -41,7 +41,7 @@
   padding: 2rem 3rem;
   width: 100%;
   max-width: 260px;
-  transition: all 0.3s ease;
+  height:250px;
 }
 
 .stat-card:hover {

@@ -6,6 +6,17 @@ export const doctorsData = [
     name: "Dr. Achal Gupta",
     title: "Senior Consultant Neurosurgeon & Spine Specialist",
     image: "/assets/images/doctors/dr-achal-gupta.jpg",
+
+    sectionImages: [
+    "/assets/about/achal1.png",
+    "/assets/about/achal2.jpeg",
+    "/assets/about/achal2.JPG",
+    "/assets/about/publications.jpg",
+    "/assets/about/interests.jpg",
+    "/assets/about/achalPlusThree3.jpeg",
+    "/assets/about/workshops.jpg"
+  ],
+
     biography: [
       "Dr. Achal Gupta is a renowned Neurosurgeon and Spine Specialist with over 15 years of experience in complex brain and spine surgeries.",
       "He specializes in minimally invasive and endoscopic spine surgery and is currently associated with Neuron Brain & Spine Centre, Lucknow.",
@@ -60,7 +71,18 @@ export const doctorsData = [
     id: "dr-konika-bansal",
     name: "Dr. Konika Bansal",
     title: "Consultant Pediatric Neurologist & Epilepsy Specialist",
-    image: "/assets/images/doctors/dr-konika-bansal.jpg",
+    image: "/assets/about/konika20.jpeg",
+
+     sectionImages: [
+    "/assets/about/konika12.jpeg",
+    "/assets/about/konika27.jpeg",
+    "/assets/about/experience.jpg",
+    "/assets/about/publications.jpg",
+    "/assets/about/interests.jpg",
+    "/assets/about/konika25.jpeg",
+    "/assets/about/konika9.jpeg"
+  ],
+
     biography: [
       "Dr. Konika Bansal is a Pediatric Neurologist and Epilepsy Specialist at Neuron Brain & Spine Centre, Lucknow.",
       "She has extensive experience in managing childhood epilepsy, developmental delay, autism, and neuromuscular disorders.",
