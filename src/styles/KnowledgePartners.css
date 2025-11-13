@@ -1,9 +1,11 @@
+/* 🌐 PARTNERS SECTION — Responsive Grid Layout */
 .partners-section {
-  /* background: linear-gradient(135deg, #f8fafc, #eef2f8); */
+  /* background: linear-gradient(135deg, #f8fafc, #eef2f8); */ /* optional soft gradient */
   padding: 6rem 2rem;
   text-align: center;
 }
 
+/* 🩺 Section Header Styling */
 .partners-header {
   max-width: 800px;
   margin: 0 auto 3rem;
@@ -31,46 +33,81 @@
   line-height: 1.8;
 }
 
+/* =========================================================
+   🧱 PARTNERS LOGOS — GRID SYSTEM
+   ========================================================= */
 .partners-logos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  flex-wrap: wrap;
+  display: grid; /* switched from flex to grid */
+  grid-template-columns: repeat(4, 1fr); /* 4 equal columns on desktop */
+  justify-items: center; /* center logos horizontally */
+  align-items: center; /* center vertically */
+  gap: 3rem; /* space between logos */
+  max-width: 1000px; /* limits logo width area */
+  margin: 0 auto;
+  padding: 1rem;
 }
 
+/* 🔗 Each logo container */
 .partner-link {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* 🖼️ Logo image */
 .partner-logo {
   width: 140px;
   height: auto;
+  /* filter: grayscale(80%) brightness(0.9); */
+  /* opacity: 0.9; */
   transition: all 0.4s ease;
 }
 
+/* ✨ Hover effect — full color + slight zoom */
 .partner-logo:hover {
-  filter: grayscale(0%) brightness(1);
-  opacity: 1;
+  /* filter: grayscale(0%) brightness(1);
+  opacity: 1; */
   transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
-  .partners-title {
-    font-size: 1.6rem;
+/* =========================================================
+   📱 RESPONSIVE GRID BEHAVIOR
+   ========================================================= */
+
+/* Tablets (2 or 3 columns depending on screen width) */
+@media (max-width: 992px) {
+  .partners-logos {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
   }
 
+  .partner-logo {
+    width: 120px;
+  }
+
+  .partners-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile (2x2 layout → 2 columns) */
+@media (max-width: 600px) {
   .partners-logos {
+    grid-template-columns: repeat(2, 1fr); /* ✅ two per row */
     gap: 2rem;
   }
 
   .partner-logo {
-    width: 110px;
+    width: 100px;
+  }
+
+  .partners-title {
+    font-size: 1.6rem;
   }
 }
-@media (max-width: 480px) {
+
+/* Very small screens */
+@media (max-width: 400px) {
   .partners-logos {
     gap: 1.5rem;
   }

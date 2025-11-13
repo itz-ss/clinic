@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import WhatsAppButton from "./WhatsAppButton";
 import CallButton from "./CallButton";
 import MobileNavBar from "./MobileNavBar";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 function Layout() {
   return (
@@ -15,6 +16,7 @@ function Layout() {
       <CallButton />
       <WhatsAppButton />
       <MobileNavBar />
+      <ScrollToTopButton/>
       <Footer />
     </>
   );

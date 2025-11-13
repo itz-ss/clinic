@@ -57,7 +57,7 @@ const WelcomeSection = () => {
                 {/* 🖼 Two Smaller Images */}
                 <div className="small-img-row">
                   <motion.img
-                    src="/assets/welcomePage/achal2.jpg"
+                    src="/assets/welcomePage/achal2.JPG"
                     alt="Spine Procedure"
                     className="grid-image small-img"
                     variants={fadeIn("up", 0.2)}
@@ -68,7 +68,7 @@ const WelcomeSection = () => {
                     transition={{ duration: 0.3, ease: "easeOut" }}
                   />
                   <motion.img
-                    src="/assets/welcomePage/achal3.jpg"
+                    src="/assets/welcomePage/achal3.JPG"
                     alt="Operation Room"
                     className="grid-image small-img"
                     variants={fadeIn("up", 0.3)}
