@@ -11,10 +11,10 @@ export const doctorsData = [
     "/assets/about/achal1.png",
     "/assets/about/achal2.jpeg",
     "/assets/about/achal2.JPG",
-    "/assets/about/publications.jpg",
-    "/assets/about/interests.jpg",
+    "/assets/about/achal7.jpg",
+    "/assets/about/achal5.jpeg",
     "/assets/about/achalPlusThree3.jpeg",
-    "/assets/about/workshops.jpg"
+    "/assets/about/achalPlusOne.jpeg"
   ],
 
     biography: [
@@ -76,9 +76,9 @@ export const doctorsData = [
      sectionImages: [
     "/assets/about/konika12.jpeg",
     "/assets/about/konika27.jpeg",
-    "/assets/about/experience.jpg",
-    "/assets/about/publications.jpg",
-    "/assets/about/interests.jpg",
+    "/assets/about/konika21.jpeg",
+    "/assets/about/konika20.jpeg",
+    "/assets/about/konika17.jpeg",
     "/assets/about/konika25.jpeg",
     "/assets/about/konika9.jpeg"
   ],
