@@ -12,6 +12,8 @@ const TreatmentPage = () => {
   // Combine spine + brain treatments
   const allTreatments = [...servicesData.spine, ...servicesData.brain];
   const treatment = allTreatments.find((item) => item.to === pathname);
+  const isSpine = servicesData.spine.some(s => s.to === treatment.to);
+
 
   if (!treatment) {
     return (
@@ -122,12 +124,16 @@ const TreatmentPage = () => {
                         </ul>
                       </div>
 
-                      {/* Banner */}
+                      {/* Banner123 */}
                       <img
-                        src="/assets/banner/konikabanner.jpg"
+                        src={
+                          isSpine
+                            ? "/assets/banner/Website-banner.jpg"   // ⭐ Spine Banner
+                            : "/assets/banner/konikaBanner.jpg"  // ⭐ Brain/Pediatric Banner
+                        }
                         alt="Clinic Banner"
                         className="add-banner"
-                      />
+    />
                     </div>
                   </>
                 )}

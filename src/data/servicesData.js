@@ -246,7 +246,7 @@ export const servicesData = {
       label: "Encephalopathy / Encephalitis",
       to: "/treatments/encephalopathy-encephalitis",
       banner: "/assets/banner/encephalitis.jpg",
-      image: "/assets/treatmentPhotos/Encephalopathy.jpg",
+      image: "/assets/treatmentPhotos/encephalopathy.jpg",
 
       description:
         "Encephalitis refers to inflammation of the membranes surrounding the brain and spinal cord. This swelling affects brain function and can lead to neurological changes such as irritability, altered mental state, and seizures. Inflammation may be caused by viruses, bacteria, or parasites, and can significantly impact a child’s neurological status.",
@@ -276,7 +276,7 @@ export const servicesData = {
       label: "Cerebral Palsy",
       to: "/treatments/cerebral-palsy",
       banner: "/assets/banner/cerebral-palsy.jpg",
-      image: "/assets/treatmentPhotos/cerebral-palsy.jpg",
+      image: "/assets/treatmentPhotos/Cerebral-Palsy.jpg",
 
       description:
         "Cerebral palsy (CP) is a group of disorders that affect movement, muscle tone, balance, and posture. It is the most common motor disability in childhood. CP occurs due to abnormal brain development or injury to the developing brain—usually before or during birth—affecting a child's ability to control muscles and coordinate movement.",
@@ -420,7 +420,7 @@ export const servicesData = {
       label: "Global Developmental Delay",
       to: "/treatments/global-developmental-delay",
       banner: "/assets/banner/global-developmental-delay.jpg",
-      image: "/assets/treatmentPhotos/global-developmental-delay.jpg",
+      image: "/assets/treatmentPhotos/Global-Developmental-Delay.jpg",
 
       description:
         "Global developmental delay refers to a child not achieving development milestones appropriate for their age in two or more areas, such as motor skills, speech and language, cognitive development, social interaction, or play skills. These delays may be mild, moderate, or severe and can affect a child's ability to learn, communicate, and interact with others. Early evaluation and intervention are crucial for improving long-term outcomes.",
