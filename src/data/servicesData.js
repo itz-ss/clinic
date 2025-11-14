@@ -3,13 +3,13 @@
 // Each entry is designed for patient-friendly readability and integration with TreatmentPage
 
 export const servicesData = {
-  // Dr Achal |? 45-p=[o0i9uytr]  //waring: do not change the key 'spine'
+  // Dr Achal  //waring: do not change the key 'spine' or "brain"
   // instead of Spine Treatments its now Dr Achal Gupta so do not change the key who ever you are otherwise be ready to change all imports
   spine: [
     {
       label: "Slip Disc Surgery",
       to: "/treatments/slipped-disc-surgery",
-      banner: "/assets/banner/slipped-disc-surgery.jpg",
+      banner: "/assets/banner/slip-disc-surgery.jpg",
       image: "/assets/treatmentPhotos/slipped-disc-surgery.jpg",
       description:
         "A slipped disc occurs when the cushion between spinal bones bulges out or ruptures, pressing on nearby nerves. Surgery removes or repairs the disc to relieve pain, restore movement, and prevent further nerve damage. Minimally invasive techniques ensure faster healing, minimal scars, and quicker return to daily life.",
@@ -29,7 +29,7 @@ export const servicesData = {
     {
       label: "Cervical Spondylosis",
       to: "/treatments/cervical-spondylosis",
-      banner: "/assets/banner/Cervical-spondylosis.jpg",
+      banner: "/assets/banner/Cervical-spondylosis.png",
       image: "/assets/treatmentPhotos/cervical-spondylosis.jpg",
       description:
         "Cervical spondylosis is age-related degeneration of the neck bones and discs. It can cause stiffness, pain, and tingling in the shoulders and arms due to nerve compression. Treatment focuses on pain relief, posture correction, and, in advanced cases, surgical decompression for long-term relief.",
@@ -348,7 +348,7 @@ export const servicesData = {
     {
       label: "Child Stroke",
       to: "/treatments/child-stroke",
-      banner: "/assets/banner/child-stroke.jpg",
+      banner: "/assets/banner/stroke-banner.jpg",
       image: "/assets/treatmentPhotos/childStroke.jpg",
 
       description:

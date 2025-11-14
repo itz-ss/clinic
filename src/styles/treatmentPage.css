@@ -1,45 +1,44 @@
-/* =====================================================
-   🌐 TREATMENT PAGE — Smart Vertical Spacing Adjustment
-   ===================================================== */
-
+/* ==========================================
+   🌐 TREATMENT PAGE — Unique Component Styles
+   ========================================== */
+.treatment-page{
+  background-color: #cae6f9;
+}
 /* ---------- Banner Section ---------- */
 .treatment-banner {
   width: 100%;
-  aspect-ratio: 4 / 0.7;
+  aspect-ratio: 5 / 0.9;
   background-size: cover;
   background-position: center;
-  /* border-radius: 0 0 12px 12px; */
   overflow: hidden;
   margin-bottom: 30px;
 }
 
 /* ---------- Section Layout ---------- */
 .treatment-section {
-  margin: 28px 0; /* ✅ Reduced default gap slightly */
-  padding-top: 5px; /* light breathing space */
-  transition: margin 0.3s ease; /* smooth adjustment for dynamic content */
+  margin: 28px 0;
+  padding-top: 5px;
+  transition: margin 0.3s ease;
 }
 
-/* Section alignment fix (Image Left / Text Right) */
+/* Image Left / Text Right inversion for alternating layout */
 .alt-layout .col-md-6:first-child {
-  order: 1; /* text left */
+  order: 1;
 }
 .alt-layout .col-md-6:last-child {
-  order: 2; /* form right */
+  order: 2;
 }
 
-/* ---------- Treatment Title ---------- */
+/* ---------- Treatment Content ---------- */
 .treatment-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #0077ff;
+  font-family: Helvetica;
+  color: #00165b;
+  /* color: #020E35; */
   margin-bottom: 12px;
+  /* text-transform: uppercase; */
 }
 
-/* ---------- Description ---------- */
 .treatment-desc {
-  font-size: 1.05rem;
-  line-height: 1.7;
   color: #333;
   margin-bottom: 1rem;
   text-align: justify;
@@ -51,17 +50,14 @@
   list-style-type: disc;
   margin-left: 1.4rem;
   color: #444;
-  line-height: 1.7;
 }
 
 .sub-title {
-  font-size: 1.25rem;
-  font-weight: 600;
   color: #0a2a6a;
   margin-bottom: 0.5rem;
 }
 
-/* ---------- Image Styling ---------- */
+/* ---------- Images ---------- */
 .treatment-image {
   width: 100%;
   border-radius: 12px;
@@ -74,7 +70,7 @@
   transform: scale(1.03);
 }
 
-/* ---------- Embedded banner inside 2nd section ---------- */
+/* Embedded banner inside second section */
 .add-banner {
   width: 100%;
   margin-top: 15px;
@@ -83,13 +79,13 @@
   object-fit: cover;
 }
 
-/* ---------- Text Alignment Fix for 2nd Section ---------- */
+/* Vertical alignment correction inside section 2 */
 .options-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* ✅ centers content vertically */
+  justify-content: center;
   height: 100%;
-  margin-top: -10px; /* ✅ pulled text closer to form for visual balance */
+  margin-top: -10px;
   transition: margin 0.3s ease;
 }
 
@@ -102,27 +98,22 @@
   transition: all 0.3s ease;
   align-self: center;
 }
-
 .appointment-box:hover {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
-/* =====================================================
-   📱 RESPONSIVE STYLING — Smart spacing control
-   ===================================================== */
+/* ==========================================
+   📱 RESPONSIVE STYLING
+   ========================================== */
 
 /* Tablets */
 @media (max-width: 992px) {
   .treatment-section {
-    margin: 22px 0; /* slightly closer on tablets */
+    margin: 22px 0;
   }
 
   .options-wrapper {
-    margin-top: -8px; /* balance for smaller height */
-  }
-
-  .treatment-title {
-    font-size: 1.7rem;
+    margin-top: -8px;
   }
 
   .appointment-box {
@@ -133,27 +124,14 @@
 /* Phones */
 @media (max-width: 576px) {
   .treatment-section {
-    margin: 14px 0; /* ✅ Half of desktop spacing */
+    margin: 14px 0;
   }
 
   .options-wrapper {
-    margin-top: -5px; /* ✅ perfect visual balance for stacked view */
-  }
-
-  .treatment-title {
-    font-size: 1.5rem;
-  }
-
-  .treatment-desc {
-    font-size: 0.95rem;
-    line-height: 1.6;
+    margin-top: -5px;
   }
 
   .appointment-box {
     padding: 18px;
-  }
-
-  .sub-title {
-    font-size: 1.1rem;
   }
 }

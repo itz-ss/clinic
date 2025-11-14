@@ -1,7 +1,9 @@
 /* ===============================
    🌟 TESTIMONIALS SECTION
    =============================== */
-
+.testimonials-section{
+  background-color: #cae6f9;
+}
 .testimonial-slider {
   position: relative;
   display: flex;

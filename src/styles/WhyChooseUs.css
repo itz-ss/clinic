@@ -1,23 +1,8 @@
 /* 🌐 WHY CHOOSE US SECTION — Modern Grid Layout */
-.why-choose-section {
-  background: linear-gradient(135deg, #f9fafb, #eef2ff);
+.why-choose-us {
+  /* background: linear-gradient(135deg, #1c8cfc, #eef2ff); */
   text-align: center;
-  padding: 6rem 2rem;
-  /* Edit padding above for more/less spacing */
-}
-
-/* 🩺 Section Title */
-.why-title {
-  font-size: 2.2rem;
-  margin-bottom: 0.75rem;
-  /* color: #1e3a8a; */ /* uncomment to give heading blue color */
-}
-
-/* 💬 Subtitle */
-.why-subtitle {
-  font-size: 1.1rem;
-  color: #374151;
-  margin-bottom: 3rem;
+  background-color: #b1d9ef;
 }
 
 /* 📊 Stats Container — GRID SYSTEM */

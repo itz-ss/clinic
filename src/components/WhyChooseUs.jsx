@@ -39,7 +39,7 @@ const WhyChooseUs = () => {
         transition={{ duration: 0.8 }}
       >
         <h4 className="subtitle">Why Choose Us</h4>
-        <h2 className="title">Excellence in Brain & Spine Care</h2>
+        <h1 className="title">Excellence in Brain & Spine Care</h1>
         <p className="desc">
           Trusted by thousands of patients for advanced spine and brain treatments using cutting-edge, minimally invasive techniques.
         </p>

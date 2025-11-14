@@ -7,19 +7,18 @@
 .navbar {
   position: sticky;
   top: 0;
-  left: 0;
   width: 100%;
   z-index: 1000;
   height: 80px;
   background: #e6f3f7;
   border-bottom: 1px solid #cfe8f0;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* ⭐ Better alignment */
+  justify-content: center;
   transition: all 0.3s ease;
 }
-
 
 /* 🧱 Navbar Container */
 .nav-container {
