@@ -3,44 +3,45 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { servicesData } from "../data/servicesData";
 import { motion } from "framer-motion";
-import AppointmentForm from "../components/AppointmentForm"; // ✅ Reuse existing connected form
+import AppointmentForm from "../components/AppointmentForm";
 import "../styles/treatmentPage.css";
 
 const TreatmentPage = () => {
   const { pathname } = useLocation();
 
-  // Combine spine + brain treatments
+  // Merge all services
   const allTreatments = [...servicesData.spine, ...servicesData.brain];
   const treatment = allTreatments.find((item) => item.to === pathname);
-  const isSpine = servicesData.spine.some(s => s.to === treatment.to);
-
+  const isSpine = servicesData.spine.some((s) => s.to === treatment?.to);
 
   if (!treatment) {
     return (
       <div className="treatment-not-found text-center py-5">
         <h2>Treatment Not Found</h2>
-        <p className="text-muted">
-          Please check the URL or visit the Services page.
-        </p>
+        <p>Please check the URL or visit the Services page.</p>
       </div>
     );
   }
 
   return (
     <div className="treatment-page">
-      {/* 🩵 Banner Section */}
+
+      {/* 🔹 PAGE BANNER */}
       <motion.div
         className="treatment-banner"
-        style={{
-          backgroundImage: `url(${treatment.banner || "/assets/images/banner-placeholder.jpg"})`,
-        }}
+        style={{ backgroundImage: `url(${treatment.banner})` }}
         initial={{ backgroundPositionY: "50%", opacity: 0 }}
         animate={{ backgroundPositionY: "40%", opacity: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
+        transition={{ duration: 1 }}
       />
 
       <div className="container py-0">
-        {/* SECTION 1 — Image Left | Text Right */}
+
+        {/* --------------------------------------------------------
+           SECTION 1 — Image Left | Text Right
+           Spine → description + commonConditions + treatmentOptions
+           Brain → title + description + causes (heading + paragraph only)
+        --------------------------------------------------------- */}
         <motion.section
           className="treatment-section"
           initial={{ opacity: 0, y: 40 }}
@@ -49,7 +50,8 @@ const TreatmentPage = () => {
           viewport={{ once: true }}
         >
           <div className="row align-items-center">
-            {/* 🖼 Image Left */}
+
+            {/* IMAGE LEFT ALWAYS */}
             <div className="col-md-6">
               <motion.img
                 src={treatment.image}
@@ -62,12 +64,13 @@ const TreatmentPage = () => {
               />
             </div>
 
-            {/* 🩺 Text Right */}
+            {/* TEXT RIGHT ALWAYS */}
             <div className="col-md-6">
-              <h2 className="treatment-title">{treatment.label}</h2>
+              <h2 className="treatment-title">{treatment.title || treatment.label}</h2>
               <p className="treatment-desc">{treatment.description}</p>
 
-              {treatment.commonConditions && (
+              {/* 🍀 Spine → show commonConditions + treatmentOptions */}
+              {isSpine && treatment.commonConditions && (
                 <div className="mt-3">
                   <h4 className="sub-title">Common Conditions Treated</h4>
                   <ul className="condition-list">
@@ -77,11 +80,24 @@ const TreatmentPage = () => {
                   </ul>
                 </div>
               )}
+
+              {/* 🧠 Brain — upper part ends with causes.heading + paragraph ONLY */}
+              {!isSpine && treatment.causes && (
+                <div className="mt-3">
+                  <h4 className="sub-title">{treatment.causes.heading}</h4>
+                  {treatment.causes.paragraph && (
+                    <p className="treatment-desc">{treatment.causes.paragraph}</p>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </motion.section>
 
-        {/* SECTION 2 — Text Left | Appointment Form Right */}
+        {/* --------------------------------------------------------
+           SECTION 2 — Left = continuation | Right = Appointment Form
+           Start from pointsIntro → then points → then riskFactors
+        --------------------------------------------------------- */}
         <motion.section
           className="treatment-section alt-layout"
           initial={{ opacity: 0, y: 40 }}
@@ -90,57 +106,78 @@ const TreatmentPage = () => {
           viewport={{ once: true }}
         >
           <div className="row align-items-center">
-            {/* 🩺 Treatment Options (Text Left) */}
+
+            {/* LEFT SIDE — Brain continuation or Spine banner only */}
             <div className="col-md-6 d-flex align-items-center">
               <div className="options-wrapper">
-                {treatment.treatmentOptions && (
+
+                 {isSpine && treatment.treatmentOptions && (
+                <div className="mt-3">
+                  <h4 className="sub-title">Treatment Options</h4>
+
+                  <h5 className="mini-title mt-2">Non-Surgical</h5>
+                  <ul className="condition-list">
+                    {treatment.treatmentOptions.nonSurgical
+                      .split(/[.,;•-]\s*/g)
+                      .filter(Boolean)
+                      .map((item, i) => (
+                        <li key={i}>{item.trim()}</li>
+                      ))}
+                  </ul>
+
+                  <h5 className="mini-title mt-2">Surgical</h5>
+                  <ul className="condition-list">
+                    {treatment.treatmentOptions.surgical
+                      .split(/[.,;•-]\s*/g)
+                      .filter(Boolean)
+                      .map((item, i) => (
+                        <li key={i}>{item.trim()}</li>
+                      ))}
+                  </ul>
+                </div>
+              )}
+              
+                {/* 🍀 Spine has nothing except lower banner */}
+                {!isSpine && (
                   <>
-                    <h4 className="sub-title">Additional Treatment Options</h4>
+                    {/* 1️⃣ Start with pointsIntro ALWAYS */}
+                    {treatment.causes?.pointsIntro && (
+                      <p className="fw-semibold">{treatment.causes.pointsIntro}</p>
+                    )}
 
-                    <div className="options-content">
-                      {/* Non-Surgical */}
-                      <div className="option-block">
-                        <h5>Non-Surgical</h5>
-                        <ul className="treatment-list">
-                          {treatment.treatmentOptions.nonSurgical
-                            .split(/[.,;•-]\s*/g)
-                            .filter(Boolean)
-                            .map((item, i) => (
-                              <li key={i}>{item.trim()}</li>
-                            ))}
+                    {/* 2️⃣ List of points */}
+                    {treatment.causes?.points?.length > 0 && (
+                      <ul className="condition-list">
+                        {treatment.causes.points.map((pt, i) => (
+                          <li key={i}>{pt}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {/* 3️⃣ Risk factors */}
+                    {treatment.riskFactors?.points?.length > 0 && (
+                      <>
+                        <h4 className="sub-title mt-3">{treatment.riskFactors.heading}</h4>
+                        <ul className="condition-list">
+                          {treatment.riskFactors.points.map((rf, i) => (
+                            <li key={i}>{rf}</li>
+                          ))}
                         </ul>
-                      </div>
-
-                      {/* Surgical */}
-                      <div className="option-block">
-                        <h5>Surgical</h5>
-                        <ul className="treatment-list">
-                          {treatment.treatmentOptions.surgical
-                            .split(/[.,;•-]\s*/g)
-                            .filter(Boolean)
-                            .map((item, i) => (
-                              <li key={i}>{item.trim()}</li>
-                            ))}
-                        </ul>
-                      </div>
-
-                      {/* Banner123 */}
-                      <img
-                        src={
-                          isSpine
-                            ? "/assets/banner/Website-banner.jpg"   // ⭐ Spine Banner
-                            : "/assets/banner/konikaBanner.jpg"  // ⭐ Brain/Pediatric Banner
-                        }
-                        alt="Clinic Banner"
-                        className="add-banner"
-    />
-                    </div>
+                      </>
+                    )}
                   </>
                 )}
+
+                {/* Banner always stays at end */}
+                <img
+                  src={isSpine ? "/assets/banner/Website-banner.jpg" : "/assets/banner/konikaBanner.jpg"}
+                  alt="Clinic Banner"
+                  className="add-banner"
+                />
               </div>
             </div>
 
-            {/* 🗓 Appointment Form (Right, centered vertically) */}
+            {/* RIGHT SIDE — Appointment Form ALWAYS */}
             <div className="col-md-6 d-flex align-items-center justify-content-center">
               <motion.div
                 className="appointment-box w-100"
@@ -154,6 +191,7 @@ const TreatmentPage = () => {
             </div>
           </div>
         </motion.section>
+
       </div>
     </div>
   );

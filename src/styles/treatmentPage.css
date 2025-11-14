@@ -1,50 +1,61 @@
-/* ==========================================
-   🌐 TREATMENT PAGE — Unique Component Styles
-   ========================================== */
-.treatment-page{
-  background-color: #cae6f9;
+/* ==========================================================
+   🌐 TREATMENT PAGE — Global Wrapper
+   ========================================================== */
+.treatment-page {
+  background-color: #cae6f9; /* Page background */
 }
-/* ---------- Banner Section ---------- */
+
+/* ==========================================================
+   🩵 BANNER SECTION (Top Hero Image)
+   ========================================================== */
 .treatment-banner {
   width: 100%;
-  aspect-ratio: 5 / 0.9;
+  aspect-ratio: 5 / 0.9; /* Controls height responsiveness */
   background-size: cover;
   background-position: center;
   overflow: hidden;
   margin-bottom: 30px;
 }
 
-/* ---------- Section Layout ---------- */
+/* ==========================================================
+   🔷 COMMON SECTION WRAPPER
+   ========================================================== */
 .treatment-section {
   margin: 28px 0;
   padding-top: 5px;
   transition: margin 0.3s ease;
 }
 
-/* Image Left / Text Right inversion for alternating layout */
+/* ==========================================================
+   🔁 ALTERNATE LAYOUT -->
+   Forces TEXT on left and FORM on right in Section-2
+   (Do NOT remove unless you want image-right layout again)
+   ========================================================== */
 .alt-layout .col-md-6:first-child {
-  order: 1;
+  order: 1; /* Causes / RiskFactors (Text Block) */
 }
 .alt-layout .col-md-6:last-child {
-  order: 2;
+  order: 2; /* Appointment Form */
 }
 
-/* ---------- Treatment Content ---------- */
+/* ==========================================================
+   📝 TITLES / DESCRIPTION
+   ========================================================== */
 .treatment-title {
   font-family: Helvetica;
   color: #00165b;
-  /* color: #020E35; */
   margin-bottom: 12px;
-  /* text-transform: uppercase; */
 }
 
 .treatment-desc {
   color: #333;
   margin-bottom: 1rem;
-  text-align: justify;
+  text-align: justify; /* Professional readability */
 }
 
-/* ---------- Lists ---------- */
+/* ==========================================================
+   📌 LIST STYLING (Causes / Risk Factors)
+   ========================================================== */
 .condition-list,
 .treatment-list {
   list-style-type: disc;
@@ -55,9 +66,12 @@
 .sub-title {
   color: #0a2a6a;
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
-/* ---------- Images ---------- */
+/* ==========================================================
+   🖼 MAIN IMAGE IN SECTION-1
+   ========================================================== */
 .treatment-image {
   width: 100%;
   border-radius: 12px;
@@ -70,7 +84,10 @@
   transform: scale(1.03);
 }
 
-/* Embedded banner inside second section */
+/* ==========================================================
+   📌 INTERNAL BANNER (Under Causes/Risk Block)
+   Swaps doctor image based on JSON `isSpine`
+   ========================================================== */
 .add-banner {
   width: 100%;
   margin-top: 15px;
@@ -79,7 +96,9 @@
   object-fit: cover;
 }
 
-/* Vertical alignment correction inside section 2 */
+/* ==========================================================
+   🔧 VERTICAL CONTENT ALIGNMENT FOR SECTION-2
+   ========================================================== */
 .options-wrapper {
   display: flex;
   flex-direction: column;
@@ -89,7 +108,9 @@
   transition: margin 0.3s ease;
 }
 
-/* ---------- Appointment Form Container ---------- */
+/* ==========================================================
+   📅 APPOINTMENT FORM BOX (RIGHT SIDE)
+   ========================================================== */
 .appointment-box {
   background: #f8fbff;
   border-radius: 12px;
@@ -102,11 +123,9 @@
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
-/* ==========================================
-   📱 RESPONSIVE STYLING
-   ========================================== */
-
-/* Tablets */
+/* ==========================================================
+   📱 TABLET RESPONSIVE
+   ========================================================== */
 @media (max-width: 992px) {
   .treatment-section {
     margin: 22px 0;
@@ -121,7 +140,9 @@
   }
 }
 
-/* Phones */
+/* ==========================================================
+   📱 PHONE RESPONSIVE
+   ========================================================== */
 @media (max-width: 576px) {
   .treatment-section {
     margin: 14px 0;

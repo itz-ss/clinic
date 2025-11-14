@@ -5,6 +5,7 @@
 /* Ensures the banner scales perfectly to any screen size */
 
 .main-banner {
+  margin-top: 10vh;
   width: 100%;                 /* Make banner stretch to full container width */
   height: auto;                /* Keep original image ratio */
   max-height: 80vh;            /* Prevents banner from being too tall on big screens */
