@@ -42,6 +42,7 @@
   width: 100%;
   max-width: 260px;
   height:250px;
+  text-align: center;
 }
 
 .stat-card:hover {
@@ -97,15 +98,17 @@
 }
 
 /* Mobile: 1 card per row */
+/* Mobile: 2 cards per row (2 × 2 layout) */
 @media (max-width: 600px) {
   .stats-container {
-    grid-template-columns: repeat(2, 1fr); /* single column */
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr); /* 2 per row */
+    gap: 1.2rem;
   }
 
   .stat-card {
-    max-width: 90%;
-    padding: 1.6rem;
+    max-width: 100%;
+    padding: 1.2rem;
+    height: auto;
   }
 
   .stat-icon {

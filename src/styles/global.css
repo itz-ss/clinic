@@ -1,104 +1,110 @@
 /* =========================================================
    🌐 GLOBAL STYLESHEET
-   Project: Doctor’s Clinic Website
-   Purpose: Universal styling baseline for all pages
-   Notes: Adjust spacing, fonts, or colors here to apply site-wide
    ========================================================= */
 
 /* =========================================================
    🧭 1. CSS RESET + LAYOUT NORMALIZATION
-   - Removes default browser margins/padding
-   - Ensures consistent box sizing for all elements
    ========================================================= */
 * {
- 
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/* (🔥 Remove this – it’s not needed and can be weird)
+   *[style*="width: 1"] {
+     width: 100% !important;
+   }
+*/
+
 /* =========================================================
-   🌈 2. ROOT VARIABLES — EDIT HERE FOR QUICK THEME CHANGES
-   - Use these variables throughout the project for consistency
+   🌈 2. ROOT VARIABLES
    ========================================================= */
 :root {
-  /* 🎨 Brand Colors */
- --primary-color: #0a5ffb;
+  --primary-color: #0a5ffb;
   --primary-dark: #00165b;
-  --text-color: #1e1e1e;
+  --text-color: #2d2d2d;
   --heading-color: #020e35;
   --background-color: #e9eff4;
+  --secondary-color: #0A5FFB;
 
-  /* 📏 Spacing System (8px base) */
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
   --space-4: 32px;
   --space-5: 48px;
 
-  /* 🖋 Font Scaling for Responsiveness */
   --base-font-size: 17px;
 }
 
 /* =========================================================
    🧍‍♂️ 3. BODY — GLOBAL TEXT & BACKGROUND
-   - Defines overall look and feel
    ========================================================= */
+html, body {
+  width: 100%;
+}
+
 body {
+  margin: 0;
+  padding: 0;
   font-family: "Poppins", "Inter", sans-serif;
   font-size: var(--base-font-size);
   line-height: 1.6;
   color: var(--text-color);
-  background-color: var(--background-color);
+  background-color: var(--background-color);   /* ✅ fixed var syntax */
   letter-spacing: 0.3px;
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
-  overflow-x: hidden; /* Prevents unwanted horizontal scroll */
+  overflow-x: hidden;
 }
 
 /* =========================================================
    🧱 4. HEADINGS
-   - Keeps typography consistent and visually balanced
    ========================================================= */
 h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", sans-serif;
   color: var(--heading-color);
   line-height: 1.25;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: var(--space-2);
+  text-align: center;
+}
+
+h4 {
+  color: var(--secondary-color);  /* ✅ fixed var syntax */
 }
 
 /* =========================================================
    📝 5. PARAGRAPHS
-   - Adds breathing room between paragraphs
    ========================================================= */
 p {
   margin-bottom: 1rem;
+  margin: var(--space-2);
+  text-align: center;
 }
 
 /* =========================================================
    🔗 6. LINKS
-   - Smooth hover transition for accessibility
    ========================================================= */
 a {
   color: var(--primary-color);
   text-decoration: none;
   transition: color 0.2s ease;
 }
-
 a:hover {
   color: var(--primary-dark);
 }
 
 /* =========================================================
    📦 7. SECTIONS
-   - Default vertical spacing for all page sections
    ========================================================= */
 section {
   padding: 60px 0;
+  width: 100%;        /* ⭐ ensure full width sections */
 }
 
 /* =========================================================
    🖼 8. GLOBAL IMAGES
-   - Ensures all images are responsive by default
    ========================================================= */
 img {
   max-width: 100%;
@@ -107,56 +113,54 @@ img {
 }
 
 /* =========================================================
-   🧠 9. HERO / MAIN BANNER FALLBACK
-   - Sets default height and scaling for main visuals
-   - Can be overridden in Home.css
+   🧠 9. HERO / MAIN BANNER
    ========================================================= */
 .main {
   width: 100%;
-  height: 80vh; /* Default: covers most of the screen */
-  object-fit: cover; /* Keeps proportions */
-  object-position: center; /* Centers focal point */
+  height: 80vh;
+  object-fit: cover;
+  object-position: center;
   border-radius: 10px;
   transition: all 0.4s ease;
 }
-
-/* Hover effect for subtle interactivity */
 .main:hover {
   transform: scale(1.01);
 }
 
 /* =========================================================
-   📱 10. RESPONSIVE ADJUSTMENTS
-   - Adjusts font and section spacing on smaller screens
+   📱 10. RESPONSIVE
    ========================================================= */
-
-/* Medium Devices (Tablets) */
 @media (max-width: 992px) {
-  body {
-    font-size: 16px;
-  }
-
-  section {
-    padding: 40px 0;
-  }
-
-  .main {
-    height: 60vh; /* Slightly shorter for tablets */
-  }
+  body { font-size: 16px; }
+  section { padding: 40px 0; }
+  .main { height: 60vh; }
 }
 
-/* Small Devices (Phones) */
 @media (max-width: 576px) {
-  body {
-    font-size: 15px;
-  }
-
-  section {
-    padding: 32px 0;
-  }
-
-  .main {
-    height: 45vh; /* Keeps mobile layout compact */
-    border-radius: 6px;
-  }
+  body { font-size: 15px; }
+  section { padding: 32px 0; }
+  .main { height: 45vh; border-radius: 6px; }
 }
+
+/* =========================================
+   🔧 Override Bootstrap container behavior
+   Make sure containers don't shrink the page
+   ========================================= */
+
+.container,
+.container-fluid {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ensure root layout always spans full viewport width */
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+

@@ -51,9 +51,9 @@ function KnowledgePartners() {
         viewport={{ once: true }}
       >
         <h4 className="partners-subtitle">Knowledge Partners</h4>
-        <h2 className="partners-title">
+        <h1 className="partners-title">
           Trusted Collaborations with Leading Healthcare Institutions
-        </h2>
+        </h1>
         <p className="partners-description">
           Dr. Achal collaborates with India’s top medical organizations to bring
           world-class spine treatment, advanced surgical techniques, and

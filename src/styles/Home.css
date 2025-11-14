@@ -12,6 +12,7 @@
   border-radius: 12px;         /* Slightly rounded corners for a modern look */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
   transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth hover animation */
+  background-color: transparent;
 }
 
 /* Adds a subtle zoom on hover for interactivity */
@@ -47,7 +48,8 @@
 
 /* Adds gentle spacing and clean background for the hero section */
 .hero {
-  background: linear-gradient(to bottom, #f9fcff, #ffffff); /* Soft white gradient */
+  /* background: linear-gradient(to bottom, #f9fcff, #ffffff);  */
+  /* Soft white gradient */
   padding-top: 1rem;            /* Top space for header */
   padding-bottom: 1rem;         /* Bottom space for next section */
 }

@@ -24,25 +24,24 @@ function Home() {
 
       <SchemaDoctor />
 
-      <section className="hero text-center bg-light py-2">
+      <section className="hero text-center py-2">
         <Container>
-          {/* 🖼 Responsive banner image */}
           <img
             className="main-banner"
             src="/assets/banner/homePageBanner.png"
             alt="Main banner showing the doctor and clinic theme"
           />
         </Container>
-
-        {/* 🌟 Content Sections */}
-        <WelcomeSection />
-        <TreatmentsShowcase />
-        <TechnologySection />
-        <KnowledgePartners />
-        <Testimonials />
-        <WhyChooseUs />
-        <FAQ />
       </section>
+
+      {/* 🌟 Content Sections */}
+      <WelcomeSection />
+      <TreatmentsShowcase />
+      <TechnologySection />
+      <KnowledgePartners />
+      <Testimonials />
+      <WhyChooseUs />
+      <FAQ />
     </>
   );
 }

@@ -11,7 +11,7 @@ const CallButton = () => {
       aria-label="Call Now"
     >
       <img
-        src="/assets/images/call.png" // place your call icon in public/assets/images/
+        src="/assets/mobileNavBar/call.png" // place your call icon in public/assets/images/
         alt="Call Now"
         className="call-icon"
       />

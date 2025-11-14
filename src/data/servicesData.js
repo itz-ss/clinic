@@ -7,7 +7,7 @@ export const servicesData = {
   // instead of Spine Treatments its now Dr Achal Gupta so do not change the key who ever you are otherwise be ready to change all imports
   spine: [
     {
-      label: "Slipped Disc Surgery",
+      label: "Slip Disc Surgery",
       to: "/treatments/slipped-disc-surgery",
       banner: "/assets/banner/slipped-disc-surgery.jpg",
       image: "/assets/treatmentPhotos/slipped-disc-surgery.jpg",
@@ -161,21 +161,6 @@ export const servicesData = {
           "Physiotherapy, pain relief medication, and posture correction.",
         surgical:
           "Minimally invasive decompression or fusion for severe cases.",
-      },
-    },
-     {
-      label: "Joint Replacement Surgery",
-      to: "/treatments/joint-replacement-surgery",
-      banner: "/assets/images/joint-replacement-banner.jpg",
-      image: "/assets/treatmentPhotos/joint-replacement.jpg",
-      description:
-        "Joint replacement replaces damaged knee or hip joints with artificial implants to restore mobility and relieve pain. The surgery ensures stable alignment and natural joint movement, with excellent long-term results after rehabilitation.",
-      commonConditions: ["Arthritis", "Osteoarthritis", "Joint Pain"],
-      treatmentOptions: {
-        nonSurgical:
-          "Pain control, exercise therapy, and supportive aids.",
-        surgical:
-          "Knee or hip replacement using high-precision prosthetics.",
       },
     },
     {
@@ -364,7 +349,7 @@ export const servicesData = {
       label: "Child Stroke",
       to: "/treatments/child-stroke",
       banner: "/assets/banner/child-stroke.jpg",
-      image: "/assets/treatmentPhotos/child-stroke.jpg",
+      image: "/assets/treatmentPhotos/childStroke.jpg",
 
       description:
         "Pediatric stroke is a rare but serious condition affecting newborns and older children. It occurs when blood flow to part of the brain is disrupted (ischemic stroke) or when bleeding occurs within the brain (hemorrhagic stroke). Both types cause damage to nearby brain tissue and can lead to long-term neurological challenges. Early recognition and treatment are essential as outcomes and therapy differ from adults.",

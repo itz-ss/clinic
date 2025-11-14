@@ -1,7 +1,5 @@
 /* 🌐 PARTNERS SECTION — Responsive Grid Layout */
 .partners-section {
-  /* background: linear-gradient(135deg, #f8fafc, #eef2f8); */ /* optional soft gradient */
-  padding: 6rem 2rem;
   text-align: center;
 }
 
@@ -13,8 +11,6 @@
 
 .partners-subtitle {
   text-transform: uppercase;
-  color: #2563eb;
-  font-weight: 600;
   letter-spacing: 2px;
   margin-bottom: 0.5rem;
   font-size: 1rem;
@@ -22,27 +18,23 @@
 
 .partners-title {
   font-size: 2rem;
-  font-weight: 700;
-  color: #111827;
   margin-bottom: 1rem;
 }
 
 .partners-description {
-  color: #374151;
   font-size: 1.05rem;
-  line-height: 1.8;
 }
 
 /* =========================================================
    🧱 PARTNERS LOGOS — GRID SYSTEM
    ========================================================= */
 .partners-logos {
-  display: grid; /* switched from flex to grid */
-  grid-template-columns: repeat(4, 1fr); /* 4 equal columns on desktop */
-  justify-items: center; /* center logos horizontally */
-  align-items: center; /* center vertically */
-  gap: 3rem; /* space between logos */
-  max-width: 1000px; /* limits logo width area */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -57,16 +49,11 @@
 /* 🖼️ Logo image */
 .partner-logo {
   width: 140px;
-  height: auto;
-  /* filter: grayscale(80%) brightness(0.9); */
-  /* opacity: 0.9; */
   transition: all 0.4s ease;
 }
 
 /* ✨ Hover effect — full color + slight zoom */
 .partner-logo:hover {
-  /* filter: grayscale(0%) brightness(1);
-  opacity: 1; */
   transform: scale(1.05);
 }
 
@@ -74,7 +61,6 @@
    📱 RESPONSIVE GRID BEHAVIOR
    ========================================================= */
 
-/* Tablets (2 or 3 columns depending on screen width) */
 @media (max-width: 992px) {
   .partners-logos {
     grid-template-columns: repeat(3, 1fr);
@@ -90,10 +76,9 @@
   }
 }
 
-/* Mobile (2x2 layout → 2 columns) */
 @media (max-width: 600px) {
   .partners-logos {
-    grid-template-columns: repeat(2, 1fr); /* ✅ two per row */
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
 
@@ -106,7 +91,6 @@
   }
 }
 
-/* Very small screens */
 @media (max-width: 400px) {
   .partners-logos {
     gap: 1.5rem;

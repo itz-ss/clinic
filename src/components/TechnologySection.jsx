@@ -22,14 +22,14 @@ function TechnologySection() {
             Technology
           </motion.h4>
 
-          <motion.h2
+          <motion.h1
             className="tech-title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             Advanced Technology & Personalized Care
-          </motion.h2>
+          </motion.h1>
 
           <motion.p
             className="tech-description"

@@ -30,7 +30,7 @@ const TreatmentsShowcase = () => {
       </div>
 
       <div className="container">
-        <motion.h2
+        <motion.h1
           className="section-title"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ const TreatmentsShowcase = () => {
           viewport={{ once: true }}
         >
           Explore Our Treatments
-        </motion.h2>
+        </motion.h1>
 
         <motion.p
           className="section-subtitle"

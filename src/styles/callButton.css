@@ -3,7 +3,7 @@
   position: fixed;
   bottom: 90px; /* Slightly above WhatsApp if both exist */
   left: 20px;
-  background: linear-gradient(135deg, #000000, #58c5d8);
+  background: linear-gradient(135deg, #53c65c, #00944a);
   border-radius: 50%;
   width: 58px;
   height: 58px;

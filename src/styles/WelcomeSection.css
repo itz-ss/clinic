@@ -1,10 +1,8 @@
 /* ======================================================
-   🌐 WELCOME SECTION STYLING
-   Layout: 1 Large Image + 2 Smaller Below (Fixed Pattern)
-   Framer Motion handles hover + fade animations
+   🌐 WELCOME SECTION — UNIQUE STYLES
    ====================================================== */
 
-/* ---------- Section Base ---------- */
+/* Section Layout */
 .welcome-section {
   min-height: 100vh;
   display: flex;
@@ -12,17 +10,15 @@
   overflow: hidden;
 }
 
-/* ---------- Image Column ---------- */
+/* Image Column */
 .image-column {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background: #f8fafc; */
   padding: 2rem;
-  overflow: visible; /* Allow image zoom to show */
 }
 
-/* ---------- Image Grid Layout ---------- */
+/* Image Grid */
 .image-grid {
   display: flex;
   flex-direction: column;
@@ -31,7 +27,7 @@
   gap: 1rem;
 }
 
-/* ---------- Large Image ---------- */
+/* Large Image */
 .grid-image.main-img {
   width: 100%;
   height: 350px;
@@ -40,7 +36,7 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* ---------- Two Smaller Images Below ---------- */
+/* Small Image Row */
 .small-img-row {
   display: flex;
   justify-content: space-between;
@@ -55,11 +51,9 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* ---------- Text Column ---------- */
+/* Text Column */
 .text-column {
   padding: 4rem 3rem;
-  /* background: #fff; */
-  color: #1e293b;
   display: flex;
   align-items: center;
 }
@@ -71,19 +65,15 @@
 
 .welcome-title {
   font-size: 2rem;
-  font-weight: 700;
-  color: #1e3a8a;
   margin-bottom: 1.5rem;
 }
 
 .welcome-text {
   font-size: 1.05rem;
-  line-height: 1.8;
   margin-bottom: 1rem;
-  color: #475569;
 }
 
-/* ---------- Responsive Scaling (Keep Pattern Same) ---------- */
+/* Responsive */
 @media (max-width: 992px) {
   .welcome-section {
     flex-direction: column;
