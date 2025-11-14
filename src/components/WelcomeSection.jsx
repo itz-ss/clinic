@@ -30,8 +30,8 @@ const WelcomeSection = () => {
 
       {/* 🌐 Section 1 – Dr. Achal Gupta */}
       <section className="welcome-section">
-        <Container fluid className="h-100 px-4">
-          <Row className="align-items-center h-100 g-0">
+        <Container fluid className="h-100 p-0">
+          <Row className="align-items-center h-100 g-0 ">
             {/* Left Side – Image Grid */}
             <Col md={6} className="image-column">
               <motion.div

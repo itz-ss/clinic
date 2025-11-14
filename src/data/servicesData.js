@@ -179,7 +179,7 @@ export const servicesData = {
     {
       label: "Brain & Spine Tumor Surgery",
       to: "/treatments/brain-tumor-surgery",
-      banner: "/assets/banner/spine-tumor.jpg",
+      banner: "/assets/banner/brain-tumor-surgery.jpg",
       image: "/assets/treatmentPhotos/spine-tumor.webp",
       description:
         "Brain tumor surgery removes abnormal tissue growths while preserving brain function. With advanced neuro-navigation and precision microsurgery, the procedure ensures safety and optimal recovery for both benign and malignant tumors.",

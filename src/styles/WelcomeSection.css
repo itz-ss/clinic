@@ -22,6 +22,7 @@
 .image-grid {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   width: 100%;
   max-width: 550px;
   gap: 1rem;
