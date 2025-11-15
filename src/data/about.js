@@ -9,11 +9,11 @@ export const doctorsData = [
 
     sectionImages: [
     "/assets/about/achal1.png",
-    "/assets/about/achal2.jpeg",
-    "/assets/about/achal2.JPG",
     "/assets/about/achal7.jpg",
-    "/assets/about/achal5.jpeg",
+    "/assets/about/achal2.JPG",
+    "/assets/about/achalPlusThree2.jpeg",
     "/assets/about/achalPlusThree3.jpeg",
+    "/assets/about/achal5.jpeg",
     "/assets/about/achalPlusOne.jpeg"
   ],
 

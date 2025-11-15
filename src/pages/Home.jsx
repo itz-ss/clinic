@@ -8,6 +8,9 @@ import KnowledgePartners from "../components/KnowledgePartners";
 import Testimonials from "../components/Testimonials";
 import WhyChooseUs from "../components/WhyChooseUs";
 import TreatmentsShowcase from "../components/TreatmentsShowcase";
+import { videoLinks } from "../data/videos";
+import YouTubeVideos from "../components/YouTubeVideos";
+
 
 // global css
 import "../styles/Home.css"; // 👈 new CSS file for banner styles
@@ -40,6 +43,7 @@ function Home() {
       <TechnologySection />
       <KnowledgePartners />
       <Testimonials />
+      <YouTubeVideos videos={videoLinks} />
       <WhyChooseUs />
       <FAQ />
     </>
