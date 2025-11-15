@@ -34,7 +34,7 @@
 /* 📱 Responsive Position */
 @media (max-width: 600px) {
   .scroll-to-top {
-    bottom: 20px;
+    bottom: 80px;
     right: 20px;
     width: 45px;
     height: 45px;
