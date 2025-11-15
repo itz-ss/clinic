@@ -229,10 +229,10 @@
 
   .nav-links {
     position: fixed;
-    top: 70px;
+    top: 80px;
     right: -100%;
     width: 75%;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 20%);
     background: #ffffff;
     box-shadow: -3px 0 15px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -242,6 +242,8 @@
     padding: 20px 15px;
     gap: 20px;
     transition: right 0.4s ease;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .nav-links.active { right: 0; }

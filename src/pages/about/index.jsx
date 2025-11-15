@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import AchalAbout from "../pages/about/AchalAbout";
-import KonikaAbout from "../pages/about/KonikaAbout";
+import AchalAbout from "./AchalAbout";
+import KonikaAbout from "./KonikaAbout";
 
-function DoctorRoutes() {
+function About() {
   const { doctorId } = useParams();
 
   if (doctorId === "dr-achal-gupta") {
@@ -22,4 +22,4 @@ function DoctorRoutes() {
   );
 }
 
-export default DoctorRoutes;
+export default About;

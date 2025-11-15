@@ -1,61 +1,38 @@
-// src/pages/About.jsx
+// src/pages/KonikaAbout.jsx
 import React from "react";
-import { useParams } from "react-router-dom";
-import SEO from "../components/SEO";
 import { Container, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { doctorsData } from "../data/about";
-import "../styles/About.css";
+import { doctorsData } from "../../data/about";
+import SEO from "../../components/SEO";
+import "../../styles/About.css";
 
-function About() {
-  const { doctorId } = useParams();
-  const doctorInfo = doctorsData.find((doc) => doc.id === doctorId);
 
-  if (!doctorInfo) {
-    return (
-      <div className="text-center py-5">
-        <h2>Doctor Not Found</h2>
-        <p className="text-muted">Please check the URL or visit the Doctors page.</p>
-      </div>
-    );
-  }
-
-  // ✅ Only this changed — now dynamic images per doctor
-  const sectionImages = doctorInfo.sectionImages;
+function KonikaAbout() {
+  const doctor = doctorsData.find((d) => d.id === "dr-konika-bansal");
+  const sectionImages = doctor.sectionImages || [];
 
   const renderSection = (title, content, index) => {
-    const isReversed = index % 2 !== 0;
-
+    const reversed = index % 2 !== 0;
     return (
       <motion.section
         key={index}
-        className={`about-section ${isReversed ? "reverse" : ""}`}
+        className={`about-section ${reversed ? "reverse" : ""}`}
         initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut" }}
+        transition={{ duration: 0.9 }}
         viewport={{ once: true }}
       >
         <Row className="align-items-center my-5">
-
-          {/* LEFT IMAGE */}
           <Col md={6} className="image-col">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <motion.img
-                src={sectionImages[index]}
-                alt={title}
-                className="about-image"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-              />
-            </motion.div>
+            <motion.img
+              src={sectionImages[index]}
+              alt={title}
+              className="about-image"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.9 }}
+            />
           </Col>
 
-          {/* RIGHT TEXT */}
           <Col md={6} className="text-col">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -64,12 +41,9 @@ function About() {
               viewport={{ once: true }}
             >
               <h3>{title}</h3>
-              {Array.isArray(content)
-                ? content.map((item, i) => <p key={i}>{item}</p>)
-                : content}
+              {content}
             </motion.div>
           </Col>
-
         </Row>
       </motion.section>
     );
@@ -78,13 +52,13 @@ function About() {
   return (
     <>
       <SEO
-        title={doctorInfo.seo.title}
-        description={doctorInfo.seo.description}
-        keywords={doctorInfo.seo.keywords}
+        title={doctor.seo?.title}
+        description={doctor.seo?.description}
+        keywords={doctor.seo?.keywords}
       />
 
-      <Container className="about-container py-1">
-
+      <Container className="about-container py-2">
+        {/* Heading */}
         <div className="text-center mb-5">
           <motion.h1
             className="about-heading"
@@ -92,7 +66,7 @@ function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {doctorInfo.name}
+            {doctor.name}
           </motion.h1>
 
           <motion.p
@@ -101,16 +75,21 @@ function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {doctorInfo.title}
+            {doctor.title}
           </motion.p>
         </div>
 
-        {renderSection("Biography", doctorInfo.biography, 0)}
+        {/* Sections in order */}
+        {renderSection(
+          "Biography",
+          doctor.biography.map((p, i) => <p key={i}>{p}</p>),
+          0
+        )}
 
         {renderSection(
           "Education",
-          doctorInfo.education.map((edu) => (
-            <p key={edu.degree}>
+          doctor.education.map((edu, i) => (
+            <p key={i}>
               <strong>{edu.degree}</strong> – {edu.institution}
             </p>
           )),
@@ -119,8 +98,8 @@ function About() {
 
         {renderSection(
           "Experience",
-          doctorInfo.experience.map((exp) => (
-            <p key={exp.title}>
+          doctor.experience.map((exp, i) => (
+            <p key={i}>
               <strong>{exp.title}</strong> – {exp.organization}
             </p>
           )),
@@ -129,8 +108,8 @@ function About() {
 
         {renderSection(
           "Publications",
-          doctorInfo.publications.map((pub) => (
-            <p key={pub.citation}>
+          doctor.publications.map((pub, i) => (
+            <p key={i}>
               {pub.citation}{" "}
               <a href={pub.link} target="_blank" rel="noreferrer">
                 Read More
@@ -143,7 +122,7 @@ function About() {
         {renderSection(
           "Special Interests",
           <ul>
-            {doctorInfo.interests.map((interest, i) => (
+            {doctor.interests.map((interest, i) => (
               <li key={i}>{interest}</li>
             ))}
           </ul>,
@@ -153,7 +132,7 @@ function About() {
         {renderSection(
           "Associations",
           <ul>
-            {doctorInfo.associations.map((assoc, i) => (
+            {doctor.associations.map((assoc, i) => (
               <li key={i}>{assoc}</li>
             ))}
           </ul>,
@@ -163,16 +142,15 @@ function About() {
         {renderSection(
           "Courses & Workshops",
           <ul>
-            {doctorInfo.courses.map((course, i) => (
+            {doctor.courses.map((course, i) => (
               <li key={i}>{course}</li>
             ))}
           </ul>,
           6
         )}
-
       </Container>
     </>
   );
 }
 
-export default About;
+export default KonikaAbout;

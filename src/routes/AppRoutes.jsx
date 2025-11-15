@@ -3,7 +3,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "../components/Layout";
 import Home from "../pages/Home";
-import About from "../pages/About";
 import Achievements from "../pages/Achievements";
 import Contact from "../pages/Contact";
 import TreatmentRoutes from "./TreatmentRoutes";
@@ -27,7 +26,7 @@ const AppRoutes = () => {
         <Route path="treatments/*" element={<TreatmentRoutes />} />
 
         {/* 👨‍⚕️ Doctors routes */}
-        <Route path="about/*" element={<DoctorRoutes />} />
+        <Route path="about/:doctorId" element={<DoctorRoutes />} />
       </Route>
     </Routes>
   );
