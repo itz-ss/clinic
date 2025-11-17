@@ -216,7 +216,7 @@ const Navbar = () => {
           <li><Link to="/achievements">Achievements</Link></li>
 
           {/* 🌐 MEDIA DROPDOWN */}
-          <li
+          {/* <li
             className={`dropdown ${openDropdown === "media" ? "open" : ""}`}
           >
             <span
@@ -243,7 +243,7 @@ const Navbar = () => {
                 </motion.ul>
               )}
             </AnimatePresence>
-          </li>
+          </li> */}
 
           <li><Link to="/contact">Contact</Link></li>
         </ul>
