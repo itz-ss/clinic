@@ -8,11 +8,23 @@ import "../styles/navbar.css";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mediaOpen, setMediaOpen] = useState(false);
+
   const [openDropdown, setOpenDropdown] = useState(null);
   const [openSubDropdown, setOpenSubDropdown] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
   const location = useLocation();
   const navRef = useRef(null);
+
+  // media routes
+  const mediaLinks = [
+  { label: "Educational Videos", path: "/media/educational-videos" },
+  { label: "Events", path: "/media/events" },
+  { label: "In The News", path: "/media/in-the-news" },
+  { label: "Podcasts", path: "/media/podcasts" },
+  { label: "Testimonials", path: "/media/testimonials" },
+];
+
 
   // ✅ Update mobile view dynamically
   useEffect(() => {
@@ -202,6 +214,37 @@ const Navbar = () => {
 
           {/* 🏆 OTHER LINKS */}
           <li><Link to="/achievements">Achievements</Link></li>
+
+          {/* 🌐 MEDIA DROPDOWN */}
+          <li
+            className={`dropdown ${openDropdown === "media" ? "open" : ""}`}
+          >
+            <span
+              className="dropdown-btn"
+              onClick={() => toggleDropdown("media")}
+            >
+              Media <span className="arrow">▼</span>
+            </span>
+
+            <AnimatePresence>
+              {openDropdown === "media" && (
+                <motion.ul
+                  className="dropdown-content"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  {mediaLinks.map((ml) => (
+                    <li key={ml.path}>
+                      <Link to={ml.path}>{ml.label}</Link>
+                    </li>
+                  ))}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </li>
+
           <li><Link to="/contact">Contact</Link></li>
         </ul>
 

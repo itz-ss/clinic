@@ -50,15 +50,14 @@ function KnowledgePartners() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        <h4 className="partners-subtitle">Knowledge Partners</h4>
-        <h1 className="partners-title">
-          Trusted Collaborations with Leading Healthcare Institutions
-        </h1>
+        <h4 className="partners-subtitle">Associations</h4>
+        <h1 className="partners-title">Collaborations with Leading Healthcare organizations</h1>
         <p className="partners-description">
-          Dr. Achal collaborates with India’s top medical organizations to bring
-          world-class spine treatment, advanced surgical techniques, and
-          evidence-based patient care to Lucknow, Uttar Pradesh.
+          Dr. Achal partners with premier medical organizations across India to
+          advance spine care through innovation, evidence-based treatment protocols,
+          and top-tier surgical practices for patients in Lucknow and beyond.
         </p>
+
       </motion.div>
 
       <motion.div

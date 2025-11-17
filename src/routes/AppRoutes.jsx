@@ -6,10 +6,26 @@ import Home from "../pages/Home";
 import Achievements from "../pages/Achievements";
 import Contact from "../pages/Contact";
 import TreatmentRoutes from "./TreatmentRoutes";
-import DoctorRoutes from "./DoctorRoutes"; // 🩺 add this
+import DoctorRoutes from "./DoctorRoutes";
 import AppointmentForm from "../components/AppointmentForm";
 import WhatsAppButton from "../components/WhatsAppButton";
 import CallButton from "../components/CallButton";
+
+// ⭐ Media Pages Imports
+import EducationalVideos from "../pages/media/EducationalVideos";
+import Events from "../pages/media/Events";
+import InTheNews from "../pages/media/InTheNews";
+import Podcasts from "../pages/media/Podcasts";
+import Testimonials from "../pages/media/Testimonials";
+
+// ⭐ SMART ROUTE MAPPING
+const mediaPages = [
+  { path: "educational-videos", element: <EducationalVideos /> },
+  { path: "events", element: <Events /> },
+  { path: "in-the-news", element: <InTheNews /> },
+  { path: "podcasts", element: <Podcasts /> },
+  { path: "testimonials", element: <Testimonials /> }
+];
 
 const AppRoutes = () => {
   return (
@@ -27,6 +43,15 @@ const AppRoutes = () => {
 
         {/* 👨‍⚕️ Doctors routes */}
         <Route path="about/:doctorId" element={<DoctorRoutes />} />
+
+        {/* 🎬 SMART Media Routes */}
+        {mediaPages.map((page) => (
+          <Route
+            key={page.path}
+            path={`media/${page.path}`}
+            element={page.element}
+          />
+        ))}
       </Route>
     </Routes>
   );

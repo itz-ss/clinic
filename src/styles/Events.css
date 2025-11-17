@@ -1,0 +1,79 @@
+/* EVENTS GRID — same responsive layout as Educational Videos */
+.events-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+/* 3 cards desktop, 2 tablet, 1 mobile */
+@media (min-width: 1024px) {
+  .events-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 600px) and (max-width: 1023px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Unified Event Card Style (matching Educational Videos) */
+.event-card-unified {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: 0.25s;
+}
+.event-card-unified:hover {
+  transform: translateY(-4px);
+}
+
+/* Main event title */
+.event-title-unified {
+  font-size: 19px;
+  font-weight: 600;
+  color: #1d1d1d;
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+}
+
+/* Inner event section */
+.inner-event-content {
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid #ececec;
+}
+
+.inner-event-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* Same video dimensions as Educational Videos */
+.inner-event-video iframe,
+.inner-event-video video {
+  width: 100%;
+  height: 235px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+/* Post button */
+.event-post-btn {
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none;
+}
+.event-post-btn:hover {
+  background: #005bd1;
+}
