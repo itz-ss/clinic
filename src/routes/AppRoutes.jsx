@@ -22,7 +22,7 @@ import Testimonials from "../pages/media/Testimonials";
 const mediaPages = [
   { path: "educational-videos", element: <EducationalVideos /> },
   { path: "events", element: <Events /> },
-  { path: "in-the-news", element: <InTheNews /> },
+  { path: "InTheNews", element: <InTheNews /> },
   { path: "podcasts", element: <Podcasts /> },
   { path: "testimonials", element: <Testimonials /> }
 ];

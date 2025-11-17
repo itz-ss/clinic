@@ -20,7 +20,7 @@ const Navbar = () => {
   const mediaLinks = [
   { label: "Educational Videos", path: "/media/educational-videos" },
   { label: "Events", path: "/media/events" },
-  { label: "In The News", path: "/media/in-the-news" },
+  { label: "InTheNews", path: "/media/in-the-news" },
   { label: "Podcasts", path: "/media/podcasts" },
   { label: "Testimonials", path: "/media/testimonials" },
 ];
@@ -216,7 +216,7 @@ const Navbar = () => {
           <li><Link to="/achievements">Achievements</Link></li>
 
           {/* 🌐 MEDIA DROPDOWN */}
-          {/* <li
+          <li
             className={`dropdown ${openDropdown === "media" ? "open" : ""}`}
           >
             <span
@@ -243,7 +243,7 @@ const Navbar = () => {
                 </motion.ul>
               )}
             </AnimatePresence>
-          </li> */}
+          </li>
 
           <li><Link to="/contact">Contact</Link></li>
         </ul>
