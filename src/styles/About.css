@@ -124,3 +124,11 @@
     padding: 30px 10px;
   }
 }
+
+.education-table {
+  background-color: transparent !important;
+}
+.education-table th,
+.education-table td {
+  background-color: transparent !important;
+}
