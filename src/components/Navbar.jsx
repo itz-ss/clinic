@@ -20,7 +20,7 @@ const Navbar = () => {
   const mediaLinks = [
   { label: "Educational Videos", path: "/media/educational-videos" },
   { label: "Events", path: "/media/events" },
-  { label: "InTheNews", path: "/media/in-the-news" },
+  // { label: "InTheNews", path: "/media/in-the-news" },
   { label: "Podcasts", path: "/media/podcasts" },
   { label: "Testimonials", path: "/media/testimonials" },
 ];

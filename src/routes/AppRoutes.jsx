@@ -14,7 +14,7 @@ import CallButton from "../components/CallButton";
 // ⭐ Media Pages Imports
 import EducationalVideos from "../pages/media/EducationalVideos";
 import Events from "../pages/media/Events";
-import InTheNews from "../pages/media/InTheNews";
+// import InTheNews from "../pages/media/InTheNews";
 import Podcasts from "../pages/media/Podcasts";
 import Testimonials from "../pages/media/Testimonials";
 
@@ -22,7 +22,7 @@ import Testimonials from "../pages/media/Testimonials";
 const mediaPages = [
   { path: "educational-videos", element: <EducationalVideos /> },
   { path: "events", element: <Events /> },
-  { path: "InTheNews", element: <InTheNews /> },
+  // { path: "InTheNews", element: <InTheNews /> },
   { path: "podcasts", element: <Podcasts /> },
   { path: "testimonials", element: <Testimonials /> }
 ];
