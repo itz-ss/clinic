@@ -16,7 +16,7 @@ const YouTubeVideos = ({ videos }) => {
 
   return (
     <div className="yt-wrapper">
-      <h2 className="yt-title">Latest Videos</h2>
+      <h2 className="yt-title">Real Stories. Real Recoveries. Real Lives Transformed</h2>
 
       {/* 🔥 Visible videos (looping logic) */}
       <div className="yt-track">
@@ -38,7 +38,7 @@ const YouTubeVideos = ({ videos }) => {
                   className="yt-thumb"
                   alt="video thumbnail"
                 />
-                <motion.div className="yt-play" whileHover={{ scale: 1.15 }}>
+                <motion.div className="yt-play" >
                   ▶
                 </motion.div>
               </motion.div>

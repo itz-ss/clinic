@@ -8,7 +8,7 @@
 // ✔ Sorting dropdown
 // ✔ Group by category
 // ✔ "Show More" after every 10 videos
-// ✔ Responsive premium UI (3 per row desktop, 2 tablet, 1 mobile)
+// ✔ Responsive premium UI
 // -------------------------------------------------------
 
 import React, { useEffect, useState } from "react";
@@ -22,7 +22,7 @@ const EducationalVideos = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [sortBy, setSortBy] = useState("latest");
-  const [visibleCount, setVisibleCount] = useState(10); // show 10 initially
+  const [visibleCount, setVisibleCount] = useState(10);
 
   // Auto-fetch YouTube title if Strapi title missing
   const fetchYouTubeTitle = async (videoLink) => {
@@ -41,7 +41,6 @@ const EducationalVideos = () => {
     }
   };
 
-  // Fetch data + add YouTube auto-title fallback
   useEffect(() => {
     const load = async () => {
       const data = await fetchEducationalVideos();
@@ -61,7 +60,6 @@ const EducationalVideos = () => {
     load();
   }, []);
 
-  // Group by category
   const groupedByCategory = videos.reduce((acc, v) => {
     const cat = v.category || "Uncategorized";
     if (!acc[cat]) acc[cat] = [];
@@ -69,15 +67,14 @@ const EducationalVideos = () => {
     return acc;
   }, {});
 
-  // Sorting logic
   const sortVideos = (arr) => {
     const sorted = [...arr];
     if (sortBy === "latest")
       sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    else if (sortBy === "oldest")
+    if (sortBy === "oldest")
       sorted.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-    else if (sortBy === "asc") sorted.sort((a, b) => a.title.localeCompare(b.title));
-    else if (sortBy === "desc") sorted.sort((a, b) => b.title.localeCompare(a.title));
+    if (sortBy === "asc") sorted.sort((a, b) => a.title.localeCompare(b.title));
+    if (sortBy === "desc") sorted.sort((a, b) => b.title.localeCompare(a.title));
     return sorted;
   };
 
@@ -90,7 +87,6 @@ const EducationalVideos = () => {
 
   return (
     <div className="media-page">
-      {/* Title + Subtitle */}
       <header className="media-header">
         <h1>Educational Videos</h1>
         <p>Discover premium clinical awareness content — organized elegantly</p>
@@ -98,7 +94,6 @@ const EducationalVideos = () => {
 
       {/* Dropdowns */}
       <div className="media-dropdowns">
-        {/* Category */}
         <select
           className="media-select"
           value={selectedCategory || ""}
@@ -115,7 +110,6 @@ const EducationalVideos = () => {
           ))}
         </select>
 
-        {/* Sorting */}
         <select
           className="media-select"
           value={sortBy}
@@ -146,16 +140,25 @@ const EducationalVideos = () => {
                   const thumbnailUrl = getStrapiFileUrl(video.thumbnail);
                   const videoFileUrl = getStrapiFileUrl(video.videoFile);
 
-                  // YouTube embed fix
+                  // 🔥 Universal YouTube Link Converter (ALL formats supported)
                   let embedUrl = null;
                   if (video.videoLink) {
-                    const l = video.videoLink;
-                    if (l.includes("watch?v="))
-                      embedUrl = l.replace("watch?v=", "embed/").split("&")[0];
-                    else if (l.includes("youtu.be/"))
-                      embedUrl = `https://www.youtube.com/embed/${
-                        l.split("youtu.be/")[1].split("?")[0]
-                      }`;
+                    let link = video.videoLink.trim();
+                    let videoId = null;
+
+                    if (link.includes("watch?v=")) {
+                      videoId = link.split("watch?v=")[1].split("&")[0];
+                    } else if (link.includes("youtu.be/")) {
+                      videoId = link.split("youtu.be/")[1].split("?")[0];
+                    } else if (link.includes("shorts/")) {
+                      videoId = link.split("shorts/")[1].split("?")[0];
+                    } else if (link.includes("embed/")) {
+                      videoId = link.split("embed/")[1].split("?")[0];
+                    } else if (/^[a-zA-Z0-9_-]{11}$/.test(link)) {
+                      videoId = link; // only ID
+                    }
+
+                    if (videoId) embedUrl = `https://www.youtube.com/embed/${videoId}`;
                   }
 
                   return (
@@ -178,7 +181,6 @@ const EducationalVideos = () => {
                         <div className="media-description">
                           <ReactMarkdown>{video.description}</ReactMarkdown>
                         </div>
-
                       )}
 
                       <div className="media-actions">
@@ -199,7 +201,6 @@ const EducationalVideos = () => {
                 })}
               </div>
 
-              {/* Show More Button */}
               {sortedVideos.length > visibleCount && (
                 <div className="media-loadmore-wrapper">
                   <button className="media-loadmore" onClick={loadMore}>

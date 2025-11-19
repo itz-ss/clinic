@@ -17,12 +17,11 @@
 }
 
 .partners-title {
-  font-size: 2rem;
   margin-bottom: 1rem;
 }
 
 .partners-description {
-  font-size: 1.05rem;
+  text-align: center;
 }
 
 /* =========================================================
@@ -73,6 +72,11 @@
 
   .partners-title {
     font-size: 1.8rem;
+  }
+
+  .partners-description{
+    text-align: justify;
+    padding: 0 20px 0 20px;
   }
 }
 

@@ -42,7 +42,7 @@ const TreatmentPage = () => {
            Spine → description + commonConditions + treatmentOptions
            Brain → title + description + causes (heading + paragraph only)
         --------------------------------------------------------- */}
-        <motion.section
+        <motion.div
           className="treatment-section"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +92,7 @@ const TreatmentPage = () => {
               )}
             </div>
           </div>
-        </motion.section>
+        </motion.div>
 
         {/* --------------------------------------------------------
            SECTION 2 — Left = continuation | Right = Appointment Form
@@ -112,7 +112,7 @@ const TreatmentPage = () => {
               <div className="options-wrapper">
 
                  {isSpine && treatment.treatmentOptions && (
-                <div className="mt-3">
+                <div className="info-section-2">
                   <h4 className="sub-title">Treatment Options</h4>
 
                   <h5 className="mini-title mt-2">Non-Surgical</h5>

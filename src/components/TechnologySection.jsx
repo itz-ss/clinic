@@ -28,19 +28,29 @@ function TechnologySection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Advanced Technology & Personalized Care
+            World Class Technology for Faster And Safer Healing
           </motion.h1>
 
           <motion.p
-            className="tech-description"
+            className="tech-description mx-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Using the latest spine surgery tools and techniques,{" "}
-            <strong>Dr. Achal</strong> ensures precise treatment tailored to each
-            patient's unique needs. At the best spine clinic in Lucknow, Uttar Pradesh, he offers <strong>minimally invasive procedures</strong> that
-            promote faster recovery and lasting relief.
+           We use the latest medical technology to make your treatment safer, simpler, and faster.
+Our advanced systems help us diagnose problems accurately and treat them with minimal discomfort.
+
+From endoscopic spine surgery tools that require only a tiny incision, to digital imaging and monitoring systems that track every detail with precision — we invest in technology that truly benefits our patients.
+
+This means:
+<ul>
+    <li>Less pain</li>
+  <li>Smaller cuts</li>
+  <li>Faster recovery</li>
+  <li> Early return to normal life</li>
+</ul>
+
+Modern treatment isn’t just about machines —<i>it’s about better outcomes. And that’s what we focus on.</i> 
           </motion.p>
         </motion.div>
 

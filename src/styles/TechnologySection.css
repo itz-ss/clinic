@@ -20,6 +20,8 @@
 .tech-content {
   align-items: center;
   text-align: center;
+  margin: 0 20px 0 40px;
+
 }
 
 .tech-subtitle {
@@ -36,7 +38,6 @@
 }
 
 .tech-description {
-  max-width: 600px;
   font-size: 1.05rem;
 }
 
@@ -82,7 +83,6 @@
   }
 
   .tech-description {
-    font-size: 1rem;
-    margin: 0 auto;
+    padding: 0 20px 0 20px;
   }
 }

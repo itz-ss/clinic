@@ -16,7 +16,7 @@ import EducationalVideos from "../pages/media/EducationalVideos";
 import Events from "../pages/media/Events";
 // import InTheNews from "../pages/media/InTheNews";
 import Podcasts from "../pages/media/Podcasts";
-import Testimonials from "../pages/media/Testimonials";
+import Testimonials from "../pages/media/TestimonialsPage";
 
 // ⭐ SMART ROUTE MAPPING
 const mediaPages = [

@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  /* padding: 2rem; */
 }
 
 /* Image Grid */
@@ -54,7 +54,7 @@
 
 /* Text Column */
 .text-column {
-  padding: 4rem 3rem;
+  padding: 0 3rem;
   display: flex;
   align-items: center;
 }
@@ -64,15 +64,28 @@
   margin: auto;
 }
 
+.welcome-content:hover{
+  font-size: 1.4rem;
+}
+
 .welcome-title {
   font-size: 2rem;
   margin-bottom: 1.5rem;
 }
 
 .welcome-text {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
 }
+
+.doctorName {
+  display: flex;
+  font-weight: 600;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  flex-direction: row-reverse;
+}
+
 
 /* Responsive */
 @media (max-width: 992px) {
@@ -101,6 +114,11 @@
   .welcome-title {
     font-size: 1.8rem;
   }
+
+  .doctorName{
+    font-size: 1.05rem;
+  }
+
 }
 
 @media (max-width: 600px) {
@@ -124,3 +142,4 @@
     font-size: 0.95rem;
   }
 }
+

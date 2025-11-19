@@ -5,6 +5,7 @@ import { servicesData } from "../data/servicesData";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "react-bootstrap";
 import "../styles/navbar.css";
+import LanguageToggle from "./LanguageToggle";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -250,10 +251,11 @@ const Navbar = () => {
 
         {/* 💙 Appointment Button */}
         <div className="appointment-button">
-          <Button variant="primary" size="lg" href="/appointment">
+          <Button variant="primary" size="sm" href="/appointment">
             Appointment
           </Button>
         </div>
+        <LanguageToggle />
       </div>
     </nav>
   );

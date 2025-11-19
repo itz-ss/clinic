@@ -55,6 +55,7 @@
 .stat-label {
   font-size: 1rem;
   color: #4b5563;
+  text-align: center;
 }
 
 /* ========================================== */
@@ -73,13 +74,14 @@
     padding: 1.8rem 2rem;
   }
 
-  .why-title {
-    font-size: 2rem;
-  }
-
   .counter-number {
     font-size: 1.7rem;
   }
+
+  .desc{
+  text-align: justify;
+  padding: 0 20px 0 20px;
+}
 }
 
 /* Mobile: 1 card per row */
@@ -102,9 +104,5 @@
 
   .counter-number {
     font-size: 1.5rem;
-  }
-
-  .why-title {
-    font-size: 1.8rem;
   }
 }

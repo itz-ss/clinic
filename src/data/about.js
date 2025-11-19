@@ -19,8 +19,10 @@ export const doctorsData = [
 
     biography: [
       "Dr. Achal Gupta is a renowned Neurosurgeon and Spine Specialist with over 15 years of experience in complex brain and spine surgeries.",
+      " National and International Faculty for endoscopic spine surgery",
       "He specializes in minimally invasive and endoscopic spine surgery and is currently associated with Neuron Brain & Spine Centre, Lucknow.",
-      "He has successfully treated thousands of patients suffering from spine and neurological disorders through advanced surgical techniques."
+      "He has successfully treated thousands of patients suffering from spine and neurological disorders through advanced surgical techniques.",
+      "He organised first ever endospine workshop in Lucknow"
     ],
     education: [
   {
@@ -215,13 +217,13 @@ affiliations: [
   },
 
   // 🧠 Dr Konika Bansal — verified + supplemented with placeholders
-  {
-    id: "dr-konika-bansal",
-    name: "Dr. Konika Bansal",
-    title: "Consultant Pediatric Neurologist & Epilepsy Specialist",
-    image: "/assets/about/konika20.jpeg",
+ {
+  id: "dr-konika-bansal",
+  name: "Dr. Konika Bansal",
+  title: "Consultant Pediatric Neurologist & Epilepsy Specialist",
+  image: "/assets/about/konika20.jpeg",
 
-     sectionImages: [
+  sectionImages: [
     "/assets/about/konika12.jpeg",
     "/assets/about/konika27.jpeg",
     "/assets/about/konika21.jpeg",
@@ -231,52 +233,79 @@ affiliations: [
     "/assets/about/konika9.jpeg"
   ],
 
-    biography: [
-      "Dr. Konika Bansal is a Pediatric Neurologist and Epilepsy Specialist at Neuron Brain & Spine Centre, Lucknow.",
-      "She has extensive experience in managing childhood epilepsy, developmental delay, autism, and neuromuscular disorders.",
-      "Her approach focuses on accurate diagnosis, holistic management, and family counselling to improve children’s quality of life."
-    ],
-    education: [
-      { degree: "MBBS", institution: "Government Medical College, Patiala" },
-      { degree: "DNB (Pediatrics)", institution: "Lilavati Hospital & Research Centre, Mumbai" },
-      { degree: "Fellowship in Pediatric Neurology & Epilepsy", institution: "AIIMS New Delhi" } // last one placeholder
-    ],
-    experience: [
-      { title: "Consultant Child Neurologist & Epileptologist", organization: "Neuron Brain & Spine Centre, Lucknow" },
-      { title: "Fellow in Pediatric Neurology", organization: "AIIMS New Delhi" },
-      { title: "Consultant Pediatrician", organization: "Lilavati Hospital & Research Centre Mumbai" } // placeholder
-    ],
-    publications: [
-      {
-        citation: "Bansal K. et al. Management of Pediatric Epilepsy in India – Challenges and Trends. Indian Journal of Neurology (2021)",
-        link: "https://neurospine.in/Pages/drkonika.aspx"
-      },
-      {
-        citation: "Bansal K. Neurological Outcomes in Childhood Epilepsy. NeuroIndia Journal (2020)",
-        link: "https://example.com/publication4"
-      }
-    ],
-    interests: [
-      "Pediatric Epilepsy Management",
-      "Neurodevelopmental Disorders",
-      "Autism Spectrum Therapy",
-      "Childhood Stroke and Neuromuscular Disorders"
-    ],
-    associations: [
-      "Member – Indian Academy of Neurology (IAN)",
-      "Member – Indian Epilepsy Society",
-      "Life Member – Indian Medical Association (IMA)"
-    ],
-    courses: [
-      "Epilepsy Surgery Workshop – AIIMS (2022)",
-      "Pediatric Neurodevelopment Conference – Delhi (2021)",
-      "EEG Interpretation Masterclass – Mumbai (2020)"
-    ],
-    seo: {
-      title: "Dr. Konika Bansal | Child Neurologist & Epilepsy Specialist",
-      description:
-        "Learn more about Dr. Konika Bansal, Consultant Child Neurologist and Epilepsy Specialist at Neuron Brain & Spine Centre, Lucknow.",
-      keywords: "Dr Konika Bansal, Child Neurologist Lucknow, Epilepsy Specialist, Pediatric Neurology, Neuron Brain & Spine Centre"
+  biography: [
+    "Dr. Konika Bansal is a Pediatric Neurologist and Epilepsy Specialist with extensive experience in managing childhood epilepsy and neurological conditions.",
+    "She specialises in developmental delay, autism, neuromuscular disorders, epilepsy management, and neurobehavioral disorders.",
+    "Her treatment approach focuses on accurate diagnosis, evidence-based therapy, and family-centred care."
+  ],
+
+  education: [
+    { degree: "MBBS", institution: "Government Medical College, Patiala" },
+    { degree: "DNB Pediatrics", institution: "Lilavati Hospital & Research Centre, Mumbai" },
+    {
+      degree: "Fellowship in Paediatric Neurology & Epilepsy",
+      institution: "Bai Jerbai Wadia Hospital for Children, Mumbai & Maharashtra University of Health Sciences, Nashik"
+    },
+    {
+      degree: "Certified EEG Course",
+      institution: "2nd NESSAN e-EEG Course 2021 & 3rd NESSAN e-EEG Course 2022"
     }
+  ],
+
+  experience: [
+    { title: "<b>Consultant Paediatric Neurologist & Epilepsy Specialist</b>", organization: "Vivekanand Hospital" },
+    { title: "<b>Consultant Paediatric Neurologist & Epilepsy Specialist</b>", organization: "St. Joseph Hospital" },
+    { title: "<b>Consultant Paediatric Neurologist & Epilepsy Specialist</b>", organization: "Neuron Brain & Spine Centre, Gomti Nagar" },
+    { title: "<b>Assistant Secretary AOPN UP (2025–26)</b>", organization: "AOPN UP" },
+
+    { title: "Paediatric Neurology Fellowship", organization: "Bai Jerbai Wadia Hospital for Children, Mumbai" },
+    { title: "Pediatric Neurology Training & Clinical Exposure", organization: "Lilavati Hospital & Research Centre, Mumbai" },
+    { title: "Neurology Research & Academic Exposure", organization: "MUHS – Nashik" }
+  ],
+
+  publications: [
+    { citation: "Co-author of the chapter “Care of child with epilepsy” in the book “IAP Parental Guidelines 2020”" },
+    { citation: "IAP: Guidelines for parents — Chapter 77, Care of a child with epilepsy" },
+    { citation: "Case report: Diffuse leptomeningeal glioneuronal tumor" },
+    { citation: "Thesis: Clinical and radiological spectrum of NMOSD in pediatric population" }
+  ],
+
+  awards: [
+    "<b>Best Paper Award</b> – July 2017, BNA Mumbai",
+    "<b>Best Paper Award</b> – July 2020, BNA Mumbai",
+    "<b>Best ePoster Award</b> – ICNC 2022, Antalya, Turkey",
+    "<b>HT Excellence Award</b>"
+  ],
+
+  presentations: [
+    "A rare case of Diffuse Leptomeningeal Glioneuronal Tumor – Child Neurology Group (CNG)",
+    "Multiple presentations in Clinical Meet of Lilavati Hospital",
+    "Monthly presentation in Institutional Neuro-radiological meeting",
+    "Quarterly presentation in Child Neurology Group (CNG) meeting",
+    "E-poster presentation in ICNA 2022"
+  ],
+
+  associations: [
+    "<b>International Child Neurology Association (ICNA)</b>",
+    "<b>Association of Child Neurology (AOCN)</b>",
+    "<b>Neurological Surgeons Society of India</b>",
+    "<b>Indian Academy of Pediatrics (IAP)</b>",
+    "<b>UP-IAP</b>",
+    "<b>AOPN (Academy of Pediatric Neurology)</b>",
+    "<b>AOPN-UP</b>"
+  ],
+
+  courses: [
+    "Certified EEG – 2nd & 3rd NESSAN e-EEG Courses (2021, 2022)"
+  ],
+
+  seo: {
+    title: "Dr. Konika Bansal | Pediatric Neurologist & Epilepsy Specialist",
+    description:
+      "Explore academic profile, clinical expertise, and achievements of Dr. Konika Bansal, Pediatric Neurologist & Epilepsy Specialist.",
+    keywords:
+      "Dr Konika Bansal, Pediatric Neurologist, Epilepsy Specialist, Child Neurology, Autism Treatment, Pediatric EEG"
   }
+}
+
 ];

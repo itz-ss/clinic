@@ -1,27 +1,31 @@
 // -------------------------------------------------------
-// EVENTS PAGE — FINAL PREMIUM VERSION
-// Matches your Strapi JSON structure exactly
-// Includes:
-// ✔ Sorted newest first
-// ✔ Show more after 10 items
-// ✔ Premium grid layout (3/2/1 responsive)
-// ✔ Same video styling as Educational Videos
-// ✔ Markdown description
-// ✔ YouTube embed fix
+// EVENTS PAGE — PER-DATE GRID (NO FOLDERS) + LIGHTBOX
 // -------------------------------------------------------
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { fetchEvents } from "../../services/strapi";
+import { STRAPI_URL } from "../../config";
 import "../../styles/Events.css";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(10); // show 10 initially
 
-  // Fetch Events
+  const [search, setSearch] = useState("");
+  const [expandedDates, setExpandedDates] = useState({});
+
+  // Lightbox
+  const [lightbox, setLightbox] = useState({
+    open: false,
+    items: [],
+    index: 0,
+  });
+
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
   useEffect(() => {
     const load = async () => {
       const data = await fetchEvents();
@@ -34,7 +38,20 @@ const Events = () => {
     load();
   }, []);
 
-  const loadMore = () => setVisibleCount((prev) => prev + 10);
+  useEffect(() => {
+    document.body.style.overflow = lightbox.open ? "hidden" : "auto";
+  }, [lightbox.open]);
+
+  useEffect(() => {
+    if (!lightbox.open) return;
+    const handleKey = (e) => {
+      if (e.key === "ArrowRight") nextItem();
+      if (e.key === "ArrowLeft") prevItem();
+      if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [lightbox]);
 
   const formatDate = (d) =>
     new Date(d).toLocaleDateString("en-IN", {
@@ -42,6 +59,154 @@ const Events = () => {
       month: "short",
       year: "numeric",
     });
+
+ const flattenEventToMedia = (event) => {
+  const baseItems = event.Events || [];
+  const result = [];
+
+  baseItems.forEach((item) => {
+    const baseMeta = {
+      parentDate: event.Date,
+      parentLocation: event.location,
+      title: item.title,
+      description: item.description,
+    };
+
+    // 🔥 Thumbnail (NO STRAPI_URL prefix — Cloudinary has full URL)
+    if (item.Thumbnail?.url) {
+      result.push({
+        ...baseMeta,
+        type: "image",
+        src: item.Thumbnail.formats?.medium?.url || item.Thumbnail.url,
+        thumb: item.Thumbnail.formats?.small?.url || item.Thumbnail.url,
+        id: `ev-${event.id}-${item.id}-thumb`,
+      });
+    }
+
+    // 🔥 Gallery (NO STRAPI_URL prefix)
+    if (Array.isArray(item.gallery)) {
+      item.gallery.forEach((img, gIndex) => {
+        result.push({
+          ...baseMeta,
+          type: "image",
+          src:
+            img.formats?.large?.url ||
+            img.formats?.medium?.url ||
+            img.url,
+          thumb: img.formats?.thumbnail?.url || img.url,
+          id: `ev-${event.id}-${item.id}-gal-${gIndex}`,
+        });
+      });
+    }
+
+    // 🔥 YouTube embed fix (same as before)
+    if (item.videoLink) {
+      let url = item.videoLink;
+      if (url.includes("watch?v=")) {
+        url = url.replace("watch?v=", "embed/").split("&")[0];
+      } else if (url.includes("youtu.be/")) {
+        url =
+          "https://www.youtube.com/embed/" +
+          url.split("youtu.be/")[1].split("?")[0];
+      }
+
+      result.push({
+        ...baseMeta,
+        type: "videoEmbed",
+        embedUrl: url,
+        id: `ev-${event.id}-${item.id}-yt`,
+      });
+    }
+
+    // 🔥 Video File (KEEP STRAPI_URL prefix)
+    if (item.videoFile?.url) {
+      result.push({
+        ...baseMeta,
+        type: "videoFile",
+        fileUrl: STRAPI_URL + item.videoFile.url,
+        id: `ev-${event.id}-${item.id}-vf`,
+      });
+    }
+  });
+
+  return result;
+};
+
+
+  const applySearch = (term, items) => {
+    if (!term.trim()) return items;
+    const t = term.toLowerCase();
+    return items.filter((m) => {
+      const title = m.title?.toLowerCase() || "";
+      const desc = m.description?.toLowerCase() || "";
+      const loc = m.parentLocation?.toLowerCase() || "";
+      const dateStr = formatDate(m.parentDate).toLowerCase();
+      return (
+        title.includes(t) ||
+        desc.includes(t) ||
+        loc.includes(t) ||
+        dateStr.includes(t)
+      );
+    });
+  };
+
+  const openLightbox = (items, index) => {
+    setLightbox({ open: true, items, index });
+  };
+
+  const closeLightbox = () =>
+    setLightbox({ open: false, items: [], index: 0 });
+
+  const nextItem = () =>
+    setLightbox((prev) => ({
+      ...prev,
+      index: (prev.index + 1) % prev.items.length,
+    }));
+
+  const prevItem = () =>
+    setLightbox((prev) => ({
+      ...prev,
+      index:
+        prev.index === 0 ? prev.items.length - 1 : prev.index - 1,
+    }));
+
+  const renderLightboxMedia = (item) => {
+    if (!item) return null;
+
+    if (item.type === "videoEmbed") {
+      return (
+        <iframe
+          className="lightbox-media"
+          src={item.embedUrl}
+          title={item.title || "Video"}
+          allowFullScreen
+        />
+      );
+    }
+
+    if (item.type === "videoFile") {
+      return (
+        <video
+          className="lightbox-media"
+          src={item.fileUrl}
+          controls
+          autoPlay
+        />
+      );
+    }
+
+    if (item.type === "image") {
+      return (
+        <img
+          className="lightbox-media"
+          src={item.src}
+          alt={item.title || ""}
+        />
+      );
+    }
+
+    return null;
+  };
 
   if (loading) return <p className="media-page">Loading events...</p>;
 
@@ -52,80 +217,161 @@ const Events = () => {
         <p>Awareness programs, workshops & public education sessions.</p>
       </header>
 
-      <div className="events-grid">
-        {events.slice(0, visibleCount).map((event) => (
-          <motion.div
-            key={event.id}
-            className="event-card-unified"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.25 }}
-          >
-            {/* Title (Date + Location) */}
-            <h2 className="event-title-unified">
-              {formatDate(event.Date)} – {event.location}
-            </h2>
+      <div className="event-search-bar">
+        <input
+          type="text"
+          placeholder="Search by title, description, location or date..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
-            {/* Internal event items */}
-            {event.Events?.map((item) => {
-              let embedUrl = null;
-              if (item.videoLink) {
-                const l = item.videoLink;
-                if (l.includes("watch?v=")) {
-                  embedUrl = l.replace("watch?v=", "embed/").split("&")[0];
-                } else if (l.includes("youtu.be/")) {
-                  embedUrl =
-                    "https://www.youtube.com/embed/" +
-                    l.split("youtu.be/")[1].split("?")[0];
-                }
-              }
+      {events.map((event) => {
+        const mediaItems = flattenEventToMedia(event);
+        const searched = applySearch(search, mediaItems);
+        if (searched.length === 0) return null;
 
-              return (
-                <div key={item.id} className="inner-event-content">
-                  <h3 className="inner-event-title">{item.title}</h3>
+        const expanded = expandedDates[event.id];
+        const visible = expanded ? searched : searched.slice(0, 15);
 
-                  {item.description && (
-                    <div className="inner-event-description">
-                      <ReactMarkdown>{item.description}</ReactMarkdown>
-                    </div>
+        return (
+          <section key={event.id} className="event-date-block">
+            <motion.h2
+              className="event-date-heading"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              📅 {formatDate(event.Date)} — {event.location}
+            </motion.h2>
+
+            {/* GRID VIEW — EACH ITEM IS A SEPARATE CARD */}
+            <div className="events-grid">
+              {visible.map((item) => (
+                <motion.div
+                  key={item.id}
+                  className="event-card"
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  onClick={() =>
+                    openLightbox(searched, searched.indexOf(item))
+                  }
+                >
+                  {item.type === "image" && (
+                    <img
+                      src={item.src}       // 🔥 now using high-resolution instead of thumbnail
+                      alt={item.title || ""}
+                      className="event-thumb"
+                      loading="lazy"
+                    />
                   )}
 
-                  {/* Video */}
-                  {embedUrl && (
-                    <div className="inner-event-video">
+                  {/* 🔥 UPDATED — Videos now play inside cards */}
+                  {item.type === "videoEmbed" && (
+                    <div className="event-video-wrapper">
                       <iframe
-                        src={embedUrl}
+                        src={item.embedUrl}
+                        className="event-video"
                         title={item.title}
-                        frameBorder="0"
                         allowFullScreen
                       />
                     </div>
                   )}
 
-                  {/* Post link */}
-                  {item.postLink && (
-                    <a
-                      className="event-post-btn"
-                      href={item.postLink}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      View Related Post
-                    </a>
+                  {item.type === "videoFile" && (
+                    <video
+                      className="event-video"
+                      src={item.fileUrl}
+                      controls
+                    />
                   )}
-                </div>
-              );
-            })}
-          </motion.div>
-        ))}
-      </div>
+                </motion.div>
+              ))}
+            </div>
 
-      {/* Show More Button */}
-      {events.length > visibleCount && (
-        <div className="media-loadmore-wrapper">
-          <button className="media-loadmore" onClick={loadMore}>
-            Show More
+            {searched.length > 15 && (
+              <div className="media-loadmore-wrapper">
+                <button
+                  className="media-loadmore"
+                  onClick={() =>
+                    setExpandedDates((prev) => ({
+                      ...prev,
+                      [event.id]: !prev[event.id],
+                    }))
+                  }
+                >
+                  {expanded ? "Show Less" : "Show More"}
+                </button>
+              </div>
+            )}
+          </section>
+        );
+      })}
+
+      {lightbox.open && lightbox.items[lightbox.index] && (
+        <div className="lightbox-overlay" onClick={closeLightbox}>
+          <button
+            className="lightbox-close"
+            onClick={(e) => {
+              e.stopPropagation();
+              closeLightbox();
+            }}
+          >
+            ✕
           </button>
+
+          <button
+            className="lightbox-prev"
+            onClick={(e) => {
+              e.stopPropagation();
+              prevItem();
+            }}
+          >
+            ‹
+          </button>
+          <button
+            className="lightbox-next"
+            onClick={(e) => {
+              e.stopPropagation();
+              nextItem();
+            }}
+          >
+            ›
+          </button>
+
+          <div
+            className="lightbox-media-wrapper"
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={(e) =>
+              (touchStartX.current = e.changedTouches[0].screenX)
+            }
+            onTouchEnd={(e) => {
+              touchEndX.current = e.changedTouches[0].screenX;
+              const diff = touchStartX.current - touchEndX.current;
+              if (Math.abs(diff) > 60) {
+                diff > 0 ? nextItem() : prevItem();
+              }
+            }}
+          >
+            <div className="lightbox-info">
+              <h2>{lightbox.items[lightbox.index].title}</h2>
+              <p>
+                {formatDate(lightbox.items[lightbox.index].parentDate)} •{" "}
+                {lightbox.items[lightbox.index].parentLocation}
+              </p>
+            </div>
+
+            {renderLightboxMedia(lightbox.items[lightbox.index])}
+
+            {lightbox.items[lightbox.index].description && (
+              <div className="lightbox-description">
+                <ReactMarkdown>
+                  {lightbox.items[lightbox.index].description}
+                </ReactMarkdown>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

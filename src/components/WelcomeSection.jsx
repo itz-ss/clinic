@@ -91,10 +91,10 @@ const WelcomeSection = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <motion.h1 className="welcome-title mb-3">
+                <motion.h1 className="welcome-title ">
                   Dr. Achal Gupta
                 </motion.h1>
-
+                    
                 <motion.p className="welcome-text">
                   Dr. Achal Gupta has rich experience in Brain & Endoscopic Spine
                   Surgery, specializing in advanced minimally invasive procedures to
@@ -114,6 +114,22 @@ const WelcomeSection = () => {
                   precision-based care, compassionate guidance, and modern technology
                   that ensures faster recovery and lasting relief.
                 </motion.p>
+                <motion.p
+                  className="doctorName"
+                  initial={{ scale: 1, color: "#003366" }}
+                  animate={{
+                    scale: [1, 1.05, 1],     // smooth pop animation
+                    color: ["#003366", "#007bff", "#003366"], // color pulse
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  National and International Faculty for endoscopic spine surgery
+                </motion.p>
+
               </motion.div>
             </Col>
           </Row>
@@ -181,7 +197,7 @@ const WelcomeSection = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <motion.h1 className="welcome-title mb-3">
+                <motion.h1 className="welcome-title">
                   Dr. Konika Bansal
                 </motion.h1>
 
@@ -201,6 +217,21 @@ const WelcomeSection = () => {
                   She believes in holistic healing that integrates technology,
                   compassion, and evidence-based treatment for long-term wellness.
                 </motion.p>
+                {/* <motion.p
+                  className="doctorName "
+                  initial={{ scale: 1, color: "#003366" }}
+                  animate={{
+                    scale: [1, 1.05, 1],     // smooth pop animation
+                    color: ["#003366", "#007bff", "#003366"], // color pulse
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  - Dr Kanika Bansal 
+                </motion.p> */}
               </motion.div>
             </Col>
           </Row>

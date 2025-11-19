@@ -5,17 +5,27 @@ import { motion } from "framer-motion";
 import { doctorsData } from "../../data/about";
 import "../../styles/About.css";
 
-
 function AchalAbout() {
   const doctor = doctorsData.find((d) => d.id === "dr-achal-gupta");
   const images = doctor.sectionImages || [];
-
   const getImage = (index) => images[index] || images[images.length - 1];
 
+  // 🔥 Phrase to detect & animate
+  const highlightPhrase =
+    "National and International Faculty for endoscopic spine surgery";
+    "He organised first ever endospine workshop in Lucknow";
+
+  // 🔍 Auto-wrap the line with animation span
+  const animateHighlight = (text) =>
+    text.replace(
+      highlightPhrase,
+      `<span class="animate-highlight">${highlightPhrase}</span>`
+    );
+
   return (
-    <Container className="about-container py-3">
+    <Container className="about-container">
       {/* Heading */}
-      <div className="text-center mb-4">
+      <div className="text-center">
         <motion.h1
           className="about-heading"
           initial={{ opacity: 0, y: 30 }}
@@ -24,6 +34,7 @@ function AchalAbout() {
         >
           {doctor.name}
         </motion.h1>
+
         <motion.p
           className="text-muted doctor-title"
           initial={{ opacity: 0, y: 20 }}
@@ -35,19 +46,22 @@ function AchalAbout() {
       </div>
 
       {/* 1️⃣ Biography — Photo LEFT */}
-      <Row className="align-items-center my-5">
+      <Row className="align-items-center">
         <Col md={6}>
           <img src={getImage(0)} alt="bio" className="about-image" />
         </Col>
         <Col md={6}>
           <h3>Biography</h3>
           {doctor.biography.map((p, i) => (
-            <p key={i}>{p}</p>
+            <p
+              key={i}
+              dangerouslySetInnerHTML={{ __html: animateHighlight(p) }}
+            />
           ))}
         </Col>
       </Row>
 
-      {/* 2️⃣ Education — Table with Year under Degree — Photo RIGHT */}
+      {/* 2️⃣ Education — Photo RIGHT */}
       <Row className="align-items-center my-5">
         <Col md={6} className="order-md-2">
           <img src={getImage(1)} alt="education" className="about-image" />
@@ -78,7 +92,7 @@ function AchalAbout() {
         </Col>
       </Row>
 
-      {/* 3️⃣ Experience — Photo LEFT */}
+      {/* 3️⃣ Experience */}
       <Row className="align-items-center my-5">
         <Col md={6}>
           <img src={getImage(2)} alt="experience" className="about-image" />
@@ -93,33 +107,33 @@ function AchalAbout() {
         </Col>
       </Row>
 
-      {/* 4️⃣ Spine Endoscopy Experience — Simple */}
+      {/* 4️⃣ Spine Endoscopy Experience */}
       <div className="my-5">
         <h3>Spine Endoscopy Experience</h3>
         <ul>
           {doctor.spineEndoscopyExperience.map((item, i) => (
-            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+            <li key={i} dangerouslySetInnerHTML={{ __html: animateHighlight(item) }} />
           ))}
         </ul>
       </div>
 
-      {/* 5️⃣ Project & Field Work — Simple */}
+      {/* 5️⃣ Project & Field Work */}
       <div className="my-5">
         <h3>Project & Field Work</h3>
         <ul>
           {doctor.projectAndFieldWork.map((item, i) => (
-            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+            <li key={i} dangerouslySetInnerHTML={{ __html: animateHighlight(item) }} />
           ))}
         </ul>
       </div>
 
-      {/* 6️⃣ Publications — LEFT content — RIGHT photo */}
+      {/* 6️⃣ Publications */}
       <Row className="align-items-center my-5">
         <Col md={6}>
           <h3>Publications</h3>
           <ul>
             {doctor.publications.map((item, i) => (
-              <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+              <li key={i} dangerouslySetInnerHTML={{ __html: animateHighlight(item) }} />
             ))}
           </ul>
         </Col>
@@ -128,17 +142,17 @@ function AchalAbout() {
         </Col>
       </Row>
 
-      {/* 7️⃣ Publications in Books — Simple */}
+      {/* 7️⃣ Publications in Books */}
       <div className="my-5">
         <h3>Publications in Books</h3>
         <ul>
           {doctor.publicationsInBooks.map((item, i) => (
-            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+            <li key={i} dangerouslySetInnerHTML={{ __html: animateHighlight(item) }} />
           ))}
         </ul>
       </div>
 
-      {/* 8️⃣ Awards — RIGHT column — LEFT photo */}
+      {/* 8️⃣ Awards */}
       <Row className="align-items-center my-5">
         <Col md={6} className="order-md-1">
           <img src={getImage(4)} alt="awards" className="about-image" />
@@ -147,29 +161,29 @@ function AchalAbout() {
           <h3>Awards & Achievements</h3>
           <ul>
             {doctor.awards.map((item, i) => (
-              <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+              <li key={i} dangerouslySetInnerHTML={{ __html: animateHighlight(item) }} />
             ))}
           </ul>
         </Col>
       </Row>
 
-      {/* 9️⃣ Paper Presentations — Simple */}
+      {/* 9️⃣ Paper Presentations */}
       <div className="my-5">
         <h3>Paper Presentations</h3>
         <ul>
           {doctor.paperPresentations.map((item, i) => (
-            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+            <li key={i} dangerouslySetInnerHTML={{ __html: animateHighlight(item) }} />
           ))}
         </ul>
       </div>
 
-      {/* 🔟 Conferences Attended — LEFT content — RIGHT photo */}
+      {/* 🔟 Conferences Attended */}
       <Row className="align-items-center my-5">
         <Col md={6}>
           <h3>Conferences Attended</h3>
           <ul>
             {doctor.conferencesAttended.map((item, i) => (
-              <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+              <li key={i} dangerouslySetInnerHTML={{ __html: animateHighlight(item) }} />
             ))}
           </ul>
         </Col>
@@ -178,7 +192,7 @@ function AchalAbout() {
         </Col>
       </Row>
 
-      {/* 1️⃣1️⃣ Leadership — RIGHT content — LEFT photo */}
+      {/* 1️⃣1️⃣ Leadership */}
       <Row className="align-items-center my-5">
         <Col md={6}>
           <img src={getImage(6)} alt="leadership" className="about-image" />
@@ -187,18 +201,18 @@ function AchalAbout() {
           <h3>Leadership & Organizational Roles</h3>
           <ul>
             {doctor.leadershipAbilities.map((item, i) => (
-              <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+              <li key={i} dangerouslySetInnerHTML={{ __html: animateHighlight(item) }} />
             ))}
           </ul>
         </Col>
       </Row>
 
-      {/* 1️⃣2️⃣ Professional Associations — Simple */}
+      {/* 1️⃣2️⃣ Professional Associations */}
       <div className="my-5">
         <h3>Professional Associations</h3>
         <ul>
           {doctor.affiliations.map((item, i) => (
-            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+            <li key={i} dangerouslySetInnerHTML={{ __html: animateHighlight(item) }} />
           ))}
         </ul>
       </div>

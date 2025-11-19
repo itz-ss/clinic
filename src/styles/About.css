@@ -24,6 +24,7 @@
   font-size: 1.1rem;
   font-weight: 500;
   margin-top: 8px;
+  text-align: center;
 }
 
 /* ---------- Each Content Section ---------- */
@@ -131,4 +132,56 @@
 .education-table th,
 .education-table td {
   background-color: transparent !important;
+}
+
+/* 🔥 Force table & children transparent (removes Bootstrap white background) */
+.about-table,
+.about-table * {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Remove borders and hover glow */
+.about-table tr,
+.about-table td,
+.about-table tbody {
+  border: none !important;
+}
+
+/* Improve spacing */
+.about-table td {
+  padding: 8px 0 !important;
+  font-size: 15px;
+  color: #444;
+}
+
+/* Make left column (degree) bold */
+.about-table td:first-child {
+  font-weight: 600;
+  width: 38%;
+}
+
+/* Highlight special entries */
+.highlight-text {
+  font-weight: 600;
+  color: #0077ff;
+}
+
+/* Small star badge */
+.badge-highlight {
+  margin-left: 4px;
+  font-size: 16px;
+}
+
+.animate-highlight {
+  font-weight: 600;
+  display: inline-block;
+  animation: popPulse 2s infinite ease-in-out;
+  color: #003366;
+}
+
+@keyframes popPulse {
+  0% { transform: scale(1); color: #003366; }
+  50% { transform: scale(1.05); color: #007bff; }
+  100% { transform: scale(1); color: #003366; }
 }
