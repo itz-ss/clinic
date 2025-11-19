@@ -1,5 +1,9 @@
-const BASE_URL = "http://localhost:1337/api";
-console.log("Frontend secret:", process.env.REACT_APP_STRAPI_SECRET);
+const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:1337/api"
+    : "https://clinicbackend-69yu.onrender.com";
+
+const SECRET = process.env.REACT_APP_STRAPI_SECRET;
 
 /**
  * Generic fetch function with security header
@@ -7,14 +11,14 @@ console.log("Frontend secret:", process.env.REACT_APP_STRAPI_SECRET);
 async function fetchFromStrapi(endpoint) {
   const res = await fetch(`${BASE_URL}/${endpoint}?populate=*`, {
     headers: {
-      "x-api-secret": process.env.REACT_APP_STRAPI_SECRET,
+      "x-api-secret": SECRET,
     },
   });
 
   if (!res.ok) throw new Error(`Failed to fetch ${endpoint}`);
-  const json = await res.json();
-  return json.data;
+  return (await res.json()).data;
 }
+
 
 /** EDUCATIONAL VIDEOS */
 export async function fetchEducationalVideos() {
@@ -31,7 +35,7 @@ export async function fetchEvents() {
     `${BASE_URL}/events?populate[Events][populate][Thumbnail]=true&populate[Events][populate][gallery]=true&populate[Events][populate][videoFile]=true`,
     {
       headers: {
-        "x-api-secret": process.env.REACT_APP_STRAPI_SECRET,
+        "x-api-secret": SECRET,
       },
     }
   );
@@ -77,7 +81,7 @@ export async function fetchPodcasts() {
     `${BASE_URL}/podcasts?populate[Podcast][populate][Thumbnail]=true&populate[Podcast][populate][gallery]=true&populate[Podcast][populate][videoFile]=true`,
     {
       headers: {
-        "x-api-secret": process.env.REACT_APP_STRAPI_SECRET,
+        "x-api-secret": SECRET,
       },
     }
   );
@@ -134,7 +138,7 @@ export async function fetchTestimonials() {
     `${BASE_URL}/testimonials?populate[Testimonial][populate][Thumbnail]=true&populate[Testimonial][populate][gallery]=true&populate[Testimonial][populate][videoFile]=true`,
     {
       headers: {
-        "x-api-secret": process.env.REACT_APP_STRAPI_SECRET,
+        "x-api-secret": SECRET,
       },
     }
   );
