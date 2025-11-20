@@ -1,24 +1,20 @@
+// src/utils/strapi.js
+
+// Backend URL (for development and production)
 const BASE_URL =
   window.location.hostname === "localhost"
-    ? "http://localhost:1337/api"
-    : "https://clinicbackend-69yu.onrender.com";
-
-const SECRET = process.env.REACT_APP_STRAPI_SECRET;
+    ? `${process.env.REACT_APP_STRAPI_URL || "http://localhost:1337"}/api`
+    : "https://YOUR-STRAPI-URL.up.railway.app/api";
 
 /**
- * Generic fetch function with security header
+ * Generic Strapi fetcher (public API — no secret headers)
  */
 async function fetchFromStrapi(endpoint) {
-  const res = await fetch(`${BASE_URL}/${endpoint}?populate=*`, {
-    headers: {
-      "x-api-secret": SECRET,
-    },
-  });
+  const res = await fetch(`${BASE_URL}/${endpoint}?populate=*`);
 
   if (!res.ok) throw new Error(`Failed to fetch ${endpoint}`);
   return (await res.json()).data;
 }
-
 
 /** EDUCATIONAL VIDEOS */
 export async function fetchEducationalVideos() {
@@ -32,12 +28,7 @@ export async function fetchEducationalVideos() {
 /** EVENTS */
 export async function fetchEvents() {
   const res = await fetch(
-    `${BASE_URL}/events?populate[Events][populate][Thumbnail]=true&populate[Events][populate][gallery]=true&populate[Events][populate][videoFile]=true`,
-    {
-      headers: {
-        "x-api-secret": SECRET,
-      },
-    }
+    `${BASE_URL}/events?populate[Events][populate][Thumbnail]=true&populate[Events][populate][gallery]=true&populate[Events][populate][videoFile]=true`
   );
 
   if (!res.ok) throw new Error("Failed to fetch events");
@@ -78,12 +69,7 @@ export async function fetchEvents() {
 /** PODCASTS */
 export async function fetchPodcasts() {
   const res = await fetch(
-    `${BASE_URL}/podcasts?populate[Podcast][populate][Thumbnail]=true&populate[Podcast][populate][gallery]=true&populate[Podcast][populate][videoFile]=true`,
-    {
-      headers: {
-        "x-api-secret": SECRET,
-      },
-    }
+    `${BASE_URL}/podcasts?populate[Podcast][populate][Thumbnail]=true&populate[Podcast][populate][gallery]=true&populate[Podcast][populate][videoFile]=true`
   );
 
   if (!res.ok) throw new Error("Failed to fetch podcasts");
@@ -93,9 +79,12 @@ export async function fetchPodcasts() {
     const pod = p.attributes.Podcast;
 
     let embed = pod.videoLink;
-    if (embed?.includes("watch?v=")) embed = embed.replace("watch?v=", "embed/").split("&")[0];
+    if (embed?.includes("watch?v="))
+      embed = embed.replace("watch?v=", "embed/").split("&")[0];
     else if (embed?.includes("youtu.be/"))
-      embed = "https://www.youtube.com/embed/" + embed.split("youtu.be/")[1].split("?")[0];
+      embed =
+        "https://www.youtube.com/embed/" +
+        embed.split("youtu.be/")[1].split("?")[0];
 
     return {
       id: p.id,
@@ -135,12 +124,7 @@ export async function fetchPodcasts() {
 /** TESTIMONIALS */
 export async function fetchTestimonials() {
   const res = await fetch(
-    `${BASE_URL}/testimonials?populate[Testimonial][populate][Thumbnail]=true&populate[Testimonial][populate][gallery]=true&populate[Testimonial][populate][videoFile]=true`,
-    {
-      headers: {
-        "x-api-secret": SECRET,
-      },
-    }
+    `${BASE_URL}/testimonials?populate[Testimonial][populate][Thumbnail]=true&populate[Testimonial][populate][gallery]=true&populate[Testimonial][populate][videoFile]=true`
   );
 
   if (!res.ok) throw new Error("Failed to fetch testimonials");
@@ -162,9 +146,4 @@ export async function fetchTestimonials() {
         : null,
     },
   }));
-}
-
-/** IN THE NEWS */
-export async function fetchInTheNews() {
-  return fetchFromStrapi("in-the-news");
 }
