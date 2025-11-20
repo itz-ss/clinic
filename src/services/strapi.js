@@ -4,7 +4,7 @@
 const BASE_URL =
   window.location.hostname === "localhost"
     ? `${process.env.REACT_APP_STRAPI_URL || "http://localhost:1337"}/api`
-    : "https://YOUR-STRAPI-URL.up.railway.app/api";
+    : "https://clinicbackend-production-61e1.up.railway.app/api";
 
 /**
  * Generic Strapi fetcher (public API — no secret headers)
