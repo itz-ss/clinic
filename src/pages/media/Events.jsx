@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// EVENTS PAGE — PER-DATE GRID (NO FOLDERS) + LIGHTBOX
+// EVENTS PAGE — PER-DATE MASONRY + LIGHTBOX
 // -------------------------------------------------------
 
 import React, { useEffect, useState, useRef } from "react";
@@ -12,11 +12,10 @@ import "../../styles/Events.css";
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [search, setSearch] = useState("");
   const [expandedDates, setExpandedDates] = useState({});
 
-  // Lightbox
+  // Lightbox state
   const [lightbox, setLightbox] = useState({
     open: false,
     items: [],
@@ -60,78 +59,75 @@ const Events = () => {
       year: "numeric",
     });
 
- const flattenEventToMedia = (event) => {
-  const baseItems = event.Events || [];
-  const result = [];
+  // Convert event entry into a flat media array
+  const flattenEventToMedia = (event) => {
+    const baseItems = event.Events || [];
+    const result = [];
 
-  baseItems.forEach((item) => {
-    const baseMeta = {
-      parentDate: event.Date,
-      parentLocation: event.location,
-      title: item.title,
-      description: item.description,
-    };
+    baseItems.forEach((item) => {
+      const baseMeta = {
+        parentDate: event.Date,
+        parentLocation: event.location,
+        title: item.title,
+        description: item.description,
+      };
 
-    // 🔥 Thumbnail (NO STRAPI_URL prefix — Cloudinary has full URL)
-    if (item.Thumbnail?.url) {
-      result.push({
-        ...baseMeta,
-        type: "image",
-        src: item.Thumbnail.formats?.medium?.url || item.Thumbnail.url,
-        thumb: item.Thumbnail.formats?.small?.url || item.Thumbnail.url,
-        id: `ev-${event.id}-${item.id}-thumb`,
-      });
-    }
-
-    // 🔥 Gallery (NO STRAPI_URL prefix)
-    if (Array.isArray(item.gallery)) {
-      item.gallery.forEach((img, gIndex) => {
+      // IMAGE — Thumbnail + Gallery
+      if (item.Thumbnail?.url) {
         result.push({
           ...baseMeta,
           type: "image",
-          src:
-            img.formats?.large?.url ||
-            img.formats?.medium?.url ||
-            img.url,
-          thumb: img.formats?.thumbnail?.url || img.url,
-          id: `ev-${event.id}-${item.id}-gal-${gIndex}`,
+          src: item.Thumbnail.formats?.large?.url ||
+               item.Thumbnail.formats?.medium?.url ||
+               item.Thumbnail.url,
+          id: `ev-${event.id}-${item.id}-thumb`,
         });
-      });
-    }
-
-    // 🔥 YouTube embed fix (same as before)
-    if (item.videoLink) {
-      let url = item.videoLink;
-      if (url.includes("watch?v=")) {
-        url = url.replace("watch?v=", "embed/").split("&")[0];
-      } else if (url.includes("youtu.be/")) {
-        url =
-          "https://www.youtube.com/embed/" +
-          url.split("youtu.be/")[1].split("?")[0];
       }
 
-      result.push({
-        ...baseMeta,
-        type: "videoEmbed",
-        embedUrl: url,
-        id: `ev-${event.id}-${item.id}-yt`,
-      });
-    }
+      if (Array.isArray(item.gallery)) {
+        item.gallery.forEach((img, gIndex) => {
+          result.push({
+            ...baseMeta,
+            type: "image",
+            src: img.formats?.large?.url ||
+                 img.formats?.medium?.url ||
+                 img.url,
+            id: `ev-${event.id}-${item.id}-gal-${gIndex}`,
+          });
+        });
+      }
 
-    // 🔥 Video File (KEEP STRAPI_URL prefix)
-    if (item.videoFile?.url) {
-      result.push({
-        ...baseMeta,
-        type: "videoFile",
-        fileUrl: STRAPI_URL + item.videoFile.url,
-        id: `ev-${event.id}-${item.id}-vf`,
-      });
-    }
-  });
+      // YOUTUBE Video Embed
+      if (item.videoLink) {
+        let url = item.videoLink;
+        if (url.includes("watch?v=")) {
+          url = url.replace("watch?v=", "embed/").split("&")[0];
+        } else if (url.includes("youtu.be/")) {
+          url =
+            "https://www.youtube.com/embed/" +
+            url.split("youtu.be/")[1].split("?")[0];
+        }
+        result.push({
+          ...baseMeta,
+          type: "videoEmbed",
+          embedUrl: url,
+          id: `ev-${event.id}-${item.id}-yt`,
+        });
+      }
 
-  return result;
-};
+      // LOCAL VIDEO FILE
+      if (item.videoFile?.url) {
+        result.push({
+          ...baseMeta,
+          type: "videoFile",
+          fileUrl: STRAPI_URL + item.videoFile.url,
+          id: `ev-${event.id}-${item.id}-vf`,
+        });
+      }
+    });
 
+    return result;
+  };
 
   const applySearch = (term, items) => {
     if (!term.trim()) return items;
@@ -150,12 +146,8 @@ const Events = () => {
     });
   };
 
-  const openLightbox = (items, index) => {
-    setLightbox({ open: true, items, index });
-  };
-
-  const closeLightbox = () =>
-    setLightbox({ open: false, items: [], index: 0 });
+  const openLightbox = (items, index) => setLightbox({ open: true, items, index });
+  const closeLightbox = () => setLightbox({ open: false, items: [], index: 0 });
 
   const nextItem = () =>
     setLightbox((prev) => ({
@@ -166,43 +158,22 @@ const Events = () => {
   const prevItem = () =>
     setLightbox((prev) => ({
       ...prev,
-      index:
-        prev.index === 0 ? prev.items.length - 1 : prev.index - 1,
+      index: prev.index === 0 ? prev.items.length - 1 : prev.index - 1,
     }));
 
   const renderLightboxMedia = (item) => {
     if (!item) return null;
 
+    if (item.type === "image") {
+      return <img className="lightbox-media" src={item.src} alt={item.title || ""} />;
+    }
+
     if (item.type === "videoEmbed") {
-      return (
-        <iframe
-          className="lightbox-media"
-          src={item.embedUrl}
-          title={item.title || "Video"}
-          allowFullScreen
-        />
-      );
+      return <iframe className="lightbox-media" src={item.embedUrl} title="Event video" allowFullScreen />;
     }
 
     if (item.type === "videoFile") {
-      return (
-        <video
-          className="lightbox-media"
-          src={item.fileUrl}
-          controls
-          autoPlay
-        />
-      );
-    }
-
-    if (item.type === "image") {
-      return (
-        <img
-          className="lightbox-media"
-          src={item.src}
-          alt={item.title || ""}
-        />
-      );
+      return <video className="lightbox-media" src={item.fileUrl} controls autoPlay />;
     }
 
     return null;
@@ -232,7 +203,7 @@ const Events = () => {
         if (searched.length === 0) return null;
 
         const expanded = expandedDates[event.id];
-        const visible = expanded ? searched : searched.slice(0, 15);
+        const visible = expanded ? searched : searched.slice(0, 18);
 
         return (
           <section key={event.id} className="event-date-block">
@@ -245,12 +216,12 @@ const Events = () => {
               📅 {formatDate(event.Date)} — {event.location}
             </motion.h2>
 
-            {/* GRID VIEW — EACH ITEM IS A SEPARATE CARD */}
-            <div className="events-grid">
+            {/* Masonry layout instead of grid */}
+            <div className="events-masonry">
               {visible.map((item) => (
                 <motion.div
                   key={item.id}
-                  className="event-card"
+                  className="events-masonry-item"
                   initial={{ opacity: 0, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2 }}
@@ -260,19 +231,18 @@ const Events = () => {
                 >
                   {item.type === "image" && (
                     <img
-                      src={item.src}       // 🔥 now using high-resolution instead of thumbnail
+                      src={item.src}
                       alt={item.title || ""}
-                      className="event-thumb"
                       loading="lazy"
+                      className="events-masonry-img"
                     />
                   )}
 
-                  {/* 🔥 UPDATED — Videos now play inside cards */}
                   {item.type === "videoEmbed" && (
-                    <div className="event-video-wrapper">
+                    <div className="events-video-wrapper">
                       <iframe
                         src={item.embedUrl}
-                        className="event-video"
+                        className="events-masonry-img"
                         title={item.title}
                         allowFullScreen
                       />
@@ -281,7 +251,7 @@ const Events = () => {
 
                   {item.type === "videoFile" && (
                     <video
-                      className="event-video"
+                      className="events-masonry-img"
                       src={item.fileUrl}
                       controls
                     />
@@ -290,7 +260,7 @@ const Events = () => {
               ))}
             </div>
 
-            {searched.length > 15 && (
+            {searched.length > 18 && (
               <div className="media-loadmore-wrapper">
                 <button
                   className="media-loadmore"
@@ -309,6 +279,7 @@ const Events = () => {
         );
       })}
 
+      {/* LIGHTBOX */}
       {lightbox.open && lightbox.items[lightbox.index] && (
         <div className="lightbox-overlay" onClick={closeLightbox}>
           <button

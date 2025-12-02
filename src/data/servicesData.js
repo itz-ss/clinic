@@ -166,7 +166,7 @@ export const servicesData = {
     {
       label: "Fracture Management",
       to: "/treatments/fracture-management",
-      banner: "/assets/images/fracture-banner.jpg",
+      banner: "/assets/banner/fracture-banner.jpg",
       image: "/assets/treatmentPhotos/fracture.jpg",
       description:
         "Fracture management involves aligning and stabilizing broken bones using advanced orthopedic techniques. Depending on severity, it can include splints, plates, or rods to restore strength, speed healing, and ensure proper bone alignment.",
@@ -195,7 +195,37 @@ export const servicesData = {
           "Microsurgical resection, endoscopic removal, or neuronavigation-guided surgery.",
       },
     },
-  ],
+
+    {
+    label: "Encephalopathy / Encephalitis",
+    to: "/treatments/encephalopathy-encephalitis",
+    banner: "/assets/banner/encephalitis.jpg",
+    image: "/assets/treatmentPhotos/encephalopathy.jpg",
+
+    // title: "Encephalitis is a term utilised to define the inflammation of the membranes that encompass the brain and spinal cord",
+    description: "Encephalitis is a term utilised to define the inflammation of the membranes that encompass the brain and spinal cord. This condition causes some issues with the brain and spinal cord function. The inflammation causes the brain to swell that leads to changes in the kid's neurological condition, including mental confusion and seizures.",
+
+    causes: {
+      heading: "What causes encephalitis?",
+      paragraph: "The cause of encephalitis varies depending on the season, the area of the country, and the exposure of the child. Viruses are the leading cause of encephalitis. Although vaccines for many viruses, including measles, mumps, rubella, and chickenpox have greatly lowered the rate of encephalitis from these diseases, other viruses can cause encephalitis. These include herpes simplex virus, West Nile virus (carried by mosquitoes) and rabies (carried by a number of different animals).\n\nEncephalitis can also happen following a bacterial infection, like Lyme disease, tuberculosis and syphilis, and by parasites, like toxoplasmosis."
+    },
+
+    riskFactors: {
+      heading: "What are the symptoms?",
+      points: [
+        "Fever",
+        "Headache",
+        "Aversion to light",
+        "Neck stiffness",
+        "sleepiness",
+        "Increased irritability",
+        "Seizures",
+        "Skin rashes",
+        "Trouble in talking and speech changes"
+      ]
+    }
+  },
+],
 
   // Dr Konika Bansal
   brain: [
@@ -205,7 +235,7 @@ export const servicesData = {
   banner: "/assets/banner/Child-Epilepsy.jpg",
   image: "/assets/treatmentPhotos/epilepsy-banner.jpg",
 
-  title: "Epilepsy influences every kid in a different way",
+  // title: "Epilepsy influences every kid in a different way",
   description: "Epilepsy influences every kid in a different way, depending upon their age, the sort of seizure they have, how well they respond to treatment, and some other existing health conditions.\n\nIn some cases, medicine can easily control seizures while different kids might encounter lifelong challenges with seizures.",
 
   causes: {
@@ -237,42 +267,12 @@ export const servicesData = {
 },
 
 {
-  label: "Encephalopathy / Encephalitis",
-  to: "/treatments/encephalopathy-encephalitis",
-  banner: "/assets/banner/encephalitis.jpg",
-  image: "/assets/treatmentPhotos/encephalopathy.jpg",
-
-  title: "Encephalitis is a term utilised to define the inflammation of the membranes that encompass the brain and spinal cord",
-  description: "Encephalitis is a term utilised to define the inflammation of the membranes that encompass the brain and spinal cord. This condition causes some issues with the brain and spinal cord function. The inflammation causes the brain to swell that leads to changes in the kid's neurological condition, including mental confusion and seizures.",
-
-  causes: {
-    heading: "What causes encephalitis?",
-    paragraph: "The cause of encephalitis varies depending on the season, the area of the country, and the exposure of the child. Viruses are the leading cause of encephalitis. Although vaccines for many viruses, including measles, mumps, rubella, and chickenpox have greatly lowered the rate of encephalitis from these diseases, other viruses can cause encephalitis. These include herpes simplex virus, West Nile virus (carried by mosquitoes) and rabies (carried by a number of different animals).\n\nEncephalitis can also happen following a bacterial infection, like Lyme disease, tuberculosis and syphilis, and by parasites, like toxoplasmosis."
-  },
-
-  riskFactors: {
-    heading: "What are the symptoms?",
-    points: [
-      "Fever",
-      "Headache",
-      "Aversion to light",
-      "Neck stiffness",
-      "sleepiness",
-      "Increased irritability",
-      "Seizures",
-      "Skin rashes",
-      "Trouble in talking and speech changes"
-    ]
-  }
-},
-
-{
   label: "Cerebral Palsy",
   to: "/treatments/cerebral-palsy",
   banner: "/assets/banner/cerebral-palsy.jpg",
   image: "/assets/treatmentPhotos/Cerebral-Palsy.jpg",
 
-  title: "Cerebral palsy (CP) is a group of disorders that affect a person’s ability to move and maintain balance and posture",
+  // title: "Cerebral palsy (CP) is a group of disorders that affect a person’s ability to move and maintain balance and posture",
   description: "Cerebral palsy (CP) is a group of disorders that affect a person’s ability to move and maintain balance and posture. CP is the most common motor disability in childhood. Cerebral means having to do with the brain. Palsy means weakness or problems with using the muscles. CP is caused by abnormal brain development or damage to the developing brain that affects a person’s ability to control his or her muscles.",
 
   causes: {
@@ -300,55 +300,6 @@ export const servicesData = {
       "Chemical or substance abuse during pregnancy",
       "Injury"
     ]
-  }
-},
-
-{
-  label: "Encephalopathy / Encephalitis",
-  to: "/treatments/encephalopathy-encephalitis",
-  banner: "/assets/banner/encephalitis.jpg",
-  image: "/assets/treatmentPhotos/encephalopathy.jpg",
-
-  title: "Encephalitis is a term utilised to define the inflammation of the membranes that encompass the brain and spinal cord",
-  description: "Encephalitis is a term utilised to define the inflammation of the membranes that encompass the brain and spinal cord. This condition causes some issues with the brain and spinal cord function. The inflammation causes the brain to swell that leads to changes in the kid's neurological condition, including mental confusion and seizures.",
-
-  causes: {
-    heading: "What causes encephalitis?",
-    paragraph: "he cause of encephalitis varies depending on the season, the area of the country, and the exposure of the child. Viruses are the leading cause of encephalitis. Although vaccines for many viruses, including measles, mumps, rubella, and chickenpox have greatly lowered the rate of encephalitis from these diseases, other viruses can cause encephalitis. These include herpes simplex virus, West Nile virus (carried by mosquitoes) and rabies (carried by a number of different animals).\n\nEncephalitis can also happen following a bacterial infection, like Lyme disease, tuberculosis and syphilis, and by parasites, like toxoplasmosis."
-  },
-
-  riskFactors: {
-    heading: "What are the symptoms?",
-    points: [
-      "Fever",
-      "Headache",
-      "Aversion to light",
-      "Neck stiffness",
-      "sleepiness",
-      "Increased irritability",
-      "Seizures",
-      "Skin rashes",
-      "Trouble in talking and speech changes"
-    ]
-  }
-},
-{
-  label: "Neurocysticercosis",
-  to: "/treatments/neurocysticercosis",
-  banner: "/assets/banner/neurocysticercosis.jpg",
-  image: "/assets/treatmentPhotos/neurocysticercosis.jpg",
-
-  title: "Neurocysticercosis is a neurological disease that occurs when a particular type of parasitic tapeworm invades the central nervous system",
-  description: "Neurocysticercosis is a neurological disease that occurs when a particular type of parasitic tapeworm invades the central nervous system.\n\nNeurocysticercosis is the most common parasitic infection of the central nervous system (CNS).\n\nThe disease affects people who ingest the tapeworm Taenia solium, and it developsTrusted Source when the worm’s larvae build up in the muscles, eyes, skin, and CNS.\n\nDiagnosis\n\nNeurocysticerosis is diagnosed by computed tomography (CT) scan.[3] Diagnosis may be confirmed by detection of antibodies against cysticerci in CSF or serum[5] through ELISA or immunoblotting techniques.",
-
-  causes: {
-    heading: "Treatment",
-    paragraph: "Treatment of neurocysticercosis includes epileptic therapy and a long-course medication of praziquantel (PZQ) and/or albendazole.[3] Steroid therapy may be necessary to minimize the inflammatory reaction to dying cysticerci.[6] Surgical removal of brain cysts may be necessary,[6] e.g. in cases of large parenchymal cysts, intraventricular cysts or hydrocephalus\n\nAlbendazole has been shown to reduce seizure recurrence in those with a single non-viable intraparenchymal cyst.[8] For seizures further randomized controlled trials are needed to evaluate the efficacy of antiepileptic drugs (AED) for seizure prevention in patients with symptoms other than seizures and the duration of AED treatment in these cases."
-  },
-
-  riskFactors: {
-    heading: "",
-    points: []
   }
 },
 
@@ -385,7 +336,7 @@ export const servicesData = {
   banner: "/assets/banner/stroke-banner.jpg",
   image: "/assets/treatmentPhotos/childStroke.jpg",
 
-  title: "Pediatric stroke is a rare condition affecting one in every 4,000 newborns and an additional 2,000 older children each year.",
+  // title: "Pediatric stroke is a rare condition affecting one in every 4,000 newborns and an additional 2,000 older children each year.",
   description: "Pediatric stroke is a rare condition affecting one in every 4,000 newborns and an additional 2,000 older children each year. Stroke is a type of blood vessel (cerebrovascular) disorder. Strokes can be categorized as ischemic (caused by insufficient blood flow) and hemorrhagic (caused by bleeding into the brain). When a blood vessel in the brain is injured, the brain tissue around it loses blood supply and suffers injury as well. Treatments and long-term outcome in children are different for each type.",
 
   causes: {
@@ -437,7 +388,7 @@ export const servicesData = {
   banner: "/assets/banner/global-developmental-delay.jpg",
   image: "/assets/treatmentPhotos/Global-Developmental-Delay.jpg",
 
-  title: "Developmental delay can be defined as a child who has not acquired the developmental skills expected of him or her",
+  // title: "Developmental delay can be defined as a child who has not acquired the developmental skills expected of him or her",
   description: "Developmental delay can be defined as a child who has not acquired the developmental skills expected of him or her, compared with others of a similar age. Delays could occur in the areas of motor function, language and speech, cognitive, play, and social skills. Global developmental delay suggests a young child has significant delays in at least two of these developmental regions. Consult",
 
   causes: {
@@ -461,7 +412,7 @@ export const servicesData = {
   banner: "/assets/banner/headache.jpg",
   image: "/assets/treatmentPhotos/Headaches.jpg",
 
-  title: "Headache are common in children, yet generally are not harmful and don't disturb their lives",
+  // title: "Headache are common in children, yet generally are not harmful and don't disturb their lives",
   description: "Headache are common in children, yet generally are not harmful and don't disturb their lives. However, in specific children, headaches become extreme or recurrent. On rare occasion, they may be the indication of a underlying disease. Dr Konika is the children headache specialist in Yeshwanthpur who gives accurate diagnosis and manage headache. Dr Konika and her team believes in giving comprehensive, compassionate care for children of all ages.",
 
   causes: {
@@ -494,7 +445,7 @@ export const servicesData = {
   banner: "/assets/banner/botox-dystonia.jpg",
   image: "/assets/treatmentPhotos/Botox-Therapy-in-Dystonia.jpg",
 
-  title: "What is Botulinum Neurotoxin Therapy?",
+  // title: "What is Botulinum Neurotoxin Therapy?",
   description: "Botulinum neurotoxin injections are a localized treatment to relieve dystonia symptoms. Botulinum neurotoxin (BNT), a biological product, is injected into muscles where it relaxes the muscles and reduces excessive muscle contractions. BNT is derived from the bacterium Clostridium botulinum. Ironically this is the same bacterium responsible for botulism, a disease associated with eating contaminated food. BNT is used as a therapeutic agent to block the release of chemicals that activate muscle contractions.",
 
   causes: {
@@ -515,35 +466,13 @@ export const servicesData = {
   }
 },
 
-{
-  label: "Cervical Spondylosis",
-  to: "/treatments/cervical-spondylosis",
-  banner: "/assets/banner/cervical-spondylosis.jpg",
-  image: "/assets/treatmentPhotos/cervical-spondylosis.jpg",
-
-  title: "The deterioration of your neck's discs, ligaments, bones, and cartilage over time is known as spondylosis",
-  description: "The deterioration of your neck's discs, ligaments, bones, and cartilage over time is known as spondylosis. Neck discomfort or stiffness are the main symptoms. The first-to-be-tried methods include physical therapy, ice, heat, massage, soft collars, and medications. Injections or surgery are used to treat more serious situations, such as herniated discs, bone spurs, or pinched nerves.\n\nSymptoms of cervical spondylosis are not always noticeable.Without symptoms, you might not even require treatment.",
-
-  causes: {
-    heading: "When your condition does cause symptoms, conservative treatments effectively treat most of the cases",
-    paragraph: "When your condition does cause symptoms, conservative treatments effectively treat most of the cases. The below treatment are recommended for instance",
-    points: [
-      "Physical therapy",
-      "Ice, heat and massage",
-      "Oral medications",
-      "Soft collar or brace",
-      "Injection therapy"
-    ]
-  }
-  },
-
   {
   label: "Metabolic Syndrome",
   to: "/treatments/metabolic-syndrome",
   banner: "/assets/banner/metabolic-syndrome.jpg",
   image: "/assets/treatmentPhotos/Metabolic-Disease.jpg",
 
-  title: "Metabolic syndrome is a cluster of conditions that occur together",
+  // title: "Metabolic syndrome is a cluster of conditions that occur together",
   description: "Metabolic syndrome is a cluster of conditions that occur together, increasing your risk of heart disease, stroke and type 2 diabetes. These conditions include increased blood pressure, high blood sugar, excess body fat around the waist, and abnormal cholesterol or triglyceride levels.\n\nHaving just one of these conditions doesn't mean you have metabolic syndrome. But it does mean you have a greater risk of serious disease. And if you develop more of these conditions, your risk of complications, such as type 2 diabetes and heart disease, rises even higher.",
 
   causes: {

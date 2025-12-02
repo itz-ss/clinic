@@ -10,17 +10,31 @@ function AchalAbout() {
   const images = doctor.sectionImages || [];
   const getImage = (index) => images[index] || images[images.length - 1];
 
-  // 🔥 Phrase to detect & animate
-  const highlightPhrase =
-    "National and International Faculty for endoscopic spine surgery";
-    "He organised first ever endospine workshop in Lucknow";
+  /**************************************************************
+   🔥 PHRASES YOU WANT TO HIGHLIGHT AUTOMATICALLY IN PARAGRAPHS
+   ➤ Add / remove lines inside the array — as many as you want
+   **************************************************************/
+  const highlightPhrases = [
+    "National and International Faculty for endoscopic spine surgery",
+    "He organised first ever endospine workshop in Lucknow",
+  ];
 
-  // 🔍 Auto-wrap the line with animation span
-  const animateHighlight = (text) =>
-    text.replace(
-      highlightPhrase,
-      `<span class="animate-highlight">${highlightPhrase}</span>`
-    );
+  /**************************************************************
+   🔍 Highlight ALL phrases inside the text dynamically
+   ➤ Wraps matched phrases in <span class="animate-highlight">
+   **************************************************************/
+  const animateHighlight = (text) => {
+    let result = text;
+    highlightPhrases.forEach((phrase) => {
+      // Escape RegExp characters from phrase and match case-insensitive
+      const regex = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+      result = result.replace(
+        regex,
+        `<span class="animate-highlight">${phrase}</span>`
+      );
+    });
+    return result;
+  };
 
   return (
     <Container className="about-container">
@@ -53,10 +67,7 @@ function AchalAbout() {
         <Col md={6}>
           <h3>Biography</h3>
           {doctor.biography.map((p, i) => (
-            <p
-              key={i}
-              dangerouslySetInnerHTML={{ __html: animateHighlight(p) }}
-            />
+            <p key={i} dangerouslySetInnerHTML={{ __html: animateHighlight(p) }} />
           ))}
         </Col>
       </Row>
@@ -127,7 +138,7 @@ function AchalAbout() {
         </ul>
       </div>
 
-      {/* 6️⃣ Publications */}
+      {/* 6️⃣ Publications — Photo RIGHT */}
       <Row className="align-items-center my-5">
         <Col md={6}>
           <h3>Publications</h3>
@@ -152,7 +163,7 @@ function AchalAbout() {
         </ul>
       </div>
 
-      {/* 8️⃣ Awards */}
+      {/* 8️⃣ Awards — Photo LEFT */}
       <Row className="align-items-center my-5">
         <Col md={6} className="order-md-1">
           <img src={getImage(4)} alt="awards" className="about-image" />
@@ -177,7 +188,7 @@ function AchalAbout() {
         </ul>
       </div>
 
-      {/* 🔟 Conferences Attended */}
+      {/* 🔟 Conferences Attended — Photo RIGHT */}
       <Row className="align-items-center my-5">
         <Col md={6}>
           <h3>Conferences Attended</h3>
@@ -192,7 +203,7 @@ function AchalAbout() {
         </Col>
       </Row>
 
-      {/* 1️⃣1️⃣ Leadership */}
+      {/* 1️⃣1️⃣ Leadership — Photo LEFT */}
       <Row className="align-items-center my-5">
         <Col md={6}>
           <img src={getImage(6)} alt="leadership" className="about-image" />

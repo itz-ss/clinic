@@ -147,3 +147,13 @@ export async function fetchTestimonials() {
     },
   }));
 }
+
+/** ACHIEVEMENTS */
+export async function fetchAllAchievements() {
+  const data = await fetchFromStrapi("achievements"); // plural
+  return data.map((item) => ({
+    id: item.id,
+    ...item.attributes,
+  }));
+}
+
