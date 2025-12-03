@@ -29,7 +29,7 @@ function Contact() {
             transition={{ duration: 0.8 }}
             className="contact-hero-title"
           >
-            Contact Dr. Achal Gupta
+            Let’s Take the First Step Towards a Pain-Free Life.
           </motion.h1>
         </div>
       </section>
@@ -95,6 +95,11 @@ function Contact() {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
+                <img
+                  src="/assets/about/konika4.jpeg"
+                  alt="Neuron Brain & Spine Center Lucknow"
+                  className="img-fluid rounded shadow-sm"
+                />
                 <img
                   src="/assets/about/achal6.jpg"
                   alt="Neuron Brain & Spine Center Lucknow"

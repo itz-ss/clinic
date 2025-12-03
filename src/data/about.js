@@ -4,7 +4,7 @@ export const doctorsData = [
   {
     id: "dr-achal-gupta",
     name: "Dr. Achal Gupta",
-    title: "Senior Consultant Neurosurgeon & Spine Specialist",
+    title: "Senior Consultant Neurosurgeon & Endoscopic Spine Surgeon",
     image: "/assets/images/doctors/dr-achal-gupta.jpg",
 
     sectionImages: [
