@@ -12,22 +12,37 @@ const YouTubeVideos = ({ videos }) => {
   const prevSlide = () =>
     setIndex((prev) => (prev - slidesToShow + videos.length) % videos.length);
 
-  const getId = (url) => url.split("v=")[1]?.split("&")[0];
+  // 🔥 Fully compatible video ID extractor (Normal + Shorts + youtu.be)
+  const getId = (url) => {
+    const patterns = [
+      /v=([^&]+)/,              // normal videos
+      /youtu\.be\/([^?]+)/,     // youtu.be short link
+      /shorts\/([^?]+)/,        // shorts
+      /embed\/([^?]+)/          // embedded links
+    ];
+    for (const p of patterns) {
+      const match = url.match(p);
+      if (match) return match[1];
+    }
+    return null;
+  };
 
   return (
     <div className="yt-wrapper">
       <h2 className="yt-title">Real Stories. Real Recoveries. Real Lives Transformed</h2>
 
-      {/* 🔥 Visible videos (looping logic) */}
+      {/* Video Track */}
       <div className="yt-track">
         <AnimatePresence mode="popLayout">
           {videos.slice(index, index + slidesToShow).map((url) => {
             const id = getId(url);
+            if (!id) return null;
+
             return (
               <motion.div
                 key={id}
                 className="yt-card"
-                initial={{ opacity: 0, x: 60 }}
+                initial={{ opacity: 1, x: 60 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -60 }}
                 transition={{ duration: 0.45 }}
@@ -38,36 +53,23 @@ const YouTubeVideos = ({ videos }) => {
                   className="yt-thumb"
                   alt="video thumbnail"
                 />
-                <motion.div className="yt-play" >
-                  ▶
-                </motion.div>
+                <motion.div className="yt-play">▶</motion.div>
               </motion.div>
             );
           })}
         </AnimatePresence>
       </div>
 
-      {/* Navigation Buttons */}
+      {/* Navigation */}
       <button className="yt-btn prev" onClick={prevSlide}>←</button>
       <button className="yt-btn next" onClick={nextSlide}>→</button>
 
-      {/* Dots */}
-      {/* <div className="yt-dots">
-        {videos.map((_, i) => (
-          <span
-            key={i}
-            className={`dot ${i === index ? "active" : ""}`}
-            onClick={() => setIndex(i)}
-          ></span>
-        ))}
-      </div> */}
-
-      {/* Popup Modal Player */}
+      {/* Modal */}
       <AnimatePresence>
         {modalVideo && (
           <motion.div
             className="yt-modal"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setModalVideo(null)}

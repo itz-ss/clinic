@@ -203,12 +203,12 @@ const WelcomeSection = () => {
 
                 <motion.p className="welcome-text">
                   Dr. Konika Bansal is an experienced neurologist known for her
-                  patient-centered care and excellence in diagnosing and managing
+                  patient-centered care and excellence in diagnosing & managing
                   neurological disorders with precision and empathy.
                 </motion.p>
 
                 <motion.p className="welcome-text">
-                  Her clinical expertise spans stroke care, epilepsy management,
+                  Her clinical expertise spans stroke care, management of epilepsy,
                   neurorehabilitation, and advanced neuro-diagnostics for improved
                   outcomes.
                 </motion.p>
