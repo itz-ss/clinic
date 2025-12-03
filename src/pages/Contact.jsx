@@ -14,14 +14,20 @@ function Contact() {
         keywords="Dr Achal Gupta contact, spine surgeon Lucknow, Neuron Brain & Spine Center specialist, book appointment"
       />
 
-      {/* 🟦 Banner Section */}
-      <section className="contact-banner">
-        <div className="contact-overlay">
+      {/* 🟦 Responsive Banner Section */}
+      <section className="contact-hero">
+        <img
+          src="/assets/banner/contact-banner.png"   // <-- change to your image path
+          alt="Contact Dr. Achal Gupta"
+          className="contact-hero-img"
+        />
+
+        <div className="contact-hero-overlay">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="contact-title"
+            className="contact-hero-title"
           >
             Contact Dr. Achal Gupta
           </motion.h1>
@@ -77,7 +83,7 @@ function Contact() {
                 <h5 className="fw-semibold d-flex align-items-center gap-2">
                   <i className="bi bi-clock-fill text-primary"></i> Working Hours
                 </h5>
-                <p className="text-muted mb-1">Mon – Sat: 10:00 AM – 6:00 PM</p>
+                <p className="text-muted mb-1">Mon – Sat: 3:00 PM – 7:00 PM</p>
                 <p className="text-muted mb-0">Sunday: Closed</p>
               </div>
 
@@ -90,7 +96,7 @@ function Contact() {
                 viewport={{ once: true }}
               >
                 <img
-                  src="/assets/images/achal2.jpg"
+                  src="/assets/about/achal6.jpg"
                   alt="Neuron Brain & Spine Center Lucknow"
                   className="img-fluid rounded shadow-sm"
                 />
@@ -107,9 +113,6 @@ function Contact() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-primary fw-bold mb-3 text-center">
-                Book an Appointment
-              </h4>
               <AppointmentForm serviceName="General Consultation" />
             </motion.div>
           </Col>

@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// EVENTS PAGE — PER-DATE MASONRY + LIGHTBOX
+// EVENTS PAGE — IMAGE MASONRY + VIDEO GRID + LIGHTBOX
 // -------------------------------------------------------
 
 import React, { useEffect, useState, useRef } from "react";
@@ -9,13 +9,36 @@ import { fetchEvents } from "../../services/strapi";
 import { STRAPI_URL } from "../../config";
 import "../../styles/Events.css";
 
+/* -----------------------------------------------------
+   YOUTUBE HELPERS
+----------------------------------------------------- */
+const extractYouTubeID = (url) => {
+  if (!url) return null;
+
+  if (url.includes("watch?v=")) return url.split("watch?v=")[1].split("&")[0];
+  if (url.includes("youtu.be/")) return url.split("youtu.be/")[1].split("?")[0];
+  if (url.includes("shorts/")) return url.split("shorts/")[1].split("?")[0];
+  if (url.includes("embed/")) return url.split("embed/")[1].split("?")[0];
+
+  if (/^[A-Za-z0-9_-]{11}$/.test(url)) return url;
+
+  return null;
+};
+
+const getYouTubeThumbnail = (url) => {
+  const id = extractYouTubeID(url);
+  if (!id) return "/video-default.png";
+  return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+};
+
+/* -----------------------------------------------------
+   MAIN
+----------------------------------------------------- */
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [expandedDates, setExpandedDates] = useState({});
-
-  // Lightbox state
   const [lightbox, setLightbox] = useState({
     open: false,
     items: [],
@@ -23,8 +46,10 @@ const Events = () => {
   });
 
   const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
 
+  /* -----------------------------------------------------
+     LOAD EVENTS
+  ----------------------------------------------------- */
   useEffect(() => {
     const load = async () => {
       const data = await fetchEvents();
@@ -37,20 +62,10 @@ const Events = () => {
     load();
   }, []);
 
+  /* Disable scroll when lightbox opens */
   useEffect(() => {
     document.body.style.overflow = lightbox.open ? "hidden" : "auto";
   }, [lightbox.open]);
-
-  useEffect(() => {
-    if (!lightbox.open) return;
-    const handleKey = (e) => {
-      if (e.key === "ArrowRight") nextItem();
-      if (e.key === "ArrowLeft") prevItem();
-      if (e.key === "Escape") closeLightbox();
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [lightbox]);
 
   const formatDate = (d) =>
     new Date(d).toLocaleDateString("en-IN", {
@@ -59,126 +74,135 @@ const Events = () => {
       year: "numeric",
     });
 
-  // Convert event entry into a flat media array
-  const flattenEventToMedia = (event) => {
-    const baseItems = event.Events || [];
-    const result = [];
+  /* -----------------------------------------------------
+     FLATTEN EVENT → IMAGES + VIDEOS
+  ----------------------------------------------------- */
+  const getEventMedia = (event) => {
+    const blocks = event.Events || [];
 
-    baseItems.forEach((item) => {
-      const baseMeta = {
-        parentDate: event.Date,
-        parentLocation: event.location,
+    const images = [];
+    const videos = [];
+
+    blocks.forEach((item, i) => {
+      const base = {
         title: item.title,
         description: item.description,
+        parentDate: event.Date,
+        parentLocation: event.location,
       };
 
-      // IMAGE — Thumbnail + Gallery
+      /* IMAGES ------------------------------- */
       if (item.Thumbnail?.url) {
-        result.push({
-          ...baseMeta,
+        images.push({
+          ...base,
           type: "image",
-          src: item.Thumbnail.formats?.large?.url ||
-               item.Thumbnail.formats?.medium?.url ||
-               item.Thumbnail.url,
-          id: `ev-${event.id}-${item.id}-thumb`,
+          src: item.Thumbnail.url,
+          id: `img-${event.id}-${i}`,
         });
       }
 
       if (Array.isArray(item.gallery)) {
-        item.gallery.forEach((img, gIndex) => {
-          result.push({
-            ...baseMeta,
+        item.gallery.forEach((img, gi) =>
+          images.push({
+            ...base,
             type: "image",
-            src: img.formats?.large?.url ||
-                 img.formats?.medium?.url ||
-                 img.url,
-            id: `ev-${event.id}-${item.id}-gal-${gIndex}`,
-          });
-        });
+            src: img.url,
+            id: `gal-${event.id}-${i}-${gi}`,
+          })
+        );
       }
 
-      // YOUTUBE Video Embed
+      /* VIDEOS ------------------------------- */
       if (item.videoLink) {
-        let url = item.videoLink;
-        if (url.includes("watch?v=")) {
-          url = url.replace("watch?v=", "embed/").split("&")[0];
-        } else if (url.includes("youtu.be/")) {
-          url =
-            "https://www.youtube.com/embed/" +
-            url.split("youtu.be/")[1].split("?")[0];
+        const id = extractYouTubeID(item.videoLink);
+        if (id) {
+          videos.push({
+            ...base,
+            type: "videoEmbed",
+            embedUrl: `https://www.youtube.com/embed/${id}`,
+            thumb: getYouTubeThumbnail(item.videoLink),
+            id: `yt-${event.id}-${i}`,
+          });
         }
-        result.push({
-          ...baseMeta,
-          type: "videoEmbed",
-          embedUrl: url,
-          id: `ev-${event.id}-${item.id}-yt`,
-        });
       }
 
-      // LOCAL VIDEO FILE
       if (item.videoFile?.url) {
-        result.push({
-          ...baseMeta,
+        videos.push({
+          ...base,
           type: "videoFile",
           fileUrl: STRAPI_URL + item.videoFile.url,
-          id: `ev-${event.id}-${item.id}-vf`,
+          thumb: "/video-default.png",
+          id: `vf-${event.id}-${i}`,
         });
       }
     });
 
-    return result;
+    return { images, videos };
   };
 
-  const applySearch = (term, items) => {
-    if (!term.trim()) return items;
+  /* -----------------------------------------------------
+     SEARCH
+  ----------------------------------------------------- */
+  const searchFilter = (term, arr) => {
+    if (!term.trim()) return arr;
+
     const t = term.toLowerCase();
-    return items.filter((m) => {
-      const title = m.title?.toLowerCase() || "";
-      const desc = m.description?.toLowerCase() || "";
-      const loc = m.parentLocation?.toLowerCase() || "";
-      const dateStr = formatDate(m.parentDate).toLowerCase();
+
+    return arr.filter((item) => {
       return (
-        title.includes(t) ||
-        desc.includes(t) ||
-        loc.includes(t) ||
-        dateStr.includes(t)
+        (item.title || "").toLowerCase().includes(t) ||
+        (item.description || "").toLowerCase().includes(t) ||
+        (item.parentLocation || "").toLowerCase().includes(t) ||
+        formatDate(item.parentDate).toLowerCase().includes(t)
       );
     });
   };
 
-  const openLightbox = (items, index) => setLightbox({ open: true, items, index });
-  const closeLightbox = () => setLightbox({ open: false, items: [], index: 0 });
+  /* -----------------------------------------------------
+     LIGHTBOX
+  ----------------------------------------------------- */
+  const openLightbox = (items, index) =>
+    setLightbox({ open: true, items, index });
+
+  const closeLightbox = () =>
+    setLightbox({ open: false, items: [], index: 0 });
 
   const nextItem = () =>
-    setLightbox((prev) => ({
-      ...prev,
-      index: (prev.index + 1) % prev.items.length,
+    setLightbox((p) => ({
+      ...p,
+      index: (p.index + 1) % p.items.length,
     }));
 
   const prevItem = () =>
-    setLightbox((prev) => ({
-      ...prev,
-      index: prev.index === 0 ? prev.items.length - 1 : prev.index - 1,
+    setLightbox((p) => ({
+      ...p,
+      index: p.index === 0 ? p.items.length - 1 : p.index - 1,
     }));
 
   const renderLightboxMedia = (item) => {
     if (!item) return null;
 
-    if (item.type === "image") {
-      return <img className="lightbox-media" src={item.src} alt={item.title || ""} />;
-    }
+    if (item.type === "image")
+      return <img className="lightbox-media" src={item.src} alt="" />;
 
-    if (item.type === "videoEmbed") {
-      return <iframe className="lightbox-media" src={item.embedUrl} title="Event video" allowFullScreen />;
-    }
+    if (item.type === "videoEmbed")
+      return (
+        <div className="lightbox-video-wrapper">
+          <iframe src={item.embedUrl} allowFullScreen />
+        </div>
+      );
 
-    if (item.type === "videoFile") {
-      return <video className="lightbox-media" src={item.fileUrl} controls autoPlay />;
-    }
+    if (item.type === "videoFile")
+      return (
+        <video className="lightbox-media" src={item.fileUrl} controls autoPlay />
+      );
 
     return null;
   };
 
+  /* -----------------------------------------------------
+     MAIN RENDER
+  ----------------------------------------------------- */
   if (loading) return <p className="media-page">Loading events...</p>;
 
   return (
@@ -188,6 +212,7 @@ const Events = () => {
         <p>Awareness programs, workshops & public education sessions.</p>
       </header>
 
+      {/* SEARCH BAR */}
       <div className="event-search-bar">
         <input
           type="text"
@@ -197,70 +222,70 @@ const Events = () => {
         />
       </div>
 
+      {/* EACH EVENT DATE */}
       {events.map((event) => {
-        const mediaItems = flattenEventToMedia(event);
-        const searched = applySearch(search, mediaItems);
-        if (searched.length === 0) return null;
+        const { images, videos } = getEventMedia(event);
+
+        const filteredImages = searchFilter(search, images);
+        const filteredVideos = searchFilter(search, videos);
+
+        if (filteredImages.length === 0 && filteredVideos.length === 0)
+          return null;
 
         const expanded = expandedDates[event.id];
-        const visible = expanded ? searched : searched.slice(0, 18);
+
+        const visibleImages = expanded
+          ? filteredImages
+          : filteredImages.slice(0, 18);
+        const visibleVideos = expanded
+          ? filteredVideos
+          : filteredVideos.slice(0, 18);
 
         return (
-          <section key={event.id} className="event-date-block">
-            <motion.h2
-              className="event-date-heading"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              📅 {formatDate(event.Date)} — {event.location}
-            </motion.h2>
+          <section key={event.id}>
+            <h2 className="event-date-heading">
+              {event.location}
+            </h2>
 
-            {/* Masonry layout instead of grid */}
-            <div className="events-masonry">
-              {visible.map((item) => (
-                <motion.div
-                  key={item.id}
-                  className="events-masonry-item"
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                  onClick={() =>
-                    openLightbox(searched, searched.indexOf(item))
-                  }
-                >
-                  {item.type === "image" && (
+            {/* ---------- IMAGE MASONRY ---------- */}
+            {visibleImages.length > 0 && (
+              <div className="events-masonry">
+                {visibleImages.map((item) => (
+                  <div
+                    key={item.id}
+                    className="events-masonry-item"
+                    onClick={() =>
+                      openLightbox(filteredImages, filteredImages.indexOf(item))
+                    }
+                  >
+                    <img src={item.src} className="events-masonry-img" />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* ---------- VIDEO GRID (4 per row) ---------- */}
+            {visibleVideos.length > 0 && (
+              <div className="events-video-grid">
+                {visibleVideos.map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() =>
+                      openLightbox(filteredVideos, filteredVideos.indexOf(item))
+                    }
+                  >
                     <img
-                      src={item.src}
-                      alt={item.title || ""}
-                      loading="lazy"
-                      className="events-masonry-img"
+                      src={item.thumb}
+                      className="events-video-thumb"
+                      alt=""
                     />
-                  )}
+                  </div>
+                ))}
+              </div>
+            )}
 
-                  {item.type === "videoEmbed" && (
-                    <div className="events-video-wrapper">
-                      <iframe
-                        src={item.embedUrl}
-                        className="events-masonry-img"
-                        title={item.title}
-                        allowFullScreen
-                      />
-                    </div>
-                  )}
-
-                  {item.type === "videoFile" && (
-                    <video
-                      className="events-masonry-img"
-                      src={item.fileUrl}
-                      controls
-                    />
-                  )}
-                </motion.div>
-              ))}
-            </div>
-
-            {searched.length > 18 && (
+            {/* SHOW MORE BUTTON */}
+            {(filteredImages.length > 18 || filteredVideos.length > 18) && (
               <div className="media-loadmore-wrapper">
                 <button
                   className="media-loadmore"
@@ -279,8 +304,10 @@ const Events = () => {
         );
       })}
 
-      {/* LIGHTBOX */}
-      {lightbox.open && lightbox.items[lightbox.index] && (
+      {/* -----------------------------------------------------
+         LIGHTBOX
+      ----------------------------------------------------- */}
+      {lightbox.open && (
         <div className="lightbox-overlay" onClick={closeLightbox}>
           <button
             className="lightbox-close"
@@ -291,7 +318,6 @@ const Events = () => {
           >
             ✕
           </button>
-
           <button
             className="lightbox-prev"
             onClick={(e) => {
@@ -318,11 +344,9 @@ const Events = () => {
               (touchStartX.current = e.changedTouches[0].screenX)
             }
             onTouchEnd={(e) => {
-              touchEndX.current = e.changedTouches[0].screenX;
-              const diff = touchStartX.current - touchEndX.current;
-              if (Math.abs(diff) > 60) {
+              const diff = touchStartX.current - e.changedTouches[0].screenX;
+              if (Math.abs(diff) > 60)
                 diff > 0 ? nextItem() : prevItem();
-              }
             }}
           >
             <div className="lightbox-info">

@@ -1,13 +1,14 @@
 // -------------------------------------------------------
-// Educational Videos Page
+// Educational Videos Page (Category-wise Pagination)
 // -------------------------------------------------------
-// Includes:
+// Features:
 // ✔ Fetch from Strapi
 // ✔ Auto YouTube title if missing
-// ✔ Dynamic category filter dropdown
+// ✔ Dynamic category filter
 // ✔ Sorting dropdown
 // ✔ Group by category
-// ✔ "Show More" after every 10 videos
+// ✔ CATEGORY-WISE PAGINATION (6 per page)
+// ✔ Independent page state per category
 // ✔ Responsive premium UI
 // -------------------------------------------------------
 
@@ -17,14 +18,23 @@ import ReactMarkdown from "react-markdown";
 import { fetchEducationalVideos } from "../../services/strapi";
 import "../../styles/EducationalVideos.css";
 
+const ITEMS_PER_PAGE = 6; // ⭐ YOUR REQUIREMENT
+
 const EducationalVideos = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [sortBy, setSortBy] = useState("latest");
-  const [visibleCount, setVisibleCount] = useState(10);
 
-  // Auto-fetch YouTube title if Strapi title missing
+  // ⭐ NEW: PAGE STATE PER CATEGORY
+  const [pageByCategory, setPageByCategory] = useState({});
+
+  // ⭐ When category or sorting changes → reset pages
+  const resetPageFor = (cat) => {
+    setPageByCategory((prev) => ({ ...prev, [cat]: 1 }));
+  };
+
+  // --- Auto-fetch missing YouTube title ---
   const fetchYouTubeTitle = async (videoLink) => {
     try {
       const idMatch =
@@ -41,9 +51,11 @@ const EducationalVideos = () => {
     }
   };
 
+  // --- Fetch videos ---
   useEffect(() => {
     const load = async () => {
       const data = await fetchEducationalVideos();
+
       const processed = await Promise.all(
         (data || []).map(async (v) => {
           let title = v.title;
@@ -54,12 +66,21 @@ const EducationalVideos = () => {
           return { ...v, title };
         })
       );
+
       setVideos(processed);
       setLoading(false);
+
+      // initialize all category pages to 1
+      const uniqueCats = [...new Set(processed.map((v) => v.category || "Uncategorized"))];
+      const pageObj = {};
+      uniqueCats.forEach((c) => (pageObj[c] = 1));
+      setPageByCategory(pageObj);
     };
+
     load();
   }, []);
 
+  // --- Group videos ---
   const groupedByCategory = videos.reduce((acc, v) => {
     const cat = v.category || "Uncategorized";
     if (!acc[cat]) acc[cat] = [];
@@ -67,12 +88,11 @@ const EducationalVideos = () => {
     return acc;
   }, {});
 
+  // --- Sorting videos ---
   const sortVideos = (arr) => {
     const sorted = [...arr];
-    if (sortBy === "latest")
-      sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    if (sortBy === "oldest")
-      sorted.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    if (sortBy === "latest") sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    if (sortBy === "oldest") sorted.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
     if (sortBy === "asc") sorted.sort((a, b) => a.title.localeCompare(b.title));
     if (sortBy === "desc") sorted.sort((a, b) => b.title.localeCompare(a.title));
     return sorted;
@@ -80,8 +100,6 @@ const EducationalVideos = () => {
 
   const getStrapiFileUrl = (file) =>
     file?.url ? `http://localhost:1337${file.url}` : null;
-
-  const loadMore = () => setVisibleCount((p) => p + 10);
 
   if (loading) return <p className="media-page">Loading videos...</p>;
 
@@ -92,21 +110,22 @@ const EducationalVideos = () => {
         <p>Discover premium clinical awareness content — organized elegantly</p>
       </header>
 
-      {/* Dropdowns */}
+      {/* FILTERS */}
       <div className="media-dropdowns">
         <select
           className="media-select"
           value={selectedCategory || ""}
           onChange={(e) => {
             setSelectedCategory(e.target.value || null);
-            setVisibleCount(10);
+            // reset all categories pages
+            const resets = {};
+            Object.keys(groupedByCategory).forEach((c) => (resets[c] = 1));
+            setPageByCategory(resets);
           }}
         >
           <option value="">All Categories</option>
           {Object.keys(groupedByCategory).map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
+            <option key={cat} value={cat}>{cat}</option>
           ))}
         </select>
 
@@ -115,7 +134,10 @@ const EducationalVideos = () => {
           value={sortBy}
           onChange={(e) => {
             setSortBy(e.target.value);
-            setVisibleCount(10);
+            // reset all categories pages
+            const resets = {};
+            Object.keys(groupedByCategory).forEach((c) => (resets[c] = 1));
+            setPageByCategory(resets);
           }}
         >
           <option value="latest">Newest First</option>
@@ -125,38 +147,44 @@ const EducationalVideos = () => {
         </select>
       </div>
 
-      {/* Display grouped + sorted videos */}
+      {/* CATEGORY SECTIONS */}
       {Object.keys(groupedByCategory)
         .filter((cat) => !selectedCategory || selectedCategory === cat)
         .map((cat) => {
           const sortedVideos = sortVideos(groupedByCategory[cat]);
+          const totalPages = Math.ceil(sortedVideos.length / ITEMS_PER_PAGE);
+
+          // ⭐ Get this category's current page
+          const currentPage = pageByCategory[cat] || 1;
+
+          const start = (currentPage - 1) * ITEMS_PER_PAGE;
+          const paginatedVideos = sortedVideos.slice(start, start + ITEMS_PER_PAGE);
 
           return (
             <section key={cat} className="media-section">
               {!selectedCategory && <h2 className="media-section-title">{cat}</h2>}
 
               <div className="media-grid">
-                {sortedVideos.slice(0, visibleCount).map((video) => {
+                {paginatedVideos.map((video) => {
                   const thumbnailUrl = getStrapiFileUrl(video.thumbnail);
                   const videoFileUrl = getStrapiFileUrl(video.videoFile);
 
-                  // 🔥 Universal YouTube Link Converter (ALL formats supported)
+                  // YouTube link → embed URL
                   let embedUrl = null;
                   if (video.videoLink) {
                     let link = video.videoLink.trim();
                     let videoId = null;
 
-                    if (link.includes("watch?v=")) {
+                    if (link.includes("watch?v="))
                       videoId = link.split("watch?v=")[1].split("&")[0];
-                    } else if (link.includes("youtu.be/")) {
+                    else if (link.includes("youtu.be/"))
                       videoId = link.split("youtu.be/")[1].split("?")[0];
-                    } else if (link.includes("shorts/")) {
+                    else if (link.includes("shorts/"))
                       videoId = link.split("shorts/")[1].split("?")[0];
-                    } else if (link.includes("embed/")) {
+                    else if (link.includes("embed/"))
                       videoId = link.split("embed/")[1].split("?")[0];
-                    } else if (/^[a-zA-Z0-9_-]{11}$/.test(link)) {
-                      videoId = link; // only ID
-                    }
+                    else if (/^[a-zA-Z0-9_-]{11}$/.test(link))
+                      videoId = link;
 
                     if (videoId) embedUrl = `https://www.youtube.com/embed/${videoId}`;
                   }
@@ -174,8 +202,6 @@ const EducationalVideos = () => {
                           <img src={thumbnailUrl} alt={video.title} />
                         </div>
                       )}
-
-                      <h3>{video.title || "Untitled Video"}</h3>
 
                       {video.description && (
                         <div className="media-description">
@@ -201,10 +227,46 @@ const EducationalVideos = () => {
                 })}
               </div>
 
-              {sortedVideos.length > visibleCount && (
-                <div className="media-loadmore-wrapper">
-                  <button className="media-loadmore" onClick={loadMore}>
-                    Show More
+              {/* ⭐ PAGINATION UI FOR THIS CATEGORY ONLY */}
+              {totalPages > 1 && (
+                <div className="pagination">
+                  <button
+                    disabled={currentPage === 1}
+                    onClick={() =>
+                      setPageByCategory((prev) => ({
+                        ...prev,
+                        [cat]: prev[cat] - 1,
+                      }))
+                    }
+                  >
+                    Previous
+                  </button>
+
+                  {[...Array(totalPages)].map((_, i) => (
+                    <button
+                      key={i}
+                      className={currentPage === i + 1 ? "active-page" : ""}
+                      onClick={() =>
+                        setPageByCategory((prev) => ({
+                          ...prev,
+                          [cat]: i + 1,
+                        }))
+                      }
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+
+                  <button
+                    disabled={currentPage === totalPages}
+                    onClick={() =>
+                      setPageByCategory((prev) => ({
+                        ...prev,
+                        [cat]: prev[cat] + 1,
+                      }))
+                    }
+                  >
+                    Next
                   </button>
                 </div>
               )}

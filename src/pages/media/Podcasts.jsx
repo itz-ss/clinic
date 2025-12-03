@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// PODCASTS PAGE — PER-GUEST GRID (NO FOLDERS) + LIGHTBOX
+// PODCASTS PAGE — IMAGE MASONRY + VIDEO GRID + LIGHTBOX
 // -------------------------------------------------------
 
 import React, { useEffect, useState, useRef } from "react";
@@ -9,6 +9,31 @@ import { fetchPodcasts } from "../../services/strapi";
 import { STRAPI_URL } from "../../config";
 import "../../styles/Podcasts.css";
 
+/* -----------------------------------------------------
+   YOUTUBE HELPERS
+----------------------------------------------------- */
+const extractYouTubeID = (url) => {
+  if (!url) return null;
+
+  if (url.includes("watch?v=")) return url.split("watch?v=")[1].split("&")[0];
+  if (url.includes("youtu.be/")) return url.split("youtu.be/")[1].split("?")[0];
+  if (url.includes("shorts/")) return url.split("shorts/")[1].split("?")[0];
+  if (url.includes("embed/")) return url.split("embed/")[1].split("?")[0];
+
+  if (/^[A-Za-z0-9_-]{11}$/.test(url)) return url;
+
+  return null;
+};
+
+const getYouTubeThumbnail = (url) => {
+  const id = extractYouTubeID(url);
+  if (!id) return "/video-default.png";
+  return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+};
+
+/* -----------------------------------------------------
+   MAIN COMPONENT
+----------------------------------------------------- */
 const Podcasts = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,24 +48,19 @@ const Podcasts = () => {
     index: 0,
   });
 
-  const shareItem = (item) => {
-    const url = window.location.href;
-    const text = `🎙️ ${item.title} — ${item.guestName}`;
-    const whatsapp = `https://wa.me/?text=${encodeURIComponent(text + "\n" + url)}`;
-    const instagram = `https://www.instagram.com/?url=${encodeURIComponent(url)}`;
-    return { whatsapp, instagram };
-  };
-
   const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
 
+  /* -----------------------------------------------------
+     LOAD PODCASTS
+  ----------------------------------------------------- */
   useEffect(() => {
     const load = async () => {
       const data = await fetchPodcasts();
 
-      // 🔥 SORT NEWEST GUEST FIRST
       const sorted = [...(data || [])].sort(
-        (a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt)
+        (a, b) =>
+          new Date(b.updatedAt || b.createdAt) -
+          new Date(a.updatedAt || a.createdAt)
       );
 
       setPodcasts(sorted);
@@ -53,125 +73,136 @@ const Podcasts = () => {
     document.body.style.overflow = lightbox.open ? "hidden" : "auto";
   }, [lightbox.open]);
 
-  useEffect(() => {
-    if (!lightbox.open) return;
-    const handleKey = (e) => {
-      if (e.key === "ArrowRight") nextItem();
-      if (e.key === "ArrowLeft") prevItem();
-      if (e.key === "Escape") closeLightbox();
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [lightbox.open, lightbox.items, lightbox.index]);
+  /* -----------------------------------------------------
+     FLATTEN PODCAST → IMAGES + VIDEOS
+  ----------------------------------------------------- */
+  const getMedia = (podcast) => {
+    const items = Array.isArray(podcast.Podcast)
+      ? podcast.Podcast
+      : podcast.Podcast
+      ? [podcast.Podcast]
+      : [];
 
-  // 🔥 Supports single & repeatable Podcast component
-  const flattenPodcastToMedia = (podcast) => {
-  const items = Array.isArray(podcast.Podcast)
-    ? podcast.Podcast
-    : podcast.Podcast
-    ? [podcast.Podcast]
-    : [];
+    const images = [];
+    const videos = [];
 
-  const result = [];
+    items.forEach((item, i) => {
+      const base = {
+        guestName: podcast.guestName,
+        guestDesignation: podcast.guestDesignation,
+        title: item.title,
+        description: item.description,
+      };
 
-  items.forEach((item, i) => {
-    const base = {
-      guestName: podcast.guestName,
-      guestDesignation: podcast.guestDesignation,
-      title: item.title,
-      description: item.description,
-    };
-
-    // 🔥 Thumbnail (NO STRAPI_URL prefix — Cloudinary already provides full URL)
-    if (item.Thumbnail?.url) {
-      result.push({
-        ...base,
-        type: "image",
-        src: item.Thumbnail.formats?.medium?.url || item.Thumbnail.url,
-        thumb: item.Thumbnail.formats?.small?.url || item.Thumbnail.url,
-        id: `p-${podcast.id}-${i}-thumb`,
-      });
-    }
-
-    // 🔥 Gallery (NO STRAPI_URL prefix)
-    if (Array.isArray(item.gallery)) {
-      item.gallery.forEach((img, g) => {
-        result.push({
+      /* IMAGES ------------------------ */
+      if (item.Thumbnail?.url) {
+        images.push({
           ...base,
           type: "image",
-          src: img.formats?.large?.url || img.formats?.medium?.url || img.url,
-          thumb: img.formats?.thumbnail?.url || img.url,
-          id: `p-${podcast.id}-${i}-gal-${g}`,
+          src: item.Thumbnail.formats?.large?.url ||
+               item.Thumbnail.formats?.medium?.url ||
+               item.Thumbnail.url,
+          id: `img-${podcast.id}-${i}`,
         });
-      });
-    }
+      }
 
-    // 🔥 YouTube embed fix
-    if (item.videoLink) {
-      let url = item.videoLink;
-      if (url.includes("watch?v=")) url = url.replace("watch?v=", "embed/").split("&")[0];
-      if (url.includes("youtu.be/"))
-        url = "https://www.youtube.com/embed/" + url.split("youtu.be/")[1].split("?")[0];
+      if (Array.isArray(item.gallery)) {
+        item.gallery.forEach((g, gi) =>
+          images.push({
+            ...base,
+            type: "image",
+            src: g.formats?.large?.url ||
+                 g.formats?.medium?.url ||
+                 g.url,
+            id: `gal-${podcast.id}-${i}-${gi}`,
+          })
+        );
+      }
 
-      result.push({
-        ...base,
-        type: "videoEmbed",
-        embedUrl: url,
-        id: `p-${podcast.id}-${i}-yt`,
-      });
-    }
+      /* VIDEOS ------------------------ */
+      if (item.videoLink) {
+        const id = extractYouTubeID(item.videoLink);
+        if (id) {
+          videos.push({
+            ...base,
+            type: "videoEmbed",
+            embedUrl: `https://www.youtube.com/embed/${id}`,
+            thumb: getYouTubeThumbnail(item.videoLink),
+            id: `yt-${podcast.id}-${i}`,
+          });
+        }
+      }
 
-    // 🔥 Video file (KEEP STRAPI_URL — backend format is still relative)
-    if (item.videoFile?.url) {
-      result.push({
-        ...base,
-        type: "videoFile",
-        fileUrl: STRAPI_URL + item.videoFile.url,
-        id: `p-${podcast.id}-${i}-vf`,
-      });
-    }
-  });
+      if (item.videoFile?.url) {
+        videos.push({
+          ...base,
+          type: "videoFile",
+          fileUrl: STRAPI_URL + item.videoFile.url,
+          thumb: "/video-default.png",
+          id: `vf-${podcast.id}-${i}`,
+        });
+      }
+    });
 
-  return result;
-};
+    return { images, videos };
+  };
 
+  /* -----------------------------------------------------
+     SEARCH
+  ----------------------------------------------------- */
+  const applySearch = (term, items) => {
+    if (!term.trim()) return items;
+    const t = term.toLowerCase();
 
-  const applySearch = (t, list) => {
-    if (!t.trim()) return list;
-    const term = t.toLowerCase();
-    return list.filter(
+    return items.filter(
       (x) =>
-        x.title?.toLowerCase().includes(term) ||
-        x.description?.toLowerCase().includes(term) ||
-        x.guestName?.toLowerCase().includes(term) ||
-        x.guestDesignation?.toLowerCase().includes(term)
+        x.title?.toLowerCase().includes(t) ||
+        x.description?.toLowerCase().includes(t) ||
+        x.guestName?.toLowerCase().includes(t) ||
+        x.guestDesignation?.toLowerCase().includes(t)
     );
   };
 
-  const openLightbox = (items, index) => setLightbox({ open: true, items, index });
-  const closeLightbox = () => setLightbox({ open: false, items: [], index: 0 });
+  /* -----------------------------------------------------
+     LIGHTBOX
+  ----------------------------------------------------- */
+  const openLightbox = (items, index) =>
+    setLightbox({ open: true, items, index });
+
+  const closeLightbox = () =>
+    setLightbox({ open: false, items: [], index: 0 });
 
   const nextItem = () =>
-    setLightbox((prev) => ({
-      ...prev,
-      index: (prev.index + 1) % prev.items.length,
+    setLightbox((p) => ({
+      ...p,
+      index: (p.index + 1) % p.items.length,
     }));
 
   const prevItem = () =>
-    setLightbox((prev) => ({
-      ...prev,
-      index: prev.index === 0 ? prev.items.length - 1 : prev.index - 1,
+    setLightbox((p) => ({
+      ...p,
+      index: p.index === 0 ? p.items.length - 1 : p.index - 1,
     }));
 
-  const renderLightboxMedia = (item) =>
-    item.type === "videoEmbed" ? (
-      <iframe className="lightbox-media" src={item.embedUrl} allowFullScreen />
-    ) : item.type === "videoFile" ? (
-      <video className="lightbox-media" src={item.fileUrl} controls autoPlay />
-    ) : (
-      <img className="lightbox-media" src={item.src} alt={item.title} />
-    );
+  const renderLightboxMedia = (item) => {
+    if (item.type === "image")
+      return <img className="lightbox-media" src={item.src} alt={item.title} />;
 
+    if (item.type === "videoEmbed")
+      return (
+        <div className="lightbox-video-wrapper">
+          <iframe src={item.embedUrl} allowFullScreen />
+        </div>
+      );
+
+    return (
+      <video className="lightbox-media" src={item.fileUrl} controls autoPlay />
+    );
+  };
+
+  /* -----------------------------------------------------
+     PAGE RENDER
+  ----------------------------------------------------- */
   if (loading) return <p className="media-page">Loading podcasts...</p>;
 
   return (
@@ -181,7 +212,7 @@ const Podcasts = () => {
         <p>Talks, interviews & knowledge sessions</p>
       </header>
 
-      {/* SEARCH */}
+      {/* 🔍 SEARCH */}
       <div className="event-search-bar">
         <input
           type="text"
@@ -191,39 +222,73 @@ const Podcasts = () => {
         />
       </div>
 
-      {/* GROUP BY GUEST */}
+      {/* -------------------------------------------------
+         PER-GUEST SECTION
+      ------------------------------------------------- */}
       {podcasts.map((pod) => {
-        const media = flattenPodcastToMedia(pod);
-        const searched = applySearch(search, media);
-        if (searched.length === 0) return null;
+        const { images, videos } = getMedia(pod);
+
+        const filteredImages = applySearch(search, images);
+        const filteredVideos = applySearch(search, videos);
+
+        if (filteredImages.length === 0 && filteredVideos.length === 0)
+          return null;
 
         const expanded = expandedGuests[pod.id];
-        const visible = expanded ? searched : searched.slice(0, 15);
+
+        const visibleImages = expanded
+          ? filteredImages
+          : filteredImages.slice(0, 18);
+
+        const visibleVideos = expanded
+          ? filteredVideos
+          : filteredVideos.slice(0, 18);
 
         return (
           <section key={pod.id} className="event-date-block">
-            <motion.h2 className="event-date-heading" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}>
+            <h2 className="event-date-heading">
               🎙️ {pod.guestName} — {pod.guestDesignation}
-            </motion.h2>
+            </h2>
 
-            {/* GRID */}
-            <div className="events-grid">
-              {visible.map((item) => (
-                <motion.div
-                  key={item.id}
-                  className="event-card"
-                  onClick={() => openLightbox(searched, searched.indexOf(item))}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  {item.type === "image" && <img src={item.thumb} alt={item.title} className="event-thumb" />}
-                  {item.type === "videoEmbed" && <div className="event-video-icon">▶</div>}
-                  {item.type === "videoFile" && <div className="event-video-icon">🎬</div>}
-                  <p className="event-card-title">{item.title}</p>
-                </motion.div>
-              ))}
-            </div>
+            {/* ⭐ IMAGE MASONRY */}
+            {visibleImages.length > 0 && (
+              <div className="events-masonry">
+                {visibleImages.map((item) => (
+                  <div
+                    key={item.id}
+                    className="events-masonry-item"
+                    onClick={() =>
+                      openLightbox(filteredImages, filteredImages.indexOf(item))
+                    }
+                  >
+                    <img src={item.src} className="events-masonry-img" />
+                  </div>
+                ))}
+              </div>
+            )}
 
-            {searched.length > 15 && (
+            {/* ⭐ VIDEO GRID (4 per row) */}
+            {visibleVideos.length > 0 && (
+              <div className="events-video-grid">
+                {visibleVideos.map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() =>
+                      openLightbox(filteredVideos, filteredVideos.indexOf(item))
+                    }
+                  >
+                    <img
+                      src={item.thumb}
+                      className="events-video-thumb"
+                      alt=""
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* SHOW MORE */}
+            {(filteredImages.length > 18 || filteredVideos.length > 18) && (
               <div className="media-loadmore-wrapper">
                 <button
                   className="media-loadmore"
@@ -242,14 +307,54 @@ const Podcasts = () => {
         );
       })}
 
-      {/* LIGHTBOX */}
+      {/* -------------------------------------------------
+         LIGHTBOX
+      ------------------------------------------------- */}
       {lightbox.open && (
         <div className="lightbox-overlay" onClick={closeLightbox}>
-          <button className="lightbox-close" onClick={(e) => { e.stopPropagation(); closeLightbox(); }}>✕</button>
-          <button className="lightbox-prev" onClick={(e) => { e.stopPropagation(); prevItem(); }}>‹</button>
-          <button className="lightbox-next" onClick={(e) => { e.stopPropagation(); nextItem(); }}>›</button>
+          <button
+            className="lightbox-close"
+            onClick={(e) => {
+              e.stopPropagation();
+              closeLightbox();
+            }}
+          >
+            ✕
+          </button>
 
-          <div className="lightbox-media-wrapper" onClick={(e) => e.stopPropagation()}>
+          <button
+            className="lightbox-prev"
+            onClick={(e) => {
+              e.stopPropagation();
+              prevItem();
+            }}
+          >
+            ‹
+          </button>
+
+          <button
+            className="lightbox-next"
+            onClick={(e) => {
+              e.stopPropagation();
+              nextItem();
+            }}
+          >
+            ›
+          </button>
+
+          <div
+            className="lightbox-media-wrapper"
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={(e) =>
+              (touchStartX.current = e.changedTouches[0].screenX)
+            }
+            onTouchEnd={(e) => {
+              const diff =
+                touchStartX.current - e.changedTouches[0].screenX;
+              if (Math.abs(diff) > 60)
+                diff > 0 ? nextItem() : prevItem();
+            }}
+          >
             <div className="lightbox-info">
               <h2>{lightbox.items[lightbox.index].title}</h2>
               <p>
@@ -258,34 +363,7 @@ const Podcasts = () => {
               </p>
             </div>
 
-            {/* 🔥 MEDIA FIRST */}
             {renderLightboxMedia(lightbox.items[lightbox.index])}
-
-            {/* 🔥 SHARE AFTER MEDIA */}
-            {(() => {
-              const item = lightbox.items[lightbox.index];
-              const links = shareItem(item);
-              return (
-                <div className="lightbox-share">
-                  <a href={links.whatsapp} target="_blank" rel="noreferrer" className="share-btn whatsapp">
-                    WhatsApp
-                  </a>
-                  <a href={links.instagram} target="_blank" rel="noreferrer" className="share-btn instagram">
-                    Instagram
-                  </a>
-                  <button
-                    className="share-btn copy"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      navigator.clipboard.writeText(window.location.href);
-                      alert("🔗 Link copied!");
-                    }}
-                  >
-                    Copy Link
-                  </button>
-                </div>
-              );
-            })()}
 
             {lightbox.items[lightbox.index].description && (
               <div className="lightbox-description">

@@ -1,32 +1,28 @@
 /* ==========================================================
-   PODCASTS — PREMIUM FIXED-HEIGHT TILE GALLERY
+   PAGE BASE
    ========================================================== */
-
 .media-page {
-  padding: 35px 20px;
+  padding: 30px 18px;
   font-family: "Poppins", sans-serif;
-  background: transparent;
 }
 
-/* Page header */
 .media-header h1 {
-  font-weight: 700;
-  font-size: 2.3rem;
   text-align: center;
+  font-size: 2.3rem;
+  font-weight: 700;
 }
 .media-header p {
   text-align: center;
-  margin-top: 6px;
   color: #555;
-  font-size: 1.05rem;
+  margin-top: 6px;
 }
 
-/* ----------------------------------------------------------
+/* ==========================================================
    SEARCH BAR
-   ---------------------------------------------------------- */
+   ========================================================== */
 .event-search-bar {
-  max-width: 600px;
-  margin: 25px auto 35px;
+  max-width: 650px;
+  margin: 28px auto 15px;
 }
 .event-search-bar input {
   width: 100%;
@@ -38,258 +34,235 @@
 }
 .event-search-bar input:focus {
   border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 120, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 120, 255, 0.18);
 }
 
-/* ----------------------------------------------------------
-   GUEST HEADING
-   ---------------------------------------------------------- */
+/* ==========================================================
+   GUEST HEADER
+   ========================================================== */
 .event-date-heading {
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  margin: 40px 0 18px;
+  margin: 42px 0 18px;
   text-align: center;
   color: #0078ff;
 }
 
-/* ----------------------------------------------------------
-   FIXED GRID — ELEGANT INSTAGRAM FEED
-   ---------------------------------------------------------- */
-.events-grid {
-  display: grid;
-  gap: 22px;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  justify-content: center;
+/* ==========================================================
+   IMAGE MASONRY (Pinterest layout)
+   ========================================================== */
+.events-masonry {
+  columns: 4;
+  column-gap: 16px;
 }
 
-/* ----------------------------------------------------------
-   PODCAST CARD (thumbnail / video / gallery item)
-   ---------------------------------------------------------- */
-.event-card {
-  background: transparent;
-  backdrop-filter: blur(6px);
-  border-radius: 14px;
+.events-masonry-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
   cursor: pointer;
-  transition: 0.25s;
+  border-radius: 14px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 305px;              /* 🔥 fixed elegant card height */
-  padding: 12px;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.event-card:hover {
-  transform: translateY(-6px);
+
+.events-masonry-img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  object-fit: cover;
+  display: block;
+}
+
+.events-masonry-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* Masonry Responsive */
+@media (max-width: 1200px) { .events-masonry { columns: 3; } }
+@media (max-width: 768px) { .events-masonry { columns: 2; } }
+@media (max-width: 480px) { .events-masonry { columns: 1; } }
+
+/* ==========================================================
+   VIDEO GRID (4 per row)
+   ========================================================== */
+.events-video-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin: 20px 0;
 }
 
 /* Thumbnail */
-.event-thumb {
+.events-video-thumb {
   width: 100%;
   height: 200px;
+  border-radius: 14px;
   object-fit: cover;
-  border-radius: 10px;
-  transition: 0.3s;
-}
-.event-card:hover .event-thumb {
-  transform: scale(1.04);
+  cursor: pointer;
+  background: #000;
+  transition: 0.25s ease;
 }
 
-/* Icon for video preview (YouTube / File) */
-.event-video-icon {
-  width: 100%;
-  height: 200px;
-  border-radius: 10px;
-  background: #111;
-  color: white;
-  font-size: 54px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.events-video-thumb:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
 }
 
-/* Title text */
-.event-card-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1b1b1b;
-  text-align: center;
-  margin-top: 10px;
-  line-height: 1.3;
-  padding: 0 6px;
+/* Video Grid Responsive */
+@media (max-width: 1200px) {
+  .events-video-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .events-video-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .events-video-grid { grid-template-columns: repeat(1, 1fr); }
 }
 
-/* ----------------------------------------------------------
-   SHOW MORE / LESS BUTTON
-   ---------------------------------------------------------- */
+/* ==========================================================
+   SHOW MORE BUTTON
+   ========================================================== */
 .media-loadmore-wrapper {
   text-align: center;
-  margin: 24px 0;
+  margin: 25px 0 5px;
 }
 .media-loadmore {
-  background: #007bff;
-  color: #fff;
   padding: 10px 26px;
-  font-size: 15px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  transition: 0.25s;
+  background: #0078ff;
+  color: white;
+  font-size: 15px;
+  transition: 0.3s ease;
 }
 .media-loadmore:hover {
   background: #005bd1;
 }
 
 /* ==========================================================
-   LIGHTBOX — FULLSCREEN VIEW
+   LIGHTBOX
    ========================================================== */
 .lightbox-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.82);
-  z-index: 2000;
+  background: rgba(0, 0, 0, 0.88);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 3000;
 }
 
-/* Close button */
-.lightbox-close {
-  position: absolute;
-  top: 24px;
-  right: 30px;
-  font-size: 34px;
-  color: #fff;
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
-/* Next / Previous arrows */
-.lightbox-prev,
-.lightbox-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  width: 50px;
-  height: 50px;
-  background: rgba(0, 0, 0, 0.55);
-  border-radius: 50%;
-  color: white;
-  font-size: 36px;
-  cursor: pointer;
-  transition: 0.25s;
-}
-.lightbox-prev:hover,
-.lightbox-next:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
-.lightbox-prev {
-  left: 30px;
-}
-.lightbox-next {
-  right: 30px;
-}
-
-/* Wrapper */
 .lightbox-media-wrapper {
   max-width: 92vw;
-  max-height: 88vh;
+  max-height: 90vh;
+  background: #111;
+  border-radius: 14px;
+  padding: 18px 22px;
+  color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Title + Guest */
-.lightbox-info {
-  color: #fff;
-  text-align: center;
-  margin-bottom: 15px;
-}
 .lightbox-info h2 {
-  font-size: 1.55rem;
+  font-size: 1.5rem;
   margin: 0;
 }
 .lightbox-info p {
   font-size: 1rem;
-  margin-top: 4px;
   color: #ccc;
+  margin: 0 0 6px;
 }
 
-/* Image / Video */
+/* LIGHTBOX MEDIA */
 .lightbox-media {
   max-width: 100%;
-  max-height: 78vh;
-  border-radius: 12px;
+  max-height: 65vh;
   object-fit: contain;
+  border-radius: 12px;
+  align-self: center;
 }
 
-/* Description text */
+/* FIXED VIDEO BLOCK */
+.lightbox-video-wrapper {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  background: black;
+  margin: 0 auto;
+}
+
+.lightbox-video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: none;
+}
+
+/* Description */
 .lightbox-description {
-  margin-top: 14px;
-  max-width: 820px;
-  color: #f6f6f6;
-  text-align: center;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  color: #ddd;
+  max-height: 18vh;
+  overflow-y: auto;
+  padding-top: 6px;
 }
 
-/* ==========================================================
-   RESPONSIVE TUNING
-   ========================================================== */
-@media (max-width: 600px) {
-  .event-card {
-    height: 285px;
-  }
-  .event-thumb,
-  .event-video-icon {
-    height: 185px;
-  }
-  .lightbox-prev,
-  .lightbox-next {
-    width: 42px;
-    height: 42px;
-  }
-}
-
-/* SHARE BUTTONS IN LIGHTBOX */
+/* SHARE BUTTONS */
 .lightbox-share {
-  margin-top: 14px;
   display: flex;
-  gap: 12px;
   justify-content: center;
-  flex-wrap: wrap;
+  gap: 12px;
+  margin: 10px 0;
 }
 
 .share-btn {
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
   border: none;
-  text-decoration: none;
+}
+
+.share-btn.whatsapp { background: #25D366; color: white; }
+.share-btn.instagram { background: #E4405F; color: white; }
+.share-btn.copy { background: #777; color: white; }
+
+.share-btn:hover {
+  opacity: 0.85;
+}
+
+/* CONTROLS */
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
   color: white;
-  transition: 0.25s;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 3200;
 }
 
-.share-btn.whatsapp {
-  background: #25d366;
-}
-.share-btn.whatsapp:hover {
-  background: #1ea955;
-}
+.lightbox-close { top: 25px; right: 25px; }
+.lightbox-prev { left: 20px; top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: 20px; top: 50%; transform: translateY(-50%); }
 
-.share-btn.instagram {
-  background: #e1306c;
-}
-.share-btn.instagram:hover {
-  background: #c2275c;
-}
-
-.share-btn.copy {
-  background: #007bff;
-}
-.share-btn.copy:hover {
-  background: #005bd1;
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(0, 0, 0, 0.85);
 }

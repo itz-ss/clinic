@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-// TESTIMONIALS PAGE — GLOBAL GRID (NO GROUPING) + LIGHTBOX
+// TESTIMONIALS PAGE — GLOBAL GRID + FIXED LIGHTBOX + YOUTUBE SHORTS FIX + THUMBNAIL FIX
 // -------------------------------------------------------
 
 import React, { useEffect, useState, useRef } from "react";
@@ -8,6 +8,29 @@ import ReactMarkdown from "react-markdown";
 import { fetchTestimonials } from "../../services/strapi";
 import { STRAPI_URL } from "../../config";
 import "../../styles/TestimonialsPage.css";
+
+// ⭐ Extract YouTube VIDEO ID from ANY link
+const extractYouTubeID = (url) => {
+  if (!url) return null;
+
+  if (url.includes("watch?v=")) return url.split("watch?v=")[1].split("&")[0];
+  if (url.includes("youtu.be/")) return url.split("youtu.be/")[1].split("?")[0];
+  if (url.includes("shorts/")) return url.split("shorts/")[1].split("?")[0];
+  if (url.includes("embed/")) return url.split("embed/")[1].split("?")[0];
+
+  // Already ID
+  if (/^[A-Za-z0-9_-]{11}$/.test(url)) return url;
+
+  return null;
+};
+
+// ⭐ Generate default YouTube thumbnail
+const getYouTubeThumbnail = (url) => {
+  const id = extractYouTubeID(url);
+  if (!id) return null;
+
+  return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+};
 
 const TestimonialsPage = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -23,9 +46,8 @@ const TestimonialsPage = () => {
   });
 
   const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
 
-  // 🔥 Load testimonials
+  // Load testimonials
   useEffect(() => {
     const load = async () => {
       const data = await fetchTestimonials();
@@ -35,35 +57,45 @@ const TestimonialsPage = () => {
     load();
   }, []);
 
-  // Disable scroll when lightbox open
   useEffect(() => {
     document.body.style.overflow = lightbox.open ? "hidden" : "auto";
   }, [lightbox.open]);
 
-  const openLightbox = (items, index) => setLightbox({ open: true, items, index });
-  const closeLightbox = () => setLightbox({ open: false, items: [], index: 0 });
+  const openLightbox = (items, index) =>
+    setLightbox({ open: true, items, index });
+
+  const closeLightbox = () =>
+    setLightbox({ open: false, items: [], index: 0 });
+
   const nextItem = () =>
     setLightbox((p) => ({ ...p, index: (p.index + 1) % p.items.length }));
+
   const prevItem = () =>
-    setLightbox((p) => ({ ...p, index: p.index === 0 ? p.items.length - 1 : p.index - 1 }));
+    setLightbox((p) => ({
+      ...p,
+      index: p.index === 0 ? p.items.length - 1 : p.index - 1,
+    }));
 
-  const shareItem = (item) => {
-    const url = window.location.href;
-    const text = `💬 ${item.title} — ${item.patientName}`;
-    const whatsapp = `https://wa.me/?text=${encodeURIComponent(text + "\n" + url)}`;
-    navigator.clipboard.writeText(url);
-    return { whatsapp };
-  };
-
+  // ⭐ Render media inside lightbox
   const renderLightboxMedia = (item) => {
-    if (item.type === "videoEmbed")
-      return <iframe className="lightbox-media" src={item.embedUrl} allowFullScreen />;
-    if (item.type === "videoFile")
-      return <video className="lightbox-media" src={item.fileUrl} controls autoPlay />;
+    if (item.type === "videoEmbed") {
+      return (
+        <div className="lightbox-video-wrapper">
+          <iframe src={item.embedUrl} allowFullScreen />
+        </div>
+      );
+    }
+
+    if (item.type === "videoFile") {
+      return (
+        <video className="lightbox-media" src={item.fileUrl} controls autoPlay />
+      );
+    }
+
     return <img className="lightbox-media" src={item.src} alt={item.title} />;
   };
 
-  // 🔥 Flatten testimonial structure to display gallery / images / video
+  // ⭐ Flatten testimonials -> gallery items
   const flattenTestimonials = testimonials.flatMap((t) => {
     const items = t.Testimonial ? [t.Testimonial] : [];
     const final = [];
@@ -73,53 +105,54 @@ const TestimonialsPage = () => {
         patientName: t.patientName,
         title: item.title,
         description: item.description,
+        videoLink: item.videoLink || null, // ⭐ needed for thumbnail fallback
       };
 
-      // Thumbnail if available
+      // Thumbnail from Strapi
       if (item.Thumbnail?.url) {
         final.push({
           ...base,
           type: "image",
-          src: item.Thumbnail.formats?.medium?.url || item.Thumbnail.url,
-          thumb: item.Thumbnail.formats?.thumbnail?.url || item.Thumbnail.url,
+          src: item.Thumbnail.url,
+          thumb: item.Thumbnail.url,
           id: `thumb-${t.id}-${i}`,
         });
       }
 
-      // Gallery FIX — Cloudinary → item.gallery.data
+      // Gallery
       if (Array.isArray(item.gallery?.data)) {
         item.gallery.data.forEach((g, gi) =>
           final.push({
             ...base,
             type: "image",
-            src: g.attributes.formats?.medium?.url || g.attributes.url,
-            thumb: g.attributes.formats?.thumbnail?.url || g.attributes.url,
+            src: g.attributes.url,
+            thumb: g.attributes.url,
             id: `gal-${t.id}-${i}-${gi}`,
           })
         );
       }
 
-      // YouTube embed
+      // ⭐ YouTube videos (Shorts + normal)
       if (item.videoLink) {
-        let url = item.videoLink;
-        if (url.includes("watch?v=")) url = url.replace("watch?v=", "embed/").split("&")[0];
-        if (url.includes("youtu.be/"))
-          url = "https://www.youtube.com/embed/" + url.split("youtu.be/")[1].split("?")[0];
-
-        final.push({
-          ...base,
-          type: "videoEmbed",
-          embedUrl: url,
-          id: `yt-${t.id}-${i}`,
-        });
+        const id = extractYouTubeID(item.videoLink);
+        if (id) {
+          final.push({
+            ...base,
+            type: "videoEmbed",
+            embedUrl: `https://www.youtube.com/embed/${id}`,
+            thumb: getYouTubeThumbnail(item.videoLink), // ⭐ default thumbnail
+            id: `yt-${t.id}-${i}`,
+          });
+        }
       }
 
-      // MP4 video
+      // MP4 file
       if (item.videoFile?.url) {
         final.push({
           ...base,
           type: "videoFile",
           fileUrl: STRAPI_URL + item.videoFile.url,
+          thumb: "/video-default-thumb.jpg",
           id: `vf-${t.id}-${i}`,
         });
       }
@@ -128,7 +161,7 @@ const TestimonialsPage = () => {
     return final;
   });
 
-  // 🔍 Search
+  // Search filter
   const filtered = flattenTestimonials.filter((x) => {
     const term = search.toLowerCase();
     return (
@@ -166,9 +199,16 @@ const TestimonialsPage = () => {
             whileHover={{ scale: 1.02 }}
             onClick={() => openLightbox(filtered, index)}
           >
-            {item.type === "image" && <img src={item.thumb} alt={item.title} className="event-thumb" />}
-            {item.type === "videoEmbed" && <div className="event-video-icon">▶</div>}
-            {item.type === "videoFile" && <div className="event-video-icon">🎬</div>}
+            <img
+              src={
+                item.thumb ||
+                getYouTubeThumbnail(item.videoLink) || // ⭐ fallback thumbnail
+                "/no-thumb.png"
+              }
+              alt={item.title}
+              className="event-thumb"
+            />
+
             <p className="event-card-title">{item.patientName}</p>
           </motion.div>
         ))}
@@ -177,7 +217,10 @@ const TestimonialsPage = () => {
       {/* LOAD MORE */}
       {filtered.length > visibleCount && (
         <div className="media-loadmore-wrapper">
-          <button className="media-loadmore" onClick={() => setVisibleCount((v) => v + 30)}>
+          <button
+            className="media-loadmore"
+            onClick={() => setVisibleCount((v) => v + 30)}
+          >
             Show More
           </button>
         </div>
@@ -186,48 +229,52 @@ const TestimonialsPage = () => {
       {/* LIGHTBOX */}
       {lightbox.open && (
         <div className="lightbox-overlay" onClick={closeLightbox}>
-          <button className="lightbox-close" onClick={(e) => { e.stopPropagation(); closeLightbox(); }}>
+          <button
+            className="lightbox-close"
+            onClick={(e) => {
+              e.stopPropagation();
+              closeLightbox();
+            }}
+          >
             ✕
           </button>
-          <button className="lightbox-prev" onClick={(e) => { e.stopPropagation(); prevItem(); }}>
+
+          <button
+            className="lightbox-prev"
+            onClick={(e) => {
+              e.stopPropagation();
+              prevItem();
+            }}
+          >
             ‹
           </button>
-          <button className="lightbox-next" onClick={(e) => { e.stopPropagation(); nextItem(); }}>
+
+          <button
+            className="lightbox-next"
+            onClick={(e) => {
+              e.stopPropagation();
+              nextItem();
+            }}
+          >
             ›
           </button>
 
           <div
             className="lightbox-media-wrapper"
             onClick={(e) => e.stopPropagation()}
-            onTouchStart={(e) => (touchStartX.current = e.changedTouches[0].screenX)}
-            onTouchEnd={(e) => {
-              touchEndX.current = e.changedTouches[0].screenX;
-              const diff = touchStartX.current - touchEndX.current;
-              if (Math.abs(diff) > 60) diff > 0 ? nextItem() : prevItem();
-            }}
           >
             <div className="lightbox-info">
               <h2>{lightbox.items[lightbox.index].title}</h2>
               <p>{lightbox.items[lightbox.index].patientName}</p>
             </div>
 
-            {(() => {
-              const item = lightbox.items[lightbox.index];
-              const links = shareItem(item);
-              return (
-                <div className="lightbox-share">
-                  <a href={links.whatsapp} target="_blank" rel="noreferrer" className="share-btn whatsapp">
-                    WhatsApp
-                  </a>
-                </div>
-              );
-            })()}
-
             {renderLightboxMedia(lightbox.items[lightbox.index])}
 
             {lightbox.items[lightbox.index].description && (
               <div className="lightbox-description">
-                <ReactMarkdown>{lightbox.items[lightbox.index].description}</ReactMarkdown>
+                <ReactMarkdown>
+                  {lightbox.items[lightbox.index].description}
+                </ReactMarkdown>
               </div>
             )}
           </div>

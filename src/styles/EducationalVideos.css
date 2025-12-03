@@ -61,9 +61,9 @@
 
 /* Card */
 .media-card {
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  background: none;
+  border-radius: 10px;
+  /* box-shadow: 0 5px 20px rgba(0,0,0,0.08); */
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -71,7 +71,7 @@
   transition: 0.25s;
 }
 .media-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-10px);
 }
 
 /* Thumbnail */
@@ -117,4 +117,32 @@
 }
 .media-loadmore:hover {
   background: #005bd1;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 8px;
+}
+
+.pagination button {
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.pagination button.active-page {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+  font-weight: bold;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }

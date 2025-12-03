@@ -1,37 +1,72 @@
-/* 🌐 General */
+/* ==========================================================
+   GENERAL PAGE BASE
+   ========================================================== */
 .contact-section {
   font-family: "Poppins", sans-serif;
-  background-color: #f9fafc;
+  /* background-color: #f9fafc; */
 }
 
-/* 🟦 Banner */
-.contact-banner {
+/* ==========================================================
+   NEW RESPONSIVE HERO BANNER (REPLACES OLD contact-banner)
+   ========================================================== */
+.contact-hero {
   position: relative;
-  height: 45vh;
-  /* background: url("/assets/images/contact-banner.jpg") center/cover no-repeat; */
+  width: 100%;
+  height: auto;                 /* Balanced height */
+  min-height: 220px;            /* Ensures visibility on small phones */
+  max-height: 420px;
+  overflow: hidden;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.contact-overlay {
+.contact-hero-img {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(7, 21, 49, 0.7), rgba(0, 119, 255, 0.6));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  object-fit: cover;            /* Keeps banner proportional */
+  object-position: center;
 }
 
-.contact-title {
-  color: #fff;
-  font-size: 2.4rem;
+.contact-hero-overlay {
+   position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-hero-title {
+ color: #fff;
+  font-size: clamp(1.4rem, 4vw, 2.6rem); /* Auto scaling text */
   font-weight: 700;
   text-align: center;
-  letter-spacing: 0.5px;
+  line-height: 1.2;
 }
 
-/* 🩵 Contact Card */
+@media (max-width: 768px) {
+  .contact-hero-title {
+    font-size: 2rem;
+  }
+  .contact-hero {
+    height: 32vh;
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-hero-title {
+    font-size: 1.7rem;
+  }
+  .contact-hero {
+    height: 28vh;
+    min-height: 180px;
+  }
+}
+
+/* ==========================================================
+   CONTACT CARD
+   ========================================================== */
 .contact-card {
   background: linear-gradient(145deg, #f0f7ff 0%, #e7f1ff 45%, #f5faff 100%);
   border-radius: 15px;
@@ -47,7 +82,9 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* 🏥 Header Styling */
+/* ==========================================================
+   HEADER TEXT
+   ========================================================== */
 .contact-header h3 {
   font-size: 1.4rem;
   margin-bottom: 8px;
@@ -67,7 +104,9 @@
   margin: 1.5rem 0;
 }
 
-/* Contact Items */
+/* ==========================================================
+   CONTACT INFO ITEMS
+   ========================================================== */
 .contact-item h5 {
   color: #0077ff;
   font-size: 1rem;
@@ -85,7 +124,9 @@
   color: #0077ff;
 }
 
-/* 🖼️ Contact Photo */
+/* ==========================================================
+   PHOTO SECTION
+   ========================================================== */
 .contact-photo {
   margin-top: 25px;
 }
@@ -102,7 +143,9 @@
   transform: scale(1.02);
 }
 
-/* 📅 Appointment Box */
+/* ==========================================================
+   APPOINTMENT FORM BOX
+   ========================================================== */
 .appointment-box {
   background: #fff;
   border-radius: 15px;
@@ -131,13 +174,15 @@
   }
 }
 
-/* 📱 Responsive */
+/* ==========================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================== */
 @media (max-width: 992px) {
-  .contact-banner {
+  .contact-hero {
     height: 40vh;
   }
 
-  .contact-title {
+  .contact-hero-title {
     font-size: 2rem;
   }
 
@@ -153,11 +198,11 @@
 }
 
 @media (max-width: 576px) {
-  .contact-banner {
+  .contact-hero {
     height: 35vh;
   }
 
-  .contact-title {
+  .contact-hero-title {
     font-size: 1.6rem;
   }
 
