@@ -78,7 +78,7 @@
 /* ✨ Dropdown Container */
 .dropdown-content {
   position: absolute;
-  top: 80px;
+  top: 50px;
   left: 0;
   background: #ffffff;
   border-radius: 12px;
@@ -134,7 +134,8 @@
 .treatment-column a,
 .dropdown-content a {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding: 4px 0;
   color: #0d2345;
   font-size: 15px;
@@ -247,7 +248,7 @@
     overflow-x: hidden;
   }
 
-  .nav-links.active { right: 0; }
+  .nav-links.active { right: 0; margin-top: 0; }
 
   .appointment-button { display: none; }
 
@@ -291,5 +292,12 @@
 
   .treatment-column.active ul {
     display: block;
+  }
+}
+
+@media (max-width: 580px) {
+  .treatment-column a,
+.dropdown-content a {
+    width: 200px;
   }
 }

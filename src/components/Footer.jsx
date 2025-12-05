@@ -117,11 +117,33 @@ function Footer() {
           </Col>
         </Row>
 
-        {/* 📅 Copyright */}
-        <Row className="pt-3 mt-2 border-top">
+        {/* 📅 COPYRIGHT + BOTTOM-RIGHT LOGO + TEXT */}
+        <Row className="pt-3 mt-2 border-top position-relative">
           <Col className="text-center">
             <small className="text-muted">
               © {new Date().getFullYear()} Dr. Achal Gupta | All Rights Reserved
+            </small>
+
+            {/* ⭐ Bottom-Right Logo + Text */}
+            <small
+              className="footer-brand-badge text-muted d-flex align-items-center gap-2"
+              style={{ right: "15px", bottom: "5px" }}
+            >
+              <Link
+                to="/your-desired-page"
+                className="text-muted text-decoration-none d-flex align-items-center gap-2"
+              >
+                <span>Your Text Here</span>
+                <img
+                  src="/assets/your-logo.png"
+                  alt="Logo"
+                  style={{
+                    height: "16px", // same height as text
+                    objectFit: "contain",
+                  }}
+                />
+                
+              </Link>
             </small>
           </Col>
         </Row>

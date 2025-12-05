@@ -151,6 +151,7 @@ footer small {
   footer {
     text-align: center;
     padding-top: 15px;
+    margin-bottom: 15px;
   }
 
   footer .container {
@@ -219,4 +220,36 @@ footer small {
   width: 80px;
   height: 70px;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+/* Desktop (default): bottom-right absolute */
+.footer-brand-badge {
+  position: absolute;
+  right: 15px;
+  bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Tablet view: move to center under copyright */
+@media (max-width: 992px) {
+  .footer-brand-badge {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    margin-top: 8px;
+    justify-content: center;
+    transform: none;
+  }
+}
+
+/* Mobile view: full width, centered, no overlap */
+@media (max-width: 576px) {
+  .footer-brand-badge {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    justify-content: center;
+  }
 }
