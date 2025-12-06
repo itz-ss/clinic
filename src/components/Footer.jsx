@@ -130,7 +130,7 @@ function Footer() {
               style={{ right: "15px", bottom: "5px" }}
             >
               <Link
-                to="/your-desired-page"
+                to="https://expansio.in/"
                 className="text-muted text-decoration-none d-flex align-items-center gap-2"
               >
                 <span>MADE BY - </span>
