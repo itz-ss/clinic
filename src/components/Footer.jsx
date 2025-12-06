@@ -133,9 +133,9 @@ function Footer() {
                 to="/your-desired-page"
                 className="text-muted text-decoration-none d-flex align-items-center gap-2"
               >
-                <span>Your Text Here</span>
+                <span>MADE BY - </span>
                 <img
-                  src="/assets/your-logo.png"
+                  src="/assets/ExpansioLogo.png"
                   alt="Logo"
                   style={{
                     height: "16px", // same height as text
