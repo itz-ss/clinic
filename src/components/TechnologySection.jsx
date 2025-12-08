@@ -38,19 +38,19 @@ function TechnologySection() {
             transition={{ delay: 0.6, duration: 0.8 }}
           >
            We use the latest medical technology to make your treatment safer, simpler, and faster.
-Our advanced systems help us diagnose problems accurately and treat them with minimal discomfort.
+          Our advanced systems help us diagnose problems accurately and treat them with minimal discomfort.
 
-From endoscopic spine surgery tools that require only a tiny incision, to digital imaging and monitoring systems that track every detail with precision — we invest in technology that truly benefits our patients.
+          From endoscopic spine surgery tools that require only a tiny incision, to digital imaging and monitoring systems that track every detail with precision — we invest in technology that truly benefits our patients.
 
-This means:
-<ul>
-    <li>Less pain</li>
-  <li>Smaller cuts</li>
-  <li>Faster recovery</li>
-  <li> Early return to normal life</li>
-</ul>
+          This means:
+          <ul>
+            <li>Less pain</li>
+            <li>Smaller cuts</li>
+            <li>Faster recovery</li>
+            <li> Early return to normal life</li>
+          </ul>
 
-Modern treatment isn’t just about machines —<i>it’s about better outcomes. And that’s what we focus on.</i> 
+          Modern treatment isn’t just about machines —<i>it’s about better outcomes. And that’s what we focus on.</i> 
           </motion.p>
         </motion.div>
 

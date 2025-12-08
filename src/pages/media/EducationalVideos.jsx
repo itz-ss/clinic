@@ -16,6 +16,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { fetchEducationalVideos } from "../../services/strapi";
+import SEO from "../../components/SEO";
 import "../../styles/EducationalVideos.css";
 
 const ITEMS_PER_PAGE = 6; // ⭐ YOUR REQUIREMENT
@@ -104,6 +105,14 @@ const EducationalVideos = () => {
   if (loading) return <p className="media-page">Loading videos...</p>;
 
   return (
+    <>
+    <SEO
+      title="Educational Neurosurgery & Pediatric Neurology Videos | Neuron Brain & Spine Center"
+      description="Watch educational videos by Dr Achal Gupta and Dr Konika Bansal on neurosurgery, spine surgery, pediatric neurology, epilepsy, autism, ADHD, and advanced brain and spine treatments."
+      keywords="medical educational videos, neurosurgery videos, spine surgery videos, pediatric neurology videos, epilepsy education, brain and spine videos"
+      image="/assets/banner/homePageBanner.png"
+    />
+
     <div className="media-page">
       <header className="media-header">
         <h1>Educational Videos</h1>
@@ -274,6 +283,7 @@ const EducationalVideos = () => {
           );
         })}
     </div>
+    </>
   );
 };
 

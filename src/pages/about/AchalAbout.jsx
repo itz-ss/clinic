@@ -3,6 +3,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { doctorsData } from "../../data/about";
+import SEO from "../../components/SEO";
 import "../../styles/About.css";
 
 function AchalAbout() {
@@ -37,6 +38,14 @@ function AchalAbout() {
   };
 
   return (
+    <>
+    <SEO
+      title="Dr Achal Gupta | Consultant Neurosurgeon & Spine Surgeon in Lucknow"
+      description="Learn about Dr Achal Gupta, Consultant Neurosurgeon & Spine Surgeon at Neuron Brain & Spine Center, Lucknow specializing in minimally invasive and endoscopic spine surgery."
+      keywords="Dr Achal Gupta, Neurosurgeon in Lucknow, Spine Surgeon Lucknow, Minimally Invasive Spine Surgery, Endoscopic Spine Surgery, Brain Tumor Surgery"
+      image="/assets/about/achal6.jpg"
+    />
+
     <Container className="about-container">
       {/* Heading */}
       <div className="text-center">
@@ -228,6 +237,7 @@ function AchalAbout() {
         </ul>
       </div>
     </Container>
+    </>
   );
 }
 

@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { fetchTestimonials } from "../../services/strapi";
 import { STRAPI_URL } from "../../config";
+import SEO from "../../components/SEO";
 import "../../styles/TestimonialsPage.css";
 
 // ⭐ Extract YouTube VIDEO ID from ANY link
@@ -174,6 +175,14 @@ const TestimonialsPage = () => {
   if (loading) return <p className="media-page">Loading testimonials...</p>;
 
   return (
+    <>
+    <SEO
+      title="Patient Testimonials | Neuron Brain & Spine Center Lucknow"
+      description="Read real patient reviews and success stories about treatments by Dr Achal Gupta and Dr Konika Bansal at Neuron Brain & Spine Center specializing in neurosurgery, spine surgery and pediatric neurology."
+      keywords="neurosurgeon testimonials, pediatric neurologist reviews, spine surgery testimonials, neuron brain and spine center reviews"
+      image="/assets/images/og-image.jpg"
+    />
+
     <div className="media-page">
       <header className="media-header">
         <h1>Testimonials</h1>
@@ -281,6 +290,7 @@ const TestimonialsPage = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

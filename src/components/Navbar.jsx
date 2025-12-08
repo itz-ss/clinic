@@ -9,7 +9,7 @@ import LanguageToggle from "./LanguageToggle";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [mediaOpen, setMediaOpen] = useState(false);
+  // const [mediaOpen, setMediaOpen] = useState(false);
 
   const [openDropdown, setOpenDropdown] = useState(null);
   const [openSubDropdown, setOpenSubDropdown] = useState(null);

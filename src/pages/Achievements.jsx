@@ -13,11 +13,13 @@ function Achievements() {
 
   return (
     <>
-      <SEO
-        title="Doctor's Name | Awards and Achievements"
-        description="Discover Doctor's Name's achievements, recognitions, and contributions to the field of spine surgery."
-        keywords="doctor achievements, medical awards, recognitions"
-      />
+     <SEO
+      title="Achievements | Dr Achal Gupta & Dr Konika Bansal | Neuron Brain & Spine Center"
+      description="Explore major achievements of Dr Achal Gupta, Consultant Neurosurgeon & Spine Surgeon, and Dr Konika Bansal, Consultant Pediatric Neurologist at Neuron Brain & Spine Center, Lucknow."
+      keywords="Dr Achal Gupta achievements, Dr Konika Bansal achievements, Neurosurgeon Lucknow, Spine surgeon achievements, Pediatric Neurologist achievements, Neuron Brain and Spine Center"
+      image="/assets/banner/homePageBanner.png"
+    />
+
 
       <Container className="py-4">
         <h2 className="mb-4 text-center">Achievements</h2>

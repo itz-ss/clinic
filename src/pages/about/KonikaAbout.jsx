@@ -56,10 +56,12 @@ function KonikaAbout() {
     <>
       {/* SEO */}
       <SEO
-        title={doctor.seo?.title}
-        description={doctor.seo?.description}
-        keywords={doctor.seo?.keywords}
+        title="Dr Konika Bansal | Pediatric Neurologist in Lucknow"
+        description="Meet Dr Konika Bansal, Consultant Pediatric Neurologist specializing in epilepsy, developmental disorders, autism and pediatric neuromuscular disorders at Neuron Brain & Spine Center Lucknow."
+        keywords="Dr Konika Bansal, Pediatric Neurologist Lucknow, Epilepsy Doctor, Autism specialist, ADHD treatment, Child neurologist Lucknow"
+        image="/assets/about/konika12.jpeg"
       />
+
 
       <Container className="about-container ">
         {/* Header */}

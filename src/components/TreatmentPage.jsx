@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { servicesData } from "../data/servicesData";
 import { motion } from "framer-motion";
 import AppointmentForm from "../components/AppointmentForm";
+import SEO from "../components/SEO";
 import "../styles/treatmentPage.css";
 
 const TreatmentPage = () => {
@@ -24,6 +25,14 @@ const TreatmentPage = () => {
   }
 
   return (
+    <>
+    <SEO
+      title="Treatments | Neurosurgery, Spine Surgery & Pediatric Neurology | Neuron Brain & Spine Center Lucknow"
+      description="Explore advanced treatments offered at Neuron Brain & Spine Center including minimally invasive spine surgery, endoscopic spine surgery, pediatric neurology, epilepsy management, cerebral palsy care, stroke, tumors and more by Dr Achal Gupta & Dr Konika Bansal."
+      keywords="Slip Disc Surgery, Cervical Spondylosis, Endoscopic Spine Surgery, Minimally Invasive Spine Surgery, Pediatric Spine Surgery, Brain Tumor Surgery, Spine Tumor, Child Neurology, Epilepsy Treatment, Cerebral Palsy treatment, ADHD treatment, genetic disorders"
+      image="/assets/banner/homePageBanner.png"
+    />
+
     <div className="treatment-page">
 
       {/* 🔹 PAGE BANNER */}
@@ -194,6 +203,7 @@ const TreatmentPage = () => {
 
       </div>
     </div>
+    </>
   );
 };
 

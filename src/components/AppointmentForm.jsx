@@ -103,7 +103,7 @@ Please confirm my appointment.`;
         message: "",
       });
     } catch (error) {
-      console.error("❌ Error submitting appointment:", error);
+      // console.error("❌ Error submitting appointment:", error);
       setStatus("Something went wrong. Please try again later.");
     } finally {
       setIsSubmitting(false);

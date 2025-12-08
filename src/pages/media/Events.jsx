@@ -6,6 +6,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { fetchEvents } from "../../services/strapi";
+import SEO from "../../components/SEO";
 import { STRAPI_URL } from "../../config";
 import "../../styles/Events.css";
 
@@ -206,6 +207,14 @@ const Events = () => {
   if (loading) return <p className="media-page">Loading events...</p>;
 
   return (
+    <>
+    <SEO
+      title="Events | Neuron Brain & Spine Center | Medical Awareness & Public Education"
+      description="Stay updated with events and medical awareness activities from Neuron Brain & Spine Center led by Dr Achal Gupta and Dr Konika Bansal including camps, awareness programs and conferences."
+      keywords="neurosurgery events, medical events, pediatric neurology events, health awareness events, neuron brain and spine center events"
+      image="/assets/banner/homePageBanner.png"
+    />
+
     <div className="media-page">
       <header className="media-header">
         <h1>Events</h1>
@@ -370,6 +379,7 @@ const Events = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

@@ -20,10 +20,12 @@ function Home() {
   return (
     <>
       <SEO
-        title="Doctor's Name | Spine Surgeon in City Name"
-        description="Doctor's Name is a leading spine specialist offering advanced treatments for back and neck disorders in City Name."
-        keywords="spine surgeon, spine specialist, back pain doctor, minimally invasive surgery"
+        title="Neuron Brain & Spine Center | Neurosurgeon, Spine Surgeon & Pediatric Neurologist in Lucknow"
+        description="Neuron Brain & Spine Center in Lucknow offers advanced neurosurgery, spine surgery and pediatric neurology care by Dr Achal Gupta and Dr Konika Bansal using modern minimally invasive treatment approaches."
+        keywords="Neuron Brain and Spine Center, Neurosurgeon Lucknow, Spine Surgeon Lucknow, Pediatric Neurologist Lucknow, minimally invasive spine surgery, neurosurgery Lucknow"
+        image="/assets/images/og-image.jpg"
       />
+
 
       <SchemaDoctor />
 

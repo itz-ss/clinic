@@ -9,10 +9,12 @@ function Contact() {
   return (
     <>
       <SEO
-        title="Contact Dr. Achal Gupta | Spine Surgeon Lucknow"
-        description="Get in touch with Dr. Achal Gupta at Neuron Brain & Spine Center, Lucknow. Book consultations or ask questions regarding spine treatments and surgeries."
-        keywords="Dr Achal Gupta contact, spine surgeon Lucknow, Neuron Brain & Spine Center specialist, book appointment"
+        title="Contact Neuron Brain & Spine Center | Dr Achal Gupta & Dr Konika Bansal"
+        description="Contact Neuron Brain & Spine Center, Lucknow to book an appointment with Dr Achal Gupta, Consultant Neurosurgeon & Spine Surgeon, or Dr Konika Bansal, Consultant Pediatric Neurologist."
+        keywords="Contact Neuron Brain and Spine Center, Contact Dr Achal Gupta, Contact Dr Konika Bansal, Neurosurgeon Lucknow contact, Pediatric Neurologist Lucknow contact, spine surgeon appointment"
+        image="/assets/banner/homePageBanner.png"
       />
+
 
       {/* 🟦 Responsive Banner Section */}
       <section className="contact-hero">

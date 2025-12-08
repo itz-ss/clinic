@@ -3,70 +3,55 @@ import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
 function SEO({
-  title,
-  description,
-  keywords,
+  title = "Neuron Brain & Spine Center, Lucknow",
+  description = "Neuron Brain and Spine Center offers advanced neurosurgery, spine surgery, pediatric neurology and minimally invasive treatments.",
+  keywords = "neurosurgery, spine surgery, pediatric neurology, brain surgery, spine specialist, Lucknow",
   image = "/assets/images/og-image.jpg",
+  type = "website",
+  twitterUsername = "@neuronbrainandspine"
 }) {
 
   const location = useLocation();
+  
+  const siteUrl = "https://neuronbrainandspine.in"; // <<< CHANGE to your domain
 
-  // Automatically build canonical URL using your domain + current path
-  const baseUrl = "https://your-domain.example"; // CHANGE this once you know the real domain
-  const canonical = `${baseUrl}${location.pathname}`;
+  const canonicalUrl = `${siteUrl}${location.pathname}`;
+
 
   return (
     <Helmet>
+      {/* Page Title */}
+      <title>{title}</title>
 
-      {/* ---------- Basic SEO Tags ---------- */}
-      {title && (
-        <title>{title}</title>
-      )}
-      {description && (
-        <meta name="description" content={description} />
-      )}
-      {keywords && (
-        <meta name="keywords" content={keywords} />
-      )}
-      <meta name="robots" content="index, follow" />
+      {/* DESCRIPTION */}
+      <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
 
+      {/* Robots */}
+      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 
-      {/* ---------- Canonical URL ---------- */}
-      {canonical && (
-        <link rel="canonical" href={canonical} />
-      )}
+      {/* Canonical */}
+      <link rel="canonical" href={canonicalUrl} />
 
-
-      {/* ---------- Open Graph / Social Media ---------- */}
-      {title && (
-        <meta property="og:title" content={title} />
-      )}
-      {description && (
-        <meta property="og:description" content={description} />
-      )}
-      {canonical && (
-        <meta property="og:url" content={canonical} />
-      )}
-      {image && (
-        <meta property="og:image" content={image} />
-      )}
-      <meta property="og:type" content="website" />
+      {/* Open Graph */}
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:type" content={type} />
+      <meta property="og:image" content={image} />
+      <meta property="og:image:alt" content={title} />
       <meta property="og:locale" content="en_IN" />
 
-
-      {/* ---------- Twitter Cards ---------- */}
-      {title && (
-        <meta name="twitter:title" content={title} />
-      )}
-      {description && (
-        <meta name="twitter:description" content={description} />
-      )}
-      {image && (
-        <meta name="twitter:image" content={image} />
-      )}
+      {/* Twitter */}
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content={twitterUsername} />
+
+      {/* Prevent duplicate tags */}
+      <meta name="application-name" content="Neuron Brain & Spine Center" />
     </Helmet>
-    
   );
 }
 
