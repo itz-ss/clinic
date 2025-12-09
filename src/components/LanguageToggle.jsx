@@ -17,24 +17,43 @@ const LanguageToggle = () => {
   }, []);
 
   const changeLanguage = (targetLang) => {
-    const select = document.querySelector("#google_translate_element select");
-    if (!select) return;
-    select.value = targetLang;
-    select.dispatchEvent(new Event("change"));
-  };
+  const select = document.querySelector("#google_translate_element select");
+  if (!select) return;
+
+  // force selection by option text
+  for (const option of select.options) {
+    if (option.value.includes(targetLang)) {
+      select.value = option.value;
+      select.dispatchEvent(new Event("change"));
+      return;
+    }
+  }
+};
 
   const toggleLanguage = () => {
-    if (!ready) return;
-    const next = lang === "en" ? "hi" : "en";
-    setLang(next);
-    localStorage.setItem("lang", next);
+  if (!ready) return;
+
+  const next = lang === "en" ? "hi" : "en";
+  setLang(next);
+  localStorage.setItem("lang", next);
+
+  setTimeout(() => {
     changeLanguage(next);
-  };
+  }, 150);
+};
+
+
+
 
   // Apply saved language when page loads
-  useEffect(() => {
-    if (ready) changeLanguage(lang);
-  }, [ready]);
+useEffect(() => {
+  if (!ready) return;
+  const stored = localStorage.getItem("lang") || "en";
+  setTimeout(() => {
+    changeLanguage(stored);
+  }, 100);
+}, [ready]);
+
 
   return (
     <button
